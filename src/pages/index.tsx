@@ -3,7 +3,7 @@ import {signIn} from 'next-auth/react'
 import {Button} from '../components/Button'
 import {NextPage} from 'next'
 
-export const Home: NextPage = () => (
+const Home: NextPage = () => (
   <div>
     <Head>
       <title>Awesome Links</title>
@@ -14,3 +14,5 @@ export const Home: NextPage = () => (
     </Button>
   </div>
 )
+
+export default Home

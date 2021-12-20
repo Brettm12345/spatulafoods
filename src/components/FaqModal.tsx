@@ -7,7 +7,7 @@ import StarterKit from '@tiptap/starter-kit'
 import {FC, Fragment, useState} from 'react'
 import {useCreateFaqMutation, useUpdateFaqMutation} from '../generated/graphql'
 import {Button} from './Button'
-import {Tiptap} from './Tiptap'
+import {RichTextEditor} from './RichTextEditor'
 
 interface Info {
   loadingText: string
@@ -132,7 +132,7 @@ export const FaqModal: FC<FaqModalProps> = ({
               <label htmlFor="answer" className="form-label">
                 Answer
               </label>
-              <Tiptap editor={editor} />
+              <RichTextEditor editor={editor} />
               <div className="flex items-end justify-end mt-2 space-x-2">
                 <Button className="btn-sm btn-light-gray" onClick={onClose}>
                   Cancel
