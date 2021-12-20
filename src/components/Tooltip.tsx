@@ -29,10 +29,13 @@ export const Tooltip: FC<TooltipProps> = ({
 }) => (
   <Tippy
     content={content}
+    popperOptions={{
+      placement,
+    }}
     className={clsx(
       'inline-block py-2 px-3 text-sm font-medium  rounded-lg shadow-sm tooltip',
       variant === 'dark'
-        ? 'text-white bg-gray-900 dark:bg-gray-700'
+        ? 'text-white bg-gray-900 dark:bg-gray-800'
         : 'text-gray-900 bg-white border border-gray-200'
     )}
   >
