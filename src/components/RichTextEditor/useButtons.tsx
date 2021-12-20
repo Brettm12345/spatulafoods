@@ -53,117 +53,113 @@ interface EditorButtonProps
 
 type UseButtons = (editor: Editor) => Array<EditorButtonProps[]>
 
-export const useButtons: UseButtons = editor =>
-  useMemo(
-    () => [
-      [
-        {
-          Icon: BiBold,
-          tooltip: 'Bold',
-          isEnabled: editor?.isActive('bold'),
-          onClick() {
-            editor.chain().focus().toggleBold().run()
-          },
-        },
-        {
-          Icon: BiItalic,
-          tooltip: 'Italic',
-          isEnabled: editor?.isActive('italic'),
-          onClick() {
-            editor.chain().focus().toggleItalic().run()
-          },
-        },
-        {
-          Icon: BiStrikethrough,
-          tooltip: 'Strikethrough',
-          isEnabled: editor?.isActive('strike'),
-          onClick() {
-            editor.chain().focus().toggleStrike().run()
-          },
-        },
-        {
-          Icon: BiUnderline,
-          tooltip: 'Underline',
-          isEnabled: editor?.isActive('underline'),
-          onClick() {
-            editor.chain().focus().toggleUnderline().run()
-          },
-        },
-        {
-          Icon: ClearFormatting,
-          tooltip: 'Clear Formatting',
-          onClick() {
-            editor
-              .chain()
-              .focus()
-              .unsetAllMarks()
-              .setParagraph()
-              .unsetBlockquote()
-              .run()
-          },
-        },
-      ],
-      Object.entries(alignIcons).map(([align, Icon]) => ({
-        Icon,
-        tooltip: `Align ${align}`,
-        isEnabled: editor?.isActive({textAlign: align}),
-        onClick() {
-          editor.chain().setTextAlign(align).run()
-        },
-      })),
-      [
-        ...headingLevels.map(level => ({
-          Icon: headingIcons[level],
-          tooltip: `Heading level ${level}`,
-          isEnabled: editor?.isActive('heading', {level}),
-          onClick() {
-            editor.chain().focus().toggleHeading({level}).run()
-          },
-        })),
-        {
-          Icon: BiParagraph,
-          tooltip: 'Paragraph',
-          isEnabled: editor?.isActive('paragraph'),
-          onClick() {
-            editor.chain().focus().setParagraph().run()
-          },
-        },
-        {
-          Icon: BlockquoteLeft,
-          tooltip: 'Blockquote',
-          isEnabled: editor?.isActive('blockquote'),
-          onClick() {
-            editor.chain().focus().toggleBlockquote().run()
-          },
-        },
-      ],
-      [
-        {
-          Icon: BiListUl,
-          tooltip: 'Bullet list',
-          isEnabled: editor?.isActive('bulletList'),
-          onClick() {
-            editor.chain().focus().toggleBulletList().run()
-          },
-        },
-        {
-          Icon: BiListOl,
-          tooltip: 'Numbered list',
-          isEnabled: editor?.isActive('orderedList'),
-          onClick() {
-            editor.chain().focus().toggleOrderedList().run()
-          },
-        },
-      ],
-      [
-        {
-          Icon: BiUndo,
-          tooltip: 'Undo',
-          onClick() {
-            editor.chain().focus().undo().run()
-          },
-        },
-      ],
-    ],
-    [JSON.stringify(editor.getJSON())]
-  )
+export const useButtons: UseButtons = editor => [
+  [
+    {
+      Icon: BiBold,
+      tooltip: 'Bold',
+      isEnabled: editor?.isActive('bold'),
+      onClick() {
+        editor.chain().focus().toggleBold().run()
+      },
+    },
+    {
+      Icon: BiItalic,
+      tooltip: 'Italic',
+      isEnabled: editor?.isActive('italic'),
+      onClick() {
+        editor.chain().focus().toggleItalic().run()
+      },
+    },
+    {
+      Icon: BiStrikethrough,
+      tooltip: 'Strikethrough',
+      isEnabled: editor?.isActive('strike'),
+      onClick() {
+        editor.chain().focus().toggleStrike().run()
+      },
+    },
+    {
+      Icon: BiUnderline,
+      tooltip: 'Underline',
+      isEnabled: editor?.isActive('underline'),
+      onClick() {
+        editor.chain().focus().toggleUnderline().run()
+      },
+    },
+    {
+      Icon: ClearFormatting,
+      tooltip: 'Clear Formatting',
+      onClick() {
+        editor
+          .chain()
+          .focus()
+          .unsetAllMarks()
+          .setParagraph()
+          .unsetBlockquote()
+          .run()
+      },
+    },
+  ],
+  Object.entries(alignIcons).map(([align, Icon]) => ({
+    Icon,
+    tooltip: `Align ${align}`,
+    isEnabled: editor?.isActive({textAlign: align}),
+    onClick() {
+      editor.chain().setTextAlign(align).run()
+    },
+  })),
+  [
+    ...headingLevels.map(level => ({
+      Icon: headingIcons[level],
+      tooltip: `Heading level ${level}`,
+      isEnabled: editor?.isActive('heading', {level}),
+      onClick() {
+        editor.chain().focus().toggleHeading({level}).run()
+      },
+    })),
+    {
+      Icon: BiParagraph,
+      tooltip: 'Paragraph',
+      isEnabled: editor?.isActive('paragraph'),
+      onClick() {
+        editor.chain().focus().setParagraph().run()
+      },
+    },
+    {
+      Icon: BlockquoteLeft,
+      tooltip: 'Blockquote',
+      isEnabled: editor?.isActive('blockquote'),
+      onClick() {
+        editor.chain().focus().toggleBlockquote().run()
+      },
+    },
+  ],
+  [
+    {
+      Icon: BiListUl,
+      tooltip: 'Bullet list',
+      isEnabled: editor?.isActive('bulletList'),
+      onClick() {
+        editor.chain().focus().toggleBulletList().run()
+      },
+    },
+    {
+      Icon: BiListOl,
+      tooltip: 'Numbered list',
+      isEnabled: editor?.isActive('orderedList'),
+      onClick() {
+        editor.chain().focus().toggleOrderedList().run()
+      },
+    },
+  ],
+  [
+    {
+      Icon: BiUndo,
+      tooltip: 'Undo',
+      onClick() {
+        editor.chain().focus().undo().run()
+      },
+    },
+  ],
+]
