@@ -1,6 +1,7 @@
 import {PrismaClient} from '@prisma/client'
 import {ContextFunction} from 'apollo-server-core'
 import {NextApiRequest, NextApiResponse} from 'next'
+import {JWT} from 'next-auth/jwt'
 import {getSession} from 'next-auth/react'
 
 const prisma = new PrismaClient()
