@@ -11,7 +11,7 @@
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",
     "start": "next start",
     "prisma:generate": " prisma generate",
-    "db:push": "DATABASE_URL='postgres://ppqmpqktuedycx:20a08e70587261e79595650c9a275c94c6550641d851ad40d84603472baa4b16@ec2-44-195-186-223.compute-1.amazonaws.com:5432/dbkv54d545n3r8' yarn prisma db push",
+    "db:push": "yarn prisma db push",
     "db:seed": "yarn prisma db seed",
     "postinstall": "yarn prisma:generate",
     "codegen": "graphql-codegen --config codegen.yml"

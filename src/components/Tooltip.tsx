@@ -30,8 +30,7 @@ export const Tooltip: FC<TooltipProps> = ({
   <Tippy
     content={content}
     className={clsx(
-      'inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium  rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip',
-      'ease-in transition-opacity duration-300',
+      'inline-block py-2 px-3 text-sm font-medium  rounded-lg shadow-sm tooltip',
       variant === 'dark'
         ? 'text-white bg-gray-900 dark:bg-gray-700'
         : 'text-gray-900 bg-white border border-gray-200'
