@@ -1,30 +1,27 @@
-import {useEditor, EditorContent, Editor} from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit'
+import {H1, H2, H3, H4, H5, H6} from '@styled-icons/remix-editor'
+import clsx from 'clsx'
+import {Editor, EditorContent} from '@tiptap/react'
 import classNames from 'classnames'
-import TextAlign from '@tiptap/extension-text-align'
-import Blockquote from '@tiptap/extension-blockquote'
-import Underline from '@tiptap/extension-underline'
 import {DetailedHTMLProps, FC, HTMLAttributes} from 'react'
 import {IconType} from 'react-icons'
 import {
-  BiBold,
-  BiItalic,
-  BiStrikethrough,
-  BiAlignLeft,
   BiAlignJustify,
-  BiParagraph,
+  BiAlignLeft,
   BiAlignMiddle,
   BiAlignRight,
-  BiUndo,
-  BiRedo,
-  BiUnderline,
-  BiListUl,
+  BiBold,
+  BiItalic,
   BiListOl,
+  BiListUl,
+  BiParagraph,
+  BiRedo,
+  BiStrikethrough,
+  BiUnderline,
+  BiUndo,
 } from 'react-icons/bi'
-import {StyledIcon} from 'styled-icons/types'
-import {H1, H2, H3, H4, H5, H6} from '@styled-icons/remix-editor'
-import {ClearFormatting} from 'styled-icons/fluentui-system-regular'
 import {BlockquoteLeft} from 'styled-icons/bootstrap'
+import {ClearFormatting} from 'styled-icons/fluentui-system-regular'
+import {StyledIcon} from 'styled-icons/types'
 import {Tooltip} from './Tooltip'
 
 const alignIcons: Record<string, IconType> = {
@@ -64,20 +61,21 @@ export const ToggleButton: FC<ToggleButtonProps> = ({
     <button
       aria-label={tooltip}
       onClick={onToggle}
-      className={classNames(
+      className={clsx(
         props.className,
-        'flex items-center justify-center no-tap-highlight bg-gray-100 dark:bg-gray-700 appearance-none size-6 dark:text-gray-200',
+        'flex items-center justify-center no-tap-highlight appearance-none size-6',
+        'bg-gray-100 dark:bg-gray-700  dark:text-gray-200',
         'first-of-type:rounded-l-[4px] last-of-type:rounded-r-[4px]',
         'focus:outline-none',
         'transition-colors ease-in duration-200',
-        {
-          'hover:bg-gray-200 hover:text-black dark:hover:bg-gray-600 dark:hover:text-white focus-visible:bg-gray-200 focus-visible:text-black dark:focus-visible:bg-gray-600 dark:focus-visible:text-white':
-            !isEnabled,
-        },
-        {
-          ['bg-blue-200 text-blue-500 dark:bg-blue-500/30 dark:text-blue-400']:
-            isEnabled,
-        }
+        isEnabled
+          ? clsx(
+              'hover:bg-gray-200 hover:text-black',
+              'dark:hover:bg-gray-600 dark:hover:text-white ',
+              'focus-visible:bg-gray-200 focus-visible:text-black',
+              'dark:focus-visible:bg-gray-600 dark:focus-visible:text-white'
+            )
+          : 'bg-blue-200 text-blue-500 dark:bg-blue-500/30 dark:text-blue-400'
       )}
       {...props}
     >

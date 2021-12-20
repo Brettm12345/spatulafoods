@@ -9,6 +9,7 @@ const prisma = new PrismaClient()
 export default NextAuth({
   adapter: PrismaAdapter(prisma),
   secret: process.env?.NEXTAUTH_SECRET,
+
   providers: [
     Auth0Provider({
       clientId: process.env.AUTH0_ID,
@@ -29,6 +30,11 @@ export default NextAuth({
       // Send properties to the client, like an access_token from a provider.
       session.accessToken = token.accessToken
       return session
+    },
+    redirect({baseUrl, url}) {
+      console.log('Base URL', baseUrl)
+      console.log('URL', url)
+      return url
     },
   },
 })
