@@ -10,8 +10,8 @@ const useClient = (options?: RequestInit) => {
     const client = createClient({
       url:
         process.env.NODE_ENV === 'development'
-          ? 'https://localhost:3000/api/graphql'
-          : `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
+          ? 'http://localhost:3000/api/graphql'
+          : `https://spatulafoods.vercel.app/api/graphql`,
       fetchOptions: () => {
         return {
           headers: {
