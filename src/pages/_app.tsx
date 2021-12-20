@@ -3,7 +3,7 @@ import Layout from '../components/Layout'
 import {ThemeProvider} from 'next-themes'
 import {SessionProvider} from 'next-auth/react'
 import {AppType} from 'next/dist/next-server/lib/utils'
-import {UrqlProvider} from './UrqlProvider'
+import {UrqlProvider} from '../providers/UrqlProvider'
 
 const MyApp: AppType = ({Component, pageProps: {session, ...pageProps}}) => {
   return (
