@@ -1,0 +1,126 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator nexusPrisma {
+  provider = "nexus-prisma"
+}
+
+model Faq {
+  id       Int    @id @default(autoincrement())
+  question String
+  answer   String
+
+  @@map("faq")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime? @map("email_verified")
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+
+  @@map("users")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verificationtokens")
+}
+
+enum MeasurementType {
+  MILLAGRAMS
+  GRAMS
+  UNITS
+
+  @@map("measurement_type")
+}
+
+model Measurement {
+  id                     Int                     @id @default(autoincrement())
+  value                  Float
+  type                   MeasurementType         @default(GRAMS)
+  nutritionFacts         NutritionFact[]
+  compoundNutritionFacts CompoundNutritionFact[]
+
+  @@map("measurement")
+}
+
+model NutritionFact {
+  id                      Int                    @id @default(autoincrement())
+  ingredient              String
+  compoundNutritionFactId Int?                   @map("comound_nutrition_fact_id")
+  productId               Int                    @map("product_id")
+  measurementId           Int                    @map("measurement_id")
+  product                 Product                @relation(fields: [productId], references: [id])
+  compoundNutritionFact   CompoundNutritionFact? @relation(fields: [compoundNutritionFactId], references: [id])
+  measurements            Measurement            @relation(fields: [measurementId], references: [id])
+
+  @@map("nutrition_fact")
+}
+
+model CompoundNutritionFact {
+  id            Int             @id @default(autoincrement())
+  ingredient    String
+  measurementId Int             @map("measurement_id")
+  productId     Int             @map("product_id")
+  product       Product         @relation(fields: [productId], references: [id])
+  measurements  Measurement     @relation(fields: [measurementId], references: [id])
+  ingredients   NutritionFact[]
+
+  @@map("compound_nutrition_fact")
+}
+
+model Product {
+  id                     Int                     @id @default(autoincrement())
+  shopifyId              Int                     @unique @map("shopify_id")
+  ingredients            String[]
+  contains               String[]
+  nutritionFacts         NutritionFact[]
+  compoundNutritionFacts CompoundNutritionFact[]
+  cookingInstructions    String                  @map("cooking_instructions")
+
+  @@map("product")
+}
