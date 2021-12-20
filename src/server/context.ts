@@ -12,10 +12,11 @@ export interface Context {
 
 const secret = process.env.NEXTAUTH_SECRET
 
-export const createContext = async (
-  req: NextApiRequest,
-  res: NextApiResponse
-): Promise<Context> => {
+export const createContext = async ({
+  req,
+}: {
+  req: NextApiRequest
+}): Promise<Context> => {
   console.log(req.headers.header)
   const user = await getSession({
     // @ts-ignore
