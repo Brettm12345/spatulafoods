@@ -34,7 +34,9 @@ export default NextAuth({
     redirect({baseUrl, url}) {
       console.log('Base URL', baseUrl)
       console.log('URL', url)
-      return url
+      return process.env.NODE_ENV === 'production'
+        ? 'https://spatulafoods.vercel.app'
+        : 'http://localhost:3000'
     },
   },
 })
