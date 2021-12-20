@@ -9,6 +9,16 @@ import {useCreateFaqMutation, useUpdateFaqMutation} from '../generated/graphql'
 import {Button} from './Button'
 import {Tiptap} from './Tiptap'
 
+interface Info {
+  loadingText: string
+  loading: boolean
+  action: string
+  title: string
+}
+
+type Actions = 'update' | 'create'
+type ActionInfo = Record<Actions, Info>
+
 interface FaqModalProps {
   question?: string
   answer?: string
@@ -27,6 +37,24 @@ export const FaqModal: FC<FaqModalProps> = ({
   const [currentQuestion, setQuestion] = useState(question ?? '')
   const [{fetching: creating}, createFaq] = useCreateFaqMutation()
   const [{fetching: updating}, updateFaq] = useUpdateFaqMutation()
+
+  const actionInfo: ActionInfo = {
+    create: {
+      loading: creating,
+      action: 'Create Faq',
+      loadingText: 'Creating',
+      title: 'Create Faq',
+    },
+    update: {
+      action: 'Update',
+      title: 'Update Faq',
+      loading: updating,
+      loadingText: 'Updating',
+    },
+  }
+
+  const {loading, loadingText, action, title} =
+    actionInfo[!id ? 'create' : 'update']
 
   const editor = useEditor({
     extensions: [
@@ -84,18 +112,15 @@ export const FaqModal: FC<FaqModalProps> = ({
           leaveTo="opacity-0 scale-95"
         >
           <div className="fixed top-0 max-w-md p-6 my-8 align-middle -translate-x-1/2 bg-white dark:bg-gray-700 rounded-2xl left-1/2">
-            <Dialog.Title>{id ? 'Edit faq' : 'Create faq'}</Dialog.Title>
+            <Dialog.Title>{title}</Dialog.Title>
             <div className="mt-6">
               <div className="mb-6">
-                <label
-                  htmlFor="question"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-                >
+                <label htmlFor="question" className="form-label">
                   Question
                 </label>
                 <input
                   id="question"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="input"
                   value={currentQuestion}
                   onChange={event => {
                     setQuestion(event.target.value)
@@ -104,10 +129,7 @@ export const FaqModal: FC<FaqModalProps> = ({
                   required
                 />
               </div>
-              <label
-                htmlFor="answer"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-              >
+              <label htmlFor="answer" className="form-label">
                 Answer
               </label>
               <Tiptap editor={editor} />
@@ -119,10 +141,10 @@ export const FaqModal: FC<FaqModalProps> = ({
                   className="btn-sm btn-sky"
                   onClick={handleSubmit}
                   disabled={question === ''}
-                  loading={!!id ? updating : creating}
-                  loadingText={!!id ? 'Updating' : 'Creating'}
+                  loading={loading}
+                  loadingText={loadingText}
                 >
-                  {!!id ? 'Update' : 'Create'} Faq
+                  {action} Faq
                 </Button>
               </div>
             </div>
