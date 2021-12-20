@@ -1,6 +1,6 @@
 import {ApolloServer} from 'apollo-server-micro'
 import {schema} from '../../server/schema'
-import Cors from 'mirco-cors'
+import Cors from 'micro-cors'
 import {createContext} from './../../server/context'
 
 const cors = new Cors()
@@ -16,16 +16,11 @@ export const config = {
 }
 export default cors((req, res) => {
   if (req.method === 'OPTIONS') {
-    res.end();
-    return false;
+    res.end()
+    return false
   }
 
   return apolloServer.createHandler({
-  path: '/api/graphql',
-});
-});
-const server = 
-
-
-
-export default 
+    path: '/api/graphql',
+  })
+})
