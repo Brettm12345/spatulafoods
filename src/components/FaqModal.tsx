@@ -69,7 +69,7 @@ export const FaqModal: FC<FaqModalProps> = ({
   })
   const handleSubmit = async () => {
     const data = {
-      question,
+      question: currentQuestion,
       answer: editor.getHTML(),
     } as const
     if (!!id) await updateFaq({id, data})
