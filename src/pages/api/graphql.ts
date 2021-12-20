@@ -22,5 +22,5 @@ export default cors((req, res) => {
 
   return apolloServer.createHandler({
     path: '/api/graphql',
-  })
+  })(req, res)
 })
