@@ -16,6 +16,7 @@ import {
   BiAlignLeft,
   BiAlignMiddle,
   BiAlignRight,
+  BiRedo,
 } from 'react-icons/bi'
 import {BlockquoteLeft} from 'styled-icons/bootstrap'
 import {ClearFormatting} from 'styled-icons/fluentui-system-regular'
@@ -157,6 +158,13 @@ export const useButtons: UseButtons = editor => [
     {
       Icon: BiUndo,
       tooltip: 'Undo',
+      onClick() {
+        editor.chain().focus().undo().run()
+      },
+    },
+    {
+      Icon: BiRedo,
+      tooltip: 'Redo',
       onClick() {
         editor.chain().focus().undo().run()
       },
