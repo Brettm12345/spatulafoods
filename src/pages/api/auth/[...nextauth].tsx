@@ -10,9 +10,8 @@ export default NextAuth({
   adapter: PrismaAdapter(prisma),
   providers: [
     Auth0Provider({
-      clientId: 'PN3psswVHCE2WyRjDdacVz6grLMoxS2e',
-      clientSecret:
-        '35ZBMmMx_cfFJcUy4vZ3k6GfTujnkZ04ghG51mm8hHgnE-yt5UBV804tmoomc1xx',
+      clientId: process.env.AUTH0_ID,
+      clientSecret: process.env.AUTH0_SECRET,
       issuer: 'https://spatulafoods.us.auth0.com',
     }),
     // ...add more providers here
