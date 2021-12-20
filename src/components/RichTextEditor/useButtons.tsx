@@ -1,3 +1,4 @@
+import {PropsOf} from '@headlessui/react/dist/types'
 import {H1, H2, H3, H4, H5, H6} from '@styled-icons/remix-editor'
 import {Editor} from '@tiptap/react'
 import {DetailedHTMLProps, HTMLAttributes, useMemo} from 'react'
@@ -38,14 +39,16 @@ const alignIcons: Record<string, IconType> = {
   right: BiAlignRight,
 }
 
+type Icon = IconType | StyledIcon
 interface EditorButtonProps
   extends DetailedHTMLProps<
     HTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > {
   isEnabled?: boolean
+  iconProps?: PropsOf<Icon>
   tooltip: string
-  Icon: IconType | StyledIcon
+  Icon: Icon
 }
 
 type UseButtons = (editor: Editor) => Array<EditorButtonProps[]>
