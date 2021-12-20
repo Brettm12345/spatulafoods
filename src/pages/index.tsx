@@ -2,25 +2,43 @@ import Head from 'next/head'
 import {signIn} from 'next-auth/react'
 import {Button} from '../components/Button'
 import {NextPage} from 'next'
-import {useRouter} from 'next/dist/client/router'
-import {useEffect} from 'react'
+import {getSession, GetSessionParams} from 'next-auth/react'
+import {Auth0} from '@styled-icons/simple-icons/Auth0'
 
 const Home: NextPage = () => {
-  const router = useRouter()
-  useEffect(() => {
-    router.push('/faq')
-  })
   return (
     <div>
       <Head>
         <title>Awesome Links</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Button className="btn-blue" onClick={() => signIn()}>
-        Sign In
-      </Button>
+      <div className="btn btn-gray-500">
+        <Button
+          className="mx-auto mt-10 btn-blue"
+          leftIcon={<Auth0 />}
+          onClick={() => signIn('auth0', {callbackUrl: '/faq'})}
+        >
+          Sign In With Auth0
+        </Button>
+      </div>
     </div>
   )
+}
+
+export async function getServerSideProps(context: GetSessionParams) {
+  const session = await getSession(context)
+
+  if (session) {
+    return {
+      redirect: {
+        destination: '/faq',
+        permanent: false,
+      },
+    }
+  }
+  return {
+    props: {session},
+  }
 }
 
 export default Home
