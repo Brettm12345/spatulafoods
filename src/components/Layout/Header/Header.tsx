@@ -5,7 +5,7 @@ import Image from 'next/image'
 import {ThemeToggle} from './ThemeToggle'
 import {HeaderButton} from './HeaderButton'
 import {useSession} from 'next-auth/react'
-import { Button } from '../../Button'
+import {Button} from '../../Button'
 
 export const Header = () => {
   const session = useSession()
@@ -29,9 +29,6 @@ export const Header = () => {
           </nav>
         )}
         <ThemeToggle />
-        {session.status === 'authenticated' && (
-          <Button onClick={}
-        )}
       </div>
     </header>
   )
