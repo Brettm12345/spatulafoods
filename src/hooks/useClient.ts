@@ -1,12 +1,13 @@
-import {createClient} from '@urql/core'
+import {createClient, Client} from '@urql/core'
 import {useSession} from 'next-auth/react'
-import * as React from 'react'
+import {useMemo} from 'react'
 
-const useClient = (options?: RequestInit) => {
+const useClient = (options?: RequestInit): Client => {
   const session = useSession()
   const token = session?.data?.accessToken
+  const headers = options?.headers ?? {}
 
-  return React.useMemo(() => {
+  return useMemo(() => {
     const client = createClient({
       url:
         process.env.NODE_ENV === 'development'
@@ -16,7 +17,7 @@ const useClient = (options?: RequestInit) => {
         return {
           headers: {
             Authorization: token ? `Bearer ${token}` : '',
-            ...(options?.headers ? options.headers : {}),
+            ...headers,
           },
         }
       },
