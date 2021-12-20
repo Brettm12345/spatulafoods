@@ -3,7 +3,7 @@ import {schema} from '../../server/schema'
 import Cors from 'micro-cors'
 import {createContext} from './../../server/context'
 
-const cors = new Cors()
+const cors = Cors()
 const apolloServer = new ApolloServer({
   context: createContext,
   schema,
