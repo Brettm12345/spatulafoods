@@ -165,5 +165,5 @@ export const useButtons: UseButtons = editor =>
         },
       ],
     ],
-    [editor]
+    [JSON.stringify(editor.getJSON())]
   )
