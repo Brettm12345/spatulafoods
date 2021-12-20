@@ -9,7 +9,10 @@ const Home: NextPage = () => (
       <title>Awesome Links</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <Button className="btn-blue" onClick={() => signIn('auth0')}>
+    <Button
+      className="btn-blue"
+      onClick={() => signIn('auth0', {callbackUrl: window.location.origin})}
+    >
       Sign In
     </Button>
   </div>
