@@ -8,7 +8,10 @@ const useClient = (options?: RequestInit) => {
 
   return React.useMemo(() => {
     const client = createClient({
-      url: `http://localhost:3000/api/graphql`,
+      url:
+        process.env.NODE_ENV === 'development'
+          ? 'https://localhost:3000/api/graphql'
+          : `${process.env.NEXT_PUBLIC_API_URL}/graphql`,
       fetchOptions: () => {
         return {
           headers: {
