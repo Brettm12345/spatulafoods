@@ -908,13 +908,5 @@ const generateFaqs = async () => {
   })
 }
 
-async function generateUsers() {
-  await prisma.user.create({
-    data: {
-      accounts: [],
-    },
-  })
-}
-
 generateProducts()
 generateFaqs()
