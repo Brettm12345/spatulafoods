@@ -24,6 +24,10 @@ export const MenuBar: FC<MenuBarProps> = ({editor}) => {
                 width: iconWidth = 15,
                 height: iconHeight = 15,
                 ...iconProps
+              } = {
+                className: null,
+                width: 15,
+                height: 15,
               },
               ...props
             }) => (
