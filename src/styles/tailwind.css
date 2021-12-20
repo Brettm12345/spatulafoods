@@ -162,7 +162,7 @@
     @apply text-gray-900 bg-white border border-gray-300;
     @apply hover:bg-gray-100 focus:ring-blue-300;
     @apply dark:bg-white/5 dark:text-white dark:border-gray-600;
-    @apply dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700;
+    @apply dark:hover:bg-white/10 dark:hover:border-gray-700 dark:focus:ring-gray-700;
   }
 }
 
