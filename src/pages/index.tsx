@@ -12,9 +12,9 @@ const Home: NextPage = () => {
         <title>Awesome Links</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="btn btn-gray-500">
+      <div className="container flex items-center justify-center max-w-full">
         <Button
-          className="mx-auto mt-10 btn-blue"
+          className="mx-auto mt-20 btn-blue"
           leftIcon={<Auth0 />}
           onClick={() => signIn('auth0', {callbackUrl: '/faq'})}
         >

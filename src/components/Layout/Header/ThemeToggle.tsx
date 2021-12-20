@@ -1,7 +1,7 @@
 import {useTheme} from 'next-themes'
 import {DetailedHTMLProps, FC, HTMLAttributes} from 'react'
 import {SunIcon, MoonIcon} from '@heroicons/react/outline'
-import {Tooltip} from '../Tooltip'
+import {Tooltip} from '../../Tooltip'
 
 const icons = {
   dark: MoonIcon,
