@@ -27,11 +27,11 @@ export const CreateProduct = mutationField('create_product', {
       data: {
         cookingInstructions,
         shopifyId,
+        ingredients,
+        contains,
         servingSize: {
           create: servingSize,
         },
-        ingredients: ingredients.join(', '),
-        contains: contains.join(', '),
       },
       select: {
         id: true,
