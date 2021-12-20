@@ -1,6 +1,7 @@
 import {Prisma, PrismaClient} from '@prisma/client'
 import {Products, NutritionItem, NutritionCategory} from '../src/types/products'
 import {
+  createMeasurement,
   createNutritionItem,
   ingredients,
   isCategory,
@@ -706,8 +707,11 @@ const generateProducts = async () => {
       const product = await prisma.product.create({
         data: {
           cookingInstructions: value.cookingInstructions,
-          ingredients: value.ingredients,
-          contains: value.contains,
+          servingSize: {
+            create: createMeasurement(value.servingSize),
+          },
+          ingredients: value.ingredients.join(', '),
+          contains: value.contains.join(', '),
           shopifyId: parseInt(shopifyId),
         },
       })
@@ -904,4 +908,5 @@ const generateFaqs = async () => {
   })
 }
 
+generateProducts()
 generateFaqs()

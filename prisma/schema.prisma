@@ -4,7 +4,8 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["dataProxy"]
 }
 
 generator nexusPrisma {
@@ -85,6 +86,7 @@ model Measurement {
   nutritionFacts         NutritionFact[]
   compoundNutritionFacts CompoundNutritionFact[]
 
+  Product Product[]
   @@map("measurement")
 }
 
@@ -116,8 +118,10 @@ model CompoundNutritionFact {
 model Product {
   id                     Int                     @id @default(autoincrement())
   shopifyId              Int                     @unique @map("shopify_id")
-  ingredients            String[]
-  contains               String[]
+  ingredients            String
+  servingSizeId          Int                     @map("serving_size_id")
+  servingSize            Measurement             @relation(fields: [servingSizeId], references: [id])
+  contains               String
   nutritionFacts         NutritionFact[]
   compoundNutritionFacts CompoundNutritionFact[]
   cookingInstructions    String                  @map("cooking_instructions")

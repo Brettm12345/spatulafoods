@@ -23,5 +23,15 @@ export const createNutritionItem = (name: string, item: NutritionItem) =>
     },
   } as const)
 
+export const createMeasurement = (content: string) =>
+  ({
+    value: parseFloat(content.replace(/[^\d]/g, '')),
+    type: content.endsWith('mg')
+      ? MeasurementType.MILLAGRAMS
+      : content.endsWith('g')
+      ? MeasurementType.GRAMS
+      : MeasurementType.UNITS,
+  } as const)
+
 export const isCategory = (x: NutritionValue): x is NutritionCategory =>
   'breakdown' in x
