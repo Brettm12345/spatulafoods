@@ -4,7 +4,7 @@ import TextAlign from '@tiptap/extension-text-align'
 import Underline from '@tiptap/extension-underline'
 import {useEditor} from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import {EventHandler, FC, FormEventHandler, Fragment, useState} from 'react'
+import {FC, Fragment, useState} from 'react'
 import {useCreateFaqMutation, useUpdateFaqMutation} from '../generated/graphql'
 import {Button} from './Button'
 import {Tiptap} from './Tiptap'
@@ -39,7 +39,7 @@ export const FaqModal: FC<FaqModalProps> = ({
     ],
     content: answer,
   })
-  const handleSubmit = async event => {
+  const handleSubmit = async () => {
     const data = {
       question,
       answer: editor.getHTML(),

@@ -23,10 +23,11 @@ input CreateFaqInput {
 
 input CreateProductInput {
   compoundNutritionFacts: [CompoundNutritionFactInput]
-  contains: [String!]!
+  contains: String!
   cookingInstructions: String!
-  ingredients: [String!]!
+  ingredients: String!
   nutritionFacts: [NutritionFactInput]
+  servingSize: MeasurementInput
   shopifyId: Int!
 }
 
@@ -90,8 +91,9 @@ type Product {
   compoundNutritionFacts: [CompoundNutritionFact!]!
   cookingInstructions: String!
   id: Int!
-  ingredients: [String!]!
+  ingredients: String!
   nutritionFacts: [NutritionFact!]!
+  servingSize: Measurement!
   shopifyId: Int!
 }
 

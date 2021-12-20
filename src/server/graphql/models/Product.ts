@@ -8,6 +8,7 @@ export const ProductModel = objectType({
   definition(t) {
     t.field(Product.id)
     t.field(Product.ingredients)
+    t.field(Product.servingSize)
     t.field(Product.compoundNutritionFacts)
     t.field(Product.cookingInstructions)
     t.field(Product.shopifyId)

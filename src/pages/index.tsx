@@ -6,20 +6,18 @@ import {Tiptap} from '../components/Tiptap'
 import {Tooltip} from '../components/Tooltip'
 import {useProductsQuery} from '../generated/graphql'
 import {gql, useQuery} from 'urql'
+import {Button} from '../components/Button'
 
 export default function Home() {
-  const [data] = useProductsQuery()
   return (
     <div>
       <Head>
         <title>Awesome Links</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      {JSON.stringify(data)}
-      <div className="container mx-auto my-20">
-        <Tiptap />
-      </div>
+      <Button className="btn-blue" onClick={() => signIn('auth0')}>
+        Sign In
+      </Button>
     </div>
   )
 }

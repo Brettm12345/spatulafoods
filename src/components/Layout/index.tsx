@@ -1,7 +1,10 @@
-import React from 'react'
+import React, {FC, ReactNode} from 'react'
 import Header from './Header'
 
-const Layout = ({children}) => {
+interface LayoutProps {
+  children: ReactNode
+}
+const Layout: FC<LayoutProps> = ({children}) => {
   return (
     <div className="bg-white dark:bg-gray-800">
       <Header />
