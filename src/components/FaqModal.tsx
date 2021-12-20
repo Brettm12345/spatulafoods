@@ -69,7 +69,7 @@ export const FaqModal: FC<FaqModalProps> = ({
   })
   const handleSubmit = async () => {
     const data = {
-      question: currentQuestion,
+      question,
       answer: editor.getHTML(),
     } as const
     if (!!id) await updateFaq({id, data})
@@ -95,7 +95,7 @@ export const FaqModal: FC<FaqModalProps> = ({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="fixed inset-0" />
+            <Dialog.Overlay className="fixed inset-0 bg-black/20" />
           </Transition.Child>
         </div>
         {/* This element is to trick the browser into centering the modal contents. */}
