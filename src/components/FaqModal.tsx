@@ -144,7 +144,7 @@ export const FaqModal: FC<FaqModalProps> = ({
                   loading={loading}
                   loadingText={loadingText}
                 >
-                  {action} Faq
+                  {action}
                 </Button>
               </div>
             </div>
