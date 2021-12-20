@@ -64,7 +64,7 @@ export const ToggleButton: FC<ToggleButtonProps> = ({
       className={clsx(
         props.className,
         'flex items-center justify-center no-tap-highlight appearance-none size-6',
-        'bg-gray-100 dark:bg-gray-700  dark:text-gray-200',
+        'bg-gray-100 dark:bg-gray-700 dark:text-gray-200',
         'first-of-type:rounded-l-[4px] last-of-type:rounded-r-[4px]',
         'focus:outline-none',
         'transition-colors ease-in duration-200',
