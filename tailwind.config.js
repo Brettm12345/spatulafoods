@@ -20,7 +20,6 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
-    require('@tailwindcss/forms'),
     require('@neojp/tailwindcss-important-variant'),
     require('@themesberg/flowbite/plugin'),
     plugin(({matchUtilities, theme}) => {

@@ -111,7 +111,7 @@ export const FaqModal: FC<FaqModalProps> = ({
           leaveTo="opacity-0 scale-95"
         >
           <div className="fixed top-0 w-11/12 max-w-md px-4 py-4 my-8 align-middle -translate-x-1/2 bg-white dark:bg-gray-700 rounded-2xl left-1/2">
-            <Dialog.Title>{title}</Dialog.Title>
+            <Dialog.Title className="text-lg font-medium">{title}</Dialog.Title>
             <div className="mt-6">
               <div className="mb-6">
                 <label htmlFor="question" className="form-label">
