@@ -37,7 +37,7 @@ module.exports = {
       )
       matchUtilities(
         {
-          minSize: value => ({
+          'min-size': value => ({
             minWidth: value,
             minHeight: value,
           }),
@@ -48,7 +48,7 @@ module.exports = {
       )
       matchUtilities(
         {
-          maxSize: value => ({
+          'max-size': value => ({
             maxHeight: value,
             maxWidth: value,
           }),

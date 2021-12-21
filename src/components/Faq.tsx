@@ -26,14 +26,14 @@ export const Faq: FC<FaqProps> = ({id, question, answer}) => {
         >
           <Disclosure.Button
             className={clsx(
-              'flex items-center w-full px-4 py-4 space-x-2 rounded-t-md',
+              'flex w-full px-4 py-4 space-x-2 rounded-t-md',
               'text-base font-medium text-left',
               'transition-colors ease-mantine duration-300 delay-[75ms]'
             )}
           >
             <PlusIcon
               className={clsx(
-                'size-4 mr-3',
+                'min-size-4 max-size-4 mr-3 mt-[0.4ch]',
                 'transition-all ease-mantine duration-300 scale-y',
                 open && 'transform rotate-45'
               )}
