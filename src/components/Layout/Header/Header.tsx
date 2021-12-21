@@ -3,11 +3,13 @@ import Link from 'next/link'
 import logo from '../../../../public/logo.png'
 import Image from 'next/image'
 import {ThemeToggle} from './ThemeToggle'
-import {useSession} from 'next-auth/react'
+import {signOut, useSession} from 'next-auth/react'
+import {Button} from '../../Button'
+import {LogoutIcon} from '@heroicons/react/outline'
 
 export const Header = () => {
   const session = useSession()
-
+  console.log(session)
   return (
     <header className="bg-white max-h-18 dark:bg-gray-900 px-2 sm:px-4 py-2.5">
       <div className="flex flex-wrap items-center justify-between mx-auto max-h-14">
@@ -21,7 +23,18 @@ export const Header = () => {
             alt="Logo"
           />
         </Link>
-        <ThemeToggle />
+        <div className="flex space-x-4">
+          {session.status === 'authenticated' && (
+            <Button
+              className="text-base btn-light-gray"
+              leftIcon={<LogoutIcon />}
+              onClick={() => signOut()}
+            >
+              Logout
+            </Button>
+          )}
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   )

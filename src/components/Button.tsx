@@ -9,7 +9,7 @@ import {
 } from 'react'
 import {Spinner} from './Spinner'
 
-const iconClasses = '-ml-1 size-5 fill-current mr-3'
+const iconClasses = '-ml-1 size-5 fill-current mr-2'
 const renderIcon = (icon: ReactNode) => {
   if (isValidElement(icon)) {
     return cloneElement(icon, {
