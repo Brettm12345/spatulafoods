@@ -6,7 +6,7 @@ interface LayoutProps {
 }
 const Layout: FC<LayoutProps> = ({children}) => {
   return (
-    <div className="bg-gray-50 dark:bg-gray-800">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-800">
       <Header />
       {children}
     </div>
