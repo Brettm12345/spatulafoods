@@ -110,7 +110,7 @@ export const FaqModal: FC<FaqModalProps> = ({
           leaveFrom="opacity-100 scale-100"
           leaveTo="opacity-0 scale-95"
         >
-          <div className="fixed top-0 max-w-md p-6 my-8 align-middle -translate-x-1/2 bg-white dark:bg-gray-700 rounded-2xl left-1/2">
+          <div className="fixed top-0 w-11/12 max-w-md px-4 py-4 my-8 align-middle -translate-x-1/2 bg-white dark:bg-gray-700 rounded-2xl left-1/2">
             <Dialog.Title>{title}</Dialog.Title>
             <div className="mt-6">
               <div className="mb-6">
@@ -132,7 +132,7 @@ export const FaqModal: FC<FaqModalProps> = ({
                 Answer
               </label>
               <RichTextEditor editor={editor} />
-              <div className="flex items-end justify-end mt-2 space-x-2">
+              <div className="flex items-end justify-end mt-4 space-x-2">
                 <Button className="btn-sm btn-light-gray" onClick={onClose}>
                   Cancel
                 </Button>
