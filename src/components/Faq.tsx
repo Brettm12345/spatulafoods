@@ -20,7 +20,8 @@ export const Faq: FC<FaqProps> = ({id, question, answer}) => {
       {({open}) => (
         <div
           className={clsx(
-            'border border-transparent w-full rounded-md mx-auto transition-colors ease-mantine',
+            'border border-transparent w-full rounded-md mx-auto',
+            ' transition-colors ease-mantine',
             open && 'border-gray-200 dark:border-gray-600'
           )}
         >
@@ -42,11 +43,15 @@ export const Faq: FC<FaqProps> = ({id, question, answer}) => {
           </Disclosure.Button>
           <Disclosure.Panel
             className={clsx(
-              'px-4 pt-1 pb-4 text-sm text-gray-600 bg-transparent delay-300 ease-mantine dark:text-gray-300 rounded-b-md'
+              'px-4 pt-1 pb-4 text-sm text-gray-600 bg-transparent',
+              'delay-300 ease-mantine dark:text-gray-300 rounded-b-md'
             )}
           >
             <div
-              className="prose-sm prose prose-slate dark:prose-invert max-w-unset"
+              className={clsx(
+                'prose-sm prose prose-slate max-w-unset',
+                'dark:prose-invert '
+              )}
               dangerouslySetInnerHTML={{__html: answer}}
             />
             <div className="flex mt-4 space-x-2">

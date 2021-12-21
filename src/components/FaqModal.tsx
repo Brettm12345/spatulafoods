@@ -4,6 +4,7 @@ import TextAlign from '@tiptap/extension-text-align'
 import Underline from '@tiptap/extension-underline'
 import {useEditor} from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
+import clsx from 'clsx'
 import {FC, Fragment, useState} from 'react'
 import {useCreateFaqMutation, useUpdateFaqMutation} from '../generated/graphql'
 import {Button} from './Button'
@@ -110,7 +111,13 @@ export const FaqModal: FC<FaqModalProps> = ({
           leaveFrom="opacity-100 scale-100"
           leaveTo="opacity-0 scale-95"
         >
-          <div className="fixed top-0 w-11/12 max-w-md px-4 py-4 my-8 align-middle -translate-x-1/2 bg-white dark:bg-gray-700 rounded-2xl left-1/2">
+          <div
+            className={clsx(
+              'fixed top-0 w-11/12 max-w-md px-4 py-4 my-8 ',
+              'align-middle -translate-x-1/2',
+              'bg-white dark:bg-gray-700 rounded-2xl left-1/2'
+            )}
+          >
             <Dialog.Title className="text-lg font-medium">{title}</Dialog.Title>
             <div className="mt-6">
               <div className="mb-6">

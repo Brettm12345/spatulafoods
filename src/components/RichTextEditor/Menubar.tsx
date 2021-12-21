@@ -10,7 +10,12 @@ interface MenuBarProps {
 export const MenuBar: FC<MenuBarProps> = ({editor}) => {
   const buttons = useButtons(editor)
   return (
-    <div className="flex flex-wrap gap-4 px-4 py-3 border-b border-b-gray-100 dark:border-b-gray-600">
+    <div
+      className={clsx(
+        'flex flex-wrap gap-4 px-4 py-3',
+        'border-b border-b-gray-100 dark:border-b-gray-600'
+      )}
+    >
       {buttons.map((group, groupId) => (
         <div className="flex" key={groupId.toString()}>
           {group.map(
@@ -49,7 +54,7 @@ export const MenuBar: FC<MenuBarProps> = ({editor}) => {
                     !isEnabled
                       ? clsx(
                           'hover:bg-gray-200 dark:bg-gray-600 hover:text-black',
-                          'dark:hover:bg-gray-800 dark:hover:text-white ',
+                          'dark:hover:bg-gray-800 dark:hover:text-white',
                           'focus-visible:bg-gray-200 focus-visible:text-black',
                           'dark:focus-visible:bg-gray-600 dark:focus-visible:text-white'
                         )

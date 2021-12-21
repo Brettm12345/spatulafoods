@@ -5,6 +5,7 @@ import {Provider} from 'urql'
 interface UrqlProviderProps {
   children: ReactNode
 }
-export const UrqlProvider: FC<UrqlProviderProps> = ({children}) => {
-  return <Provider value={client}>{children}</Provider>
-}
+
+export const UrqlProvider: FC<UrqlProviderProps> = ({children}) => (
+  <Provider value={client}>{children}</Provider>
+)

@@ -6,12 +6,24 @@ import {ThemeToggle} from './ThemeToggle'
 import {signOut, useSession} from 'next-auth/react'
 import {Button} from '../../Button'
 import {LogoutIcon} from '@heroicons/react/outline'
+import clsx from 'clsx'
 
 export const Header = () => {
   const session = useSession()
   return (
-    <header className="bg-gray-50 max-h-18 dark:bg-gray-900 px-2 sm:px-4 py-2.5">
-      <div className="flex flex-wrap items-center justify-between mx-auto max-h-14">
+    <header
+      className={clsx(
+        'max-h-18',
+        'bg-gray-50 dark:bg-gray-900',
+        'px-2 sm:px-4 py-2.5'
+      )}
+    >
+      <div
+        className={clsx(
+          'flex flex-wrap items-center justify-between',
+          'mx-auto max-h-14'
+        )}
+      >
         <Link href="/">
           <Image
             className="logo"
