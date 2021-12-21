@@ -1,5 +1,4 @@
 import {PrismaClient} from '@prisma/client'
-import {ContextFunction} from 'apollo-server-core'
 import {NextApiRequest, NextApiResponse} from 'next'
 import {JWT} from 'next-auth/jwt'
 import {getSession} from 'next-auth/react'
@@ -18,7 +17,6 @@ export const createContext = async ({
 }: {
   req: NextApiRequest
 }): Promise<Context> => {
-  console.log(req.headers.header)
   const user = await getSession({
     // @ts-ignore
     req: {
@@ -29,6 +27,5 @@ export const createContext = async ({
       ...req,
     },
   })
-  console.log(user)
   return {prisma, user}
 }
