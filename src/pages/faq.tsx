@@ -1,11 +1,9 @@
 import {PlusIcon} from '@heroicons/react/outline'
 import {NextPage} from 'next'
 import {useState} from 'react'
-import {Spinner3} from 'styled-icons/icomoon'
 import {Button} from '../components/Button'
 import {Faq} from '../components/Faq'
 import {FaqModal} from '../components/FaqModal'
-import {Spinner} from '../components/Spinner'
 import {useFaqsQuery} from '../generated/graphql'
 
 const FaqPage: NextPage = () => {

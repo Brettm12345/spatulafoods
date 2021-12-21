@@ -3,10 +3,6 @@ import {DetailedHTMLProps, FC, HTMLAttributes} from 'react'
 import {SunIcon, MoonIcon} from '@heroicons/react/outline'
 import {Tooltip} from '../../Tooltip'
 
-const icons = {
-  dark: MoonIcon,
-  light: SunIcon,
-} as const
 type ThemeToggleProps = Omit<
   DetailedHTMLProps<HTMLAttributes<HTMLButtonElement>, HTMLButtonElement>,
   'onClick' | 'aria-label' | 'children'
@@ -14,7 +10,6 @@ type ThemeToggleProps = Omit<
 
 export const ThemeToggle: FC<ThemeToggleProps> = props => {
   const {theme, setTheme} = useTheme()
-  const Icon = icons[theme as 'dark' | 'light']
   const label = 'Switch between dark and light theme'
   const iconClass = 'size-6'
   return (
