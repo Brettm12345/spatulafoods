@@ -1,31 +1,42 @@
 import {useTheme} from 'next-themes'
-import {DetailedHTMLProps, FC, HTMLAttributes} from 'react'
+import {ComponentProps, DetailedHTMLProps, FC, HTMLAttributes} from 'react'
 import {SunIcon, MoonIcon} from '@heroicons/react/outline'
 import {Tooltip} from '../../Tooltip'
+import clsx from 'clsx'
 
-type ThemeToggleProps = Omit<
-  DetailedHTMLProps<HTMLAttributes<HTMLButtonElement>, HTMLButtonElement>,
-  'onClick' | 'aria-label' | 'children'
->
+interface ThemeToggleProps
+  extends Omit<
+    DetailedHTMLProps<HTMLAttributes<HTMLButtonElement>, HTMLButtonElement>,
+    'onClick' | 'aria-label' | 'children'
+  > {
+  iconProps?: ComponentProps<'svg'>
+}
 
-export const ThemeToggle: FC<ThemeToggleProps> = props => {
+export const ThemeToggle: FC<ThemeToggleProps> = ({
+  className,
+  iconProps: {className: iconClassName, ...iconProps} = {},
+  ...props
+}) => {
   const {theme, setTheme} = useTheme()
   const label = 'Switch between dark and light theme'
-  const iconClass = 'size-6'
+  const localIconProps: ComponentProps<'svg'> = {
+    className: clsx(iconClassName, 'size-6'),
+    ...iconProps,
+  }
   return (
     <Tooltip content={label}>
       <button
         aria-label={label}
-        className="btn btn-icon btn-light-gray"
-        {...props}
+        className={clsx(className, 'btn btn-icon btn-light-gray')}
         onClick={() => {
           setTheme(theme === 'dark' ? 'light' : 'dark')
         }}
+        {...props}
       >
         {theme === 'dark' ? (
-          <MoonIcon className={iconClass} />
+          <MoonIcon {...localIconProps} />
         ) : (
-          <SunIcon className={iconClass} />
+          <SunIcon {...localIconProps} />
         )}
       </button>
     </Tooltip>
