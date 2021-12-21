@@ -35,7 +35,7 @@ export const Faq: FC<FaqProps> = ({id, question, answer}) => {
               className={clsx(
                 'size-4 mr-3',
                 'transition-all ease-mantine duration-300 scale-y',
-                open && 'transform rotate-90'
+                open && 'transform rotate-45'
               )}
             />
             <span>{question}</span>
