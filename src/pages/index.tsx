@@ -14,7 +14,7 @@ const Home: NextPage = () => {
       </Head>
       <div className="container flex items-center justify-center max-w-full">
         <Button
-          className="mx-auto mt-20 btn-blue"
+          className="mx-auto mt-[30vh] btn-blue"
           leftIcon={<Auth0 />}
           onClick={() => signIn('auth0', {callbackUrl: '/faq'})}
         >
