@@ -3,9 +3,7 @@ import Link from 'next/link'
 import logo from '../../../../public/logo.png'
 import Image from 'next/image'
 import {ThemeToggle} from './ThemeToggle'
-import {HeaderButton} from './HeaderButton'
 import {useSession} from 'next-auth/react'
-import {Button} from '../../Button'
 
 export const Header = () => {
   const session = useSession()
@@ -23,11 +21,6 @@ export const Header = () => {
             alt="Logo"
           />
         </Link>
-        {session.status === 'authenticated' && (
-          <nav>
-            <HeaderButton href="/faq">Faq</HeaderButton>
-          </nav>
-        )}
         <ThemeToggle />
       </div>
     </header>

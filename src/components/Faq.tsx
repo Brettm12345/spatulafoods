@@ -13,7 +13,7 @@ export interface FaqProps {
 }
 
 export const Faq: FC<FaqProps> = ({id, question, answer}) => {
-  const [{data, fetching, error}, deleteFaq] = useDeleteFaqMutation()
+  const [{fetching}, deleteFaq] = useDeleteFaqMutation()
   const [isOpen, setIsOpen] = useState(false)
   return (
     <Disclosure>

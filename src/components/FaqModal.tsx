@@ -76,7 +76,6 @@ export const FaqModal: FC<FaqModalProps> = ({
     else await createFaq({data})
     onClose()
   }
-  console.log(isOpen)
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog
