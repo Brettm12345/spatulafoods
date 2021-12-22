@@ -35,21 +35,20 @@ export const Faq: FC<FaqFragment> = ({id, question, answer}) => {
         <div
           className={clsx(
             'border border-transparent w-full rounded-md mx-auto',
-            ' transition-colors ease-mantine',
+            'transition-[border-color] ease-mantine',
             open && 'border-gray-200 dark:border-gray-600'
           )}
         >
           <Disclosure.Button
             className={clsx(
               'flex w-full px-4 py-4 space-x-2 rounded-t-md',
-              'text-base font-medium text-left',
-              'transition-colors ease-mantine duration-300 delay-[75ms]'
+              'text-base font-medium text-left'
             )}
           >
             <PlusIcon
               className={clsx(
                 'force-size-4 mr-3 mt-[0.4ch]',
-                'transition-all ease-mantine duration-300 scale-y',
+                'transition-transform ease-mantine duration-300 scale-y',
                 open && 'transform rotate-45'
               )}
             />
@@ -58,7 +57,7 @@ export const Faq: FC<FaqFragment> = ({id, question, answer}) => {
           <Disclosure.Panel
             className={clsx(
               'px-4 pt-1 pb-4 text-sm text-gray-600 bg-transparent',
-              'delay-300 ease-mantine dark:text-gray-300 rounded-b-md'
+              'dark:text-gray-300 rounded-b-md'
             )}
           >
             <div
