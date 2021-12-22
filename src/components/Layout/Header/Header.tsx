@@ -18,7 +18,8 @@ export const Header = () => {
       className={clsx(
         'max-h-18',
         'bg-gray-50 dark:bg-gray-900',
-        'px-2 sm:px-4 py-2.5'
+        'px-2 sm:px-4 py-2.5',
+        'transition-colors ease-mantine duration-200'
       )}
     >
       <div

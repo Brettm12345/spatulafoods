@@ -1,5 +1,6 @@
 import type {FC, ReactNode} from 'react'
 
+import clsx from 'clsx'
 import Head from 'next/head'
 
 import {Header} from './Header'
@@ -13,7 +14,12 @@ const Layout: FC<LayoutProps> = ({children}) => (
       <title>Spatulafoods Admin</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-800">
+    <div
+      className={clsx(
+        'min-h-screen bg-gray-50 dark:bg-gray-800',
+        'transition-colors ease-mantine duration-200'
+      )}
+    >
       <Header />
       {children}
     </div>
