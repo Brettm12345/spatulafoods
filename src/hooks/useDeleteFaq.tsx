@@ -23,6 +23,7 @@ export const useDeleteFaq: UseDeleteFaq = ({id}) => {
   const handleUndo = (data: FaqFragment, t: ReactHotToast) => async () => {
     await createFaq({
       data: {
+        id: data.id,
         answer: data.answer,
         question: data.question,
       },

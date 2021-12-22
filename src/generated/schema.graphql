@@ -12,22 +12,23 @@ type CompoundNutritionFact {
 
 input CompoundNutritionFactInput {
   ingredient: String!
-  ingredients: [NutritionFactInput]
-  measurements: MeasurementInput
+  ingredients: [NutritionFactInput!]!
+  measurements: MeasurementInput!
 }
 
 input CreateFaqInput {
   answer: String!
+  id: Int
   question: String!
 }
 
 input CreateProductInput {
-  compoundNutritionFacts: [CompoundNutritionFactInput]
+  compoundNutritionFacts: [CompoundNutritionFactInput!]!
   contains: String!
   cookingInstructions: String!
   ingredients: String!
-  nutritionFacts: [NutritionFactInput]
-  servingSize: MeasurementInput
+  nutritionFacts: [NutritionFactInput!]!
+  servingSize: MeasurementInput!
   shopifyId: Float!
 }
 
@@ -39,15 +40,15 @@ type Faq {
 
 type Image {
   alt: String
-  created_at: String
-  height: Float
-  id: Int
-  position: Float
-  product_id: Int
-  src: String
-  updated_at: String
-  variant_ids: [Int]
-  width: Float
+  created_at: String!
+  height: Float!
+  id: Int!
+  position: Float!
+  product_id: Int!
+  src: String!
+  updated_at: String!
+  variant_ids: [Int!]!
+  width: Float!
 }
 
 type Measurement {
@@ -68,11 +69,11 @@ enum MeasurementType {
 }
 
 type Mutation {
-  create_product(input: CreateProductInput): Product
-  createFaq(data: CreateFaqInput): Faq
-  deleteFaq(id: Int): Faq
-  updateFaq(data: UpdateFaqInput, id: Int): Faq
-  updateMeasurement(id: Int, set: UpdateMeasurementInput): Measurement
+  create_product(input: CreateProductInput!): Product!
+  createFaq(data: CreateFaqInput!): Faq!
+  deleteFaq(id: Int!): Faq!
+  updateFaq(data: UpdateFaqInput!, id: Int!): Faq!
+  updateMeasurement(id: Int!, set: UpdateMeasurementInput!): Measurement!
 }
 
 type NutritionFact {
@@ -84,7 +85,7 @@ type NutritionFact {
 
 input NutritionFactInput {
   ingredient: String!
-  measurements: MeasurementInput
+  measurements: MeasurementInput!
 }
 
 type Product {
@@ -92,18 +93,18 @@ type Product {
   contains: String!
   cookingInstructions: String!
   id: Int!
-  image: Image
+  image: Image!
   ingredients: String!
-  name: String
+  name: String!
   nutritionFacts: [NutritionFact!]!
   servingSize: Measurement!
   shopifyId: Float!
 }
 
 type Query {
-  faqs: [Faq]
-  productByShopifyId(shopifyId: Int): Product
-  products: [Product]
+  faqs: [Faq!]!
+  productByShopifyId(shopifyId: Int!): Product!
+  products: [Product!]!
 }
 
 input UpdateFaqInput {

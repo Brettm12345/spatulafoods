@@ -7,7 +7,14 @@ export const CreateProduct = mutationField('create_product', {
       type: 'CreateProductInput',
     }),
   },
-  authorize: (_root, _args, ctx) => !!ctx.user,
+  authorize: async (_root, {input}, ctx) => {
+    try {
+      await ctx.shopify.product.get(input.shopifyId)
+    } catch {
+      return new Error('Product not found')
+    }
+    return !!ctx.user
+  },
   resolve: async (
     _,
     {

@@ -17,20 +17,21 @@ declare global {
 export interface NexusGenInputs {
   CompoundNutritionFactInput: { // input type
     ingredient: string; // String!
-    ingredients?: Array<NexusGenInputs['NutritionFactInput'] | null> | null; // [NutritionFactInput]
-    measurements?: NexusGenInputs['MeasurementInput'] | null; // MeasurementInput
+    ingredients: NexusGenInputs['NutritionFactInput'][]; // [NutritionFactInput!]!
+    measurements: NexusGenInputs['MeasurementInput']; // MeasurementInput!
   }
   CreateFaqInput: { // input type
     answer: string; // String!
+    id?: number | null; // Int
     question: string; // String!
   }
   CreateProductInput: { // input type
-    compoundNutritionFacts?: Array<NexusGenInputs['CompoundNutritionFactInput'] | null> | null; // [CompoundNutritionFactInput]
+    compoundNutritionFacts: NexusGenInputs['CompoundNutritionFactInput'][]; // [CompoundNutritionFactInput!]!
     contains: string; // String!
     cookingInstructions: string; // String!
     ingredients: string; // String!
-    nutritionFacts?: Array<NexusGenInputs['NutritionFactInput'] | null> | null; // [NutritionFactInput]
-    servingSize?: NexusGenInputs['MeasurementInput'] | null; // MeasurementInput
+    nutritionFacts: NexusGenInputs['NutritionFactInput'][]; // [NutritionFactInput!]!
+    servingSize: NexusGenInputs['MeasurementInput']; // MeasurementInput!
     shopifyId: number; // Float!
   }
   MeasurementInput: { // input type
@@ -39,7 +40,7 @@ export interface NexusGenInputs {
   }
   NutritionFactInput: { // input type
     ingredient: string; // String!
-    measurements?: NexusGenInputs['MeasurementInput'] | null; // MeasurementInput
+    measurements: NexusGenInputs['MeasurementInput']; // MeasurementInput!
   }
   UpdateFaqInput: { // input type
     answer: string; // String!
@@ -75,15 +76,15 @@ export interface NexusGenObjects {
   }
   Image: { // root type
     alt?: string | null; // String
-    created_at?: string | null; // String
-    height?: number | null; // Float
-    id?: number | null; // Int
-    position?: number | null; // Float
-    product_id?: number | null; // Int
-    src?: string | null; // String
-    updated_at?: string | null; // String
-    variant_ids?: Array<number | null> | null; // [Int]
-    width?: number | null; // Float
+    created_at: string; // String!
+    height: number; // Float!
+    id: number; // Int!
+    position: number; // Float!
+    product_id: number; // Int!
+    src: string; // String!
+    updated_at: string; // String!
+    variant_ids: number[]; // [Int!]!
+    width: number; // Float!
   }
   Measurement: { // root type
     id: number; // Int!
@@ -130,15 +131,15 @@ export interface NexusGenFieldTypes {
   }
   Image: { // field return type
     alt: string | null; // String
-    created_at: string | null; // String
-    height: number | null; // Float
-    id: number | null; // Int
-    position: number | null; // Float
-    product_id: number | null; // Int
-    src: string | null; // String
-    updated_at: string | null; // String
-    variant_ids: Array<number | null> | null; // [Int]
-    width: number | null; // Float
+    created_at: string; // String!
+    height: number; // Float!
+    id: number; // Int!
+    position: number; // Float!
+    product_id: number; // Int!
+    src: string; // String!
+    updated_at: string; // String!
+    variant_ids: number[]; // [Int!]!
+    width: number; // Float!
   }
   Measurement: { // field return type
     id: number; // Int!
@@ -146,11 +147,11 @@ export interface NexusGenFieldTypes {
     value: number; // Float!
   }
   Mutation: { // field return type
-    create_product: NexusGenRootTypes['Product'] | null; // Product
-    createFaq: NexusGenRootTypes['Faq'] | null; // Faq
-    deleteFaq: NexusGenRootTypes['Faq'] | null; // Faq
-    updateFaq: NexusGenRootTypes['Faq'] | null; // Faq
-    updateMeasurement: NexusGenRootTypes['Measurement'] | null; // Measurement
+    create_product: NexusGenRootTypes['Product']; // Product!
+    createFaq: NexusGenRootTypes['Faq']; // Faq!
+    deleteFaq: NexusGenRootTypes['Faq']; // Faq!
+    updateFaq: NexusGenRootTypes['Faq']; // Faq!
+    updateMeasurement: NexusGenRootTypes['Measurement']; // Measurement!
   }
   NutritionFact: { // field return type
     id: number; // Int!
@@ -163,17 +164,17 @@ export interface NexusGenFieldTypes {
     contains: string; // String!
     cookingInstructions: string; // String!
     id: number; // Int!
-    image: NexusGenRootTypes['Image'] | null; // Image
+    image: NexusGenRootTypes['Image']; // Image!
     ingredients: string; // String!
-    name: string | null; // String
+    name: string; // String!
     nutritionFacts: NexusGenRootTypes['NutritionFact'][]; // [NutritionFact!]!
     servingSize: NexusGenRootTypes['Measurement']; // Measurement!
     shopifyId: number; // Float!
   }
   Query: { // field return type
-    faqs: Array<NexusGenRootTypes['Faq'] | null> | null; // [Faq]
-    productByShopifyId: NexusGenRootTypes['Product'] | null; // Product
-    products: Array<NexusGenRootTypes['Product'] | null> | null; // [Product]
+    faqs: NexusGenRootTypes['Faq'][]; // [Faq!]!
+    productByShopifyId: NexusGenRootTypes['Product']; // Product!
+    products: NexusGenRootTypes['Product'][]; // [Product!]!
   }
 }
 
@@ -242,26 +243,26 @@ export interface NexusGenFieldTypeNames {
 export interface NexusGenArgTypes {
   Mutation: {
     create_product: { // args
-      input?: NexusGenInputs['CreateProductInput'] | null; // CreateProductInput
+      input: NexusGenInputs['CreateProductInput']; // CreateProductInput!
     }
     createFaq: { // args
-      data?: NexusGenInputs['CreateFaqInput'] | null; // CreateFaqInput
+      data: NexusGenInputs['CreateFaqInput']; // CreateFaqInput!
     }
     deleteFaq: { // args
-      id?: number | null; // Int
+      id: number; // Int!
     }
     updateFaq: { // args
-      data?: NexusGenInputs['UpdateFaqInput'] | null; // UpdateFaqInput
-      id?: number | null; // Int
+      data: NexusGenInputs['UpdateFaqInput']; // UpdateFaqInput!
+      id: number; // Int!
     }
     updateMeasurement: { // args
-      id?: number | null; // Int
-      set?: NexusGenInputs['UpdateMeasurementInput'] | null; // UpdateMeasurementInput
+      id: number; // Int!
+      set: NexusGenInputs['UpdateMeasurementInput']; // UpdateMeasurementInput!
     }
   }
   Query: {
     productByShopifyId: { // args
-      shopifyId?: number | null; // Int
+      shopifyId: number; // Int!
     }
   }
 }

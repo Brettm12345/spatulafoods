@@ -26,23 +26,24 @@ export type CompoundNutritionFact = {
 
 export type CompoundNutritionFactInput = {
   ingredient: Scalars['String'];
-  ingredients?: InputMaybe<Array<InputMaybe<NutritionFactInput>>>;
-  measurements?: InputMaybe<MeasurementInput>;
+  ingredients: Array<NutritionFactInput>;
+  measurements: MeasurementInput;
 };
 
 export type CreateFaqInput = {
   answer: Scalars['String'];
+  id?: InputMaybe<Scalars['Int']>;
   question: Scalars['String'];
 };
 
 export type CreateProductInput = {
-  compoundNutritionFacts?: InputMaybe<Array<InputMaybe<CompoundNutritionFactInput>>>;
+  compoundNutritionFacts: Array<CompoundNutritionFactInput>;
   contains: Scalars['String'];
   cookingInstructions: Scalars['String'];
   ingredients: Scalars['String'];
-  nutritionFacts?: InputMaybe<Array<InputMaybe<NutritionFactInput>>>;
-  servingSize?: InputMaybe<MeasurementInput>;
-  shopifyId: Scalars['Int'];
+  nutritionFacts: Array<NutritionFactInput>;
+  servingSize: MeasurementInput;
+  shopifyId: Scalars['Float'];
 };
 
 export type Faq = {
@@ -55,15 +56,15 @@ export type Faq = {
 export type Image = {
   __typename?: 'Image';
   alt?: Maybe<Scalars['String']>;
-  created_at?: Maybe<Scalars['String']>;
-  height?: Maybe<Scalars['Float']>;
-  id?: Maybe<Scalars['Int']>;
-  position?: Maybe<Scalars['Float']>;
-  product_id?: Maybe<Scalars['Int']>;
-  src?: Maybe<Scalars['String']>;
-  updated_at?: Maybe<Scalars['String']>;
-  variant_ids?: Maybe<Array<Maybe<Scalars['Int']>>>;
-  width?: Maybe<Scalars['Float']>;
+  created_at: Scalars['String'];
+  height: Scalars['Float'];
+  id: Scalars['Int'];
+  position: Scalars['Float'];
+  product_id: Scalars['Int'];
+  src: Scalars['String'];
+  updated_at: Scalars['String'];
+  variant_ids: Array<Scalars['Int']>;
+  width: Scalars['Float'];
 };
 
 export type Measurement = {
@@ -86,38 +87,38 @@ export enum MeasurementType {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  create_product?: Maybe<Product>;
-  createFaq?: Maybe<Faq>;
-  deleteFaq?: Maybe<Faq>;
-  updateFaq?: Maybe<Faq>;
-  updateMeasurement?: Maybe<Measurement>;
+  create_product: Product;
+  createFaq: Faq;
+  deleteFaq: Faq;
+  updateFaq: Faq;
+  updateMeasurement: Measurement;
 };
 
 
 export type MutationCreate_ProductArgs = {
-  input?: InputMaybe<CreateProductInput>;
+  input: CreateProductInput;
 };
 
 
 export type MutationCreateFaqArgs = {
-  data?: InputMaybe<CreateFaqInput>;
+  data: CreateFaqInput;
 };
 
 
 export type MutationDeleteFaqArgs = {
-  id?: InputMaybe<Scalars['Int']>;
+  id: Scalars['Int'];
 };
 
 
 export type MutationUpdateFaqArgs = {
-  data?: InputMaybe<UpdateFaqInput>;
-  id?: InputMaybe<Scalars['Int']>;
+  data: UpdateFaqInput;
+  id: Scalars['Int'];
 };
 
 
 export type MutationUpdateMeasurementArgs = {
-  id?: InputMaybe<Scalars['Int']>;
-  set?: InputMaybe<UpdateMeasurementInput>;
+  id: Scalars['Int'];
+  set: UpdateMeasurementInput;
 };
 
 export type NutritionFact = {
@@ -130,30 +131,33 @@ export type NutritionFact = {
 
 export type NutritionFactInput = {
   ingredient: Scalars['String'];
-  measurements?: InputMaybe<MeasurementInput>;
+  measurements: MeasurementInput;
 };
 
 export type Product = {
   __typename?: 'Product';
   compoundNutritionFacts: Array<CompoundNutritionFact>;
+  contains: Scalars['String'];
   cookingInstructions: Scalars['String'];
   id: Scalars['Int'];
+  image: Image;
   ingredients: Scalars['String'];
+  name: Scalars['String'];
   nutritionFacts: Array<NutritionFact>;
   servingSize: Measurement;
-  shopifyId: Scalars['Int'];
+  shopifyId: Scalars['Float'];
 };
 
 export type Query = {
   __typename?: 'Query';
-  faqs?: Maybe<Array<Maybe<Faq>>>;
-  productByShopifyId?: Maybe<Product>;
-  products?: Maybe<Array<Maybe<Product>>>;
+  faqs: Array<Faq>;
+  productByShopifyId: Product;
+  products: Array<Product>;
 };
 
 
 export type QueryProductByShopifyIdArgs = {
-  shopifyId?: InputMaybe<Scalars['Int']>;
+  shopifyId: Scalars['Int'];
 };
 
 export type UpdateFaqInput = {
@@ -169,31 +173,31 @@ export type UpdateMeasurementInput = {
 export type FaqFragment = { __typename?: 'Faq', id: number, question: string, answer: string };
 
 export type DeleteFaqMutationVariables = Exact<{
-  id?: InputMaybe<Scalars['Int']>;
+  id: Scalars['Int'];
 }>;
 
 
-export type DeleteFaqMutation = { __typename?: 'Mutation', deleteFaq?: { __typename?: 'Faq', id: number, question: string, answer: string } | null | undefined };
+export type DeleteFaqMutation = { __typename?: 'Mutation', deleteFaq: { __typename?: 'Faq', id: number, question: string, answer: string } };
 
 export type UpdateFaqMutationVariables = Exact<{
-  id?: InputMaybe<Scalars['Int']>;
+  id: Scalars['Int'];
   data: UpdateFaqInput;
 }>;
 
 
-export type UpdateFaqMutation = { __typename?: 'Mutation', updateFaq?: { __typename?: 'Faq', id: number, question: string, answer: string } | null | undefined };
+export type UpdateFaqMutation = { __typename?: 'Mutation', updateFaq: { __typename?: 'Faq', id: number, question: string, answer: string } };
 
 export type CreateFaqMutationVariables = Exact<{
-  data?: InputMaybe<CreateFaqInput>;
+  data: CreateFaqInput;
 }>;
 
 
-export type CreateFaqMutation = { __typename?: 'Mutation', createFaq?: { __typename?: 'Faq', id: number, question: string, answer: string } | null | undefined };
+export type CreateFaqMutation = { __typename?: 'Mutation', createFaq: { __typename?: 'Faq', id: number, question: string, answer: string } };
 
 export type FaqsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type FaqsQuery = { __typename?: 'Query', faqs?: Array<{ __typename?: 'Faq', id: number, question: string, answer: string } | null | undefined> | null | undefined };
+export type FaqsQuery = { __typename?: 'Query', faqs: Array<{ __typename?: 'Faq', id: number, question: string, answer: string }> };
 
 export const FaqFragmentDoc = gql`
     fragment Faq on Faq {
@@ -203,7 +207,7 @@ export const FaqFragmentDoc = gql`
 }
     `;
 export const DeleteFaqDocument = gql`
-    mutation DeleteFaq($id: Int) {
+    mutation DeleteFaq($id: Int!) {
   deleteFaq(id: $id) {
     ...Faq
   }
@@ -214,7 +218,7 @@ export function useDeleteFaqMutation() {
   return Urql.useMutation<DeleteFaqMutation, DeleteFaqMutationVariables>(DeleteFaqDocument);
 };
 export const UpdateFaqDocument = gql`
-    mutation UpdateFaq($id: Int, $data: UpdateFaqInput!) {
+    mutation UpdateFaq($id: Int!, $data: UpdateFaqInput!) {
   updateFaq(id: $id, data: $data) {
     ...Faq
   }
@@ -225,7 +229,7 @@ export function useUpdateFaqMutation() {
   return Urql.useMutation<UpdateFaqMutation, UpdateFaqMutationVariables>(UpdateFaqDocument);
 };
 export const CreateFaqDocument = gql`
-    mutation CreateFaq($data: CreateFaqInput) {
+    mutation CreateFaq($data: CreateFaqInput!) {
   createFaq(data: $data) {
     ...Faq
   }

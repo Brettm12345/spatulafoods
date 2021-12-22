@@ -1,5 +1,6 @@
 {
   "scss.lint.unknownAtRules": "ignore",
+  "graphql-codegen.filePathToWatch": "${workspaceFolder}/src/generated/schema.graphql",
   "cSpell.words": [
     "fluentui",
     "headlessui",

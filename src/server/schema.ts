@@ -34,6 +34,10 @@ export const schema = makeSchema({
     export: 'Context',
   },
   plugins: [fieldAuthorizePlugin()],
+  nonNullDefaults: {
+    input: true,
+    output: true,
+  },
   outputs: {
     schema: path.join(process.cwd(), 'src', 'generated', 'schema.graphql'),
     typegen: path.join(process.cwd(), 'src', 'generated', 'nexus-typegen.d.ts'),

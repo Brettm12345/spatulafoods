@@ -3,7 +3,7 @@ import {gql} from 'urql'
 import {FAQ} from './fragments'
 
 export const DELETE_FAQ = gql`
-  mutation DeleteFaq($id: Int) {
+  mutation DeleteFaq($id: Int!) {
     deleteFaq(id: $id) {
       ...Faq
     }
@@ -12,7 +12,7 @@ export const DELETE_FAQ = gql`
 `
 
 export const UPDATE_FAQ = gql`
-  mutation UpdateFaq($id: Int, $data: UpdateFaqInput!) {
+  mutation UpdateFaq($id: Int!, $data: UpdateFaqInput!) {
     updateFaq(id: $id, data: $data) {
       ...Faq
     }
@@ -20,7 +20,7 @@ export const UPDATE_FAQ = gql`
   ${FAQ}
 `
 export const CREATE_FAQ = gql`
-  mutation CreateFaq($data: CreateFaqInput) {
+  mutation CreateFaq($data: CreateFaqInput!) {
     createFaq(data: $data) {
       ...Faq
     }
