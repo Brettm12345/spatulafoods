@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 import logo from '../../../../public/logo.png'
 import {Button} from '../../Button'
-import {ThemeToggle} from './ThemeToggle'
+import {ThemeSwitcher} from './ThemeSwitcher'
 
 export const Header = () => {
   const session = useSession()
@@ -16,6 +16,7 @@ export const Header = () => {
   return (
     <header
       className={clsx(
+        'relative',
         'max-h-18',
         'bg-gray-50 dark:bg-gray-900',
         'px-2 sm:px-4 py-2.5',
@@ -48,7 +49,7 @@ export const Header = () => {
               Logout
             </Button>
           )}
-          <ThemeToggle />
+          <ThemeSwitcher />
         </div>
       </div>
     </header>
