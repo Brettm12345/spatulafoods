@@ -5,7 +5,7 @@ import Auth0Provider from 'next-auth/providers/auth0'
 
 const prisma = new PrismaClient()
 
-const {NEXTAUTH_SECRET, AUTH0_ID, AUTH0_SECRET} = process.env
+const {NEXTAUTH_SECRET, AUTH0_ID, AUTH0_SECRET, NODE_ENV} = process.env
 
 export default NextAuth({
   adapter: PrismaAdapter(prisma),
@@ -20,10 +20,9 @@ export default NextAuth({
     // ...add more providers here
   ],
   callbacks: {
-    redirect() {
-      return process.env.NODE_ENV === 'production'
+    redirect: () =>
+      NODE_ENV === 'production'
         ? 'https://spatulafoods.vercel.app'
-        : 'http://localhost:3000'
-    },
+        : 'http://localhost:3000',
   },
 })
