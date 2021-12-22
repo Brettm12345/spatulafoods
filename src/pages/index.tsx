@@ -1,9 +1,10 @@
-import Head from 'next/head'
-import {signIn} from 'next-auth/react'
-import {Button} from '../components/Button'
-import {NextPage} from 'next'
-import {getSession, GetSessionParams} from 'next-auth/react'
 import {Auth0} from '@styled-icons/simple-icons/Auth0'
+import {NextPage} from 'next'
+import {signIn} from 'next-auth/react'
+import {getSession, GetSessionParams} from 'next-auth/react'
+import Head from 'next/head'
+
+import {Button} from '../components/Button'
 
 const Home: NextPage = () => (
   <div>

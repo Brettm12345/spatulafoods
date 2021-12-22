@@ -1,20 +1,25 @@
+import {FC} from 'react'
+
 import {Editor} from '@tiptap/react'
 import clsx from 'clsx'
-import {FC} from 'react'
+
+import {ElementProps} from '../../types/react'
 import {Tooltip} from '../Tooltip'
 import {useButtons} from './useButtons'
 
-interface MenuBarProps {
+interface MenuBarProps extends ElementProps<HTMLDivElement> {
   editor: Editor
 }
-export const MenuBar: FC<MenuBarProps> = ({editor}) => {
+export const MenuBar: FC<MenuBarProps> = ({editor, className, ...props}) => {
   const buttons = useButtons(editor)
   return (
     <div
       className={clsx(
+        className,
         'flex flex-wrap gap-4 px-4 py-3',
         'border-b border-b-gray-100 dark:border-b-gray-600'
       )}
+      {...props}
     >
       {buttons.map((group, groupId) => (
         <div className="flex" key={groupId.toString()}>

@@ -3,56 +3,62 @@
  * Do not make changes to this file directly
  */
 
+import type {FieldAuthorizeResolver} from 'nexus/dist/plugins/fieldAuthorizePlugin'
 
-import type { Context as ContextModule } from "./../server/context"
-import type { FieldAuthorizeResolver } from "nexus/dist/plugins/fieldAuthorizePlugin"
-
-
-
+import type {Context as ContextModule} from './../server/context'
 
 declare global {
   interface NexusGen extends NexusGenTypes {}
 }
 
 export interface NexusGenInputs {
-  CompoundNutritionFactInput: { // input type
-    ingredient: string; // String!
-    ingredients?: Array<NexusGenInputs['NutritionFactInput'] | null> | null; // [NutritionFactInput]
-    measurements?: NexusGenInputs['MeasurementInput'] | null; // MeasurementInput
+  CompoundNutritionFactInput: {
+    // input type
+    ingredient: string // String!
+    ingredients?: Array<NexusGenInputs['NutritionFactInput'] | null> | null // [NutritionFactInput]
+    measurements?: NexusGenInputs['MeasurementInput'] | null // MeasurementInput
   }
-  CreateFaqInput: { // input type
-    answer: string; // String!
-    question: string; // String!
+  CreateFaqInput: {
+    // input type
+    answer: string // String!
+    question: string // String!
   }
-  CreateProductInput: { // input type
-    compoundNutritionFacts?: Array<NexusGenInputs['CompoundNutritionFactInput'] | null> | null; // [CompoundNutritionFactInput]
-    contains: string; // String!
-    cookingInstructions: string; // String!
-    ingredients: string; // String!
-    nutritionFacts?: Array<NexusGenInputs['NutritionFactInput'] | null> | null; // [NutritionFactInput]
-    servingSize?: NexusGenInputs['MeasurementInput'] | null; // MeasurementInput
-    shopifyId: number; // Int!
+  CreateProductInput: {
+    // input type
+    compoundNutritionFacts?: Array<
+      NexusGenInputs['CompoundNutritionFactInput'] | null
+    > | null // [CompoundNutritionFactInput]
+    contains: string // String!
+    cookingInstructions: string // String!
+    ingredients: string // String!
+    nutritionFacts?: Array<NexusGenInputs['NutritionFactInput'] | null> | null // [NutritionFactInput]
+    servingSize?: NexusGenInputs['MeasurementInput'] | null // MeasurementInput
+    shopifyId: number // Int!
   }
-  MeasurementInput: { // input type
-    type: NexusGenEnums['MeasurementType']; // MeasurementType!
-    value: number; // Float!
+  MeasurementInput: {
+    // input type
+    type: NexusGenEnums['MeasurementType'] // MeasurementType!
+    value: number // Float!
   }
-  NutritionFactInput: { // input type
-    ingredient: string; // String!
-    measurements?: NexusGenInputs['MeasurementInput'] | null; // MeasurementInput
+  NutritionFactInput: {
+    // input type
+    ingredient: string // String!
+    measurements?: NexusGenInputs['MeasurementInput'] | null // MeasurementInput
   }
-  UpdateFaqInput: { // input type
-    answer: string; // String!
-    question: string; // String!
+  UpdateFaqInput: {
+    // input type
+    answer: string // String!
+    question: string // String!
   }
-  UpdateMeasurementInput: { // input type
-    type: NexusGenEnums['MeasurementType']; // MeasurementType!
-    value: number; // Float!
+  UpdateMeasurementInput: {
+    // input type
+    type: NexusGenEnums['MeasurementType'] // MeasurementType!
+    value: number // Float!
   }
 }
 
 export interface NexusGenEnums {
-  MeasurementType: "GRAMS" | "MILLAGRAMS" | "UNITS"
+  MeasurementType: 'GRAMS' | 'MILLAGRAMS' | 'UNITS'
 }
 
 export interface NexusGenScalars {
@@ -64,129 +70,146 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
-  CompoundNutritionFact: { // root type
-    id: number; // Int!
-    ingredient: string; // String!
+  CompoundNutritionFact: {
+    // root type
+    id: number // Int!
+    ingredient: string // String!
   }
-  Faq: { // root type
-    answer: string; // String!
-    id: number; // Int!
-    question: string; // String!
+  Faq: {
+    // root type
+    answer: string // String!
+    id: number // Int!
+    question: string // String!
   }
-  Image: { // root type
-    alt?: string | null; // String
-    created_at?: string | null; // String
-    height?: number | null; // Float
-    id?: number | null; // Int
-    position?: number | null; // Float
-    product_id?: number | null; // Int
-    src?: string | null; // String
-    updated_at?: string | null; // String
-    variant_ids?: Array<number | null> | null; // [Int]
-    width?: number | null; // Float
+  Image: {
+    // root type
+    alt?: string | null // String
+    created_at?: string | null // String
+    height?: number | null // Float
+    id?: number | null // Int
+    position?: number | null // Float
+    product_id?: number | null // Int
+    src?: string | null // String
+    updated_at?: string | null // String
+    variant_ids?: Array<number | null> | null // [Int]
+    width?: number | null // Float
   }
-  Measurement: { // root type
-    id: number; // Int!
-    type: NexusGenEnums['MeasurementType']; // MeasurementType!
-    value: number; // Float!
+  Measurement: {
+    // root type
+    id: number // Int!
+    type: NexusGenEnums['MeasurementType'] // MeasurementType!
+    value: number // Float!
   }
-  Mutation: {};
-  NutritionFact: { // root type
-    id: number; // Int!
-    ingredient: string; // String!
+  Mutation: {}
+  NutritionFact: {
+    // root type
+    id: number // Int!
+    ingredient: string // String!
   }
-  Product: { // root type
-    cookingInstructions: string; // String!
-    id: number; // Int!
-    ingredients: string; // String!
-    shopifyId: number; // Int!
+  Product: {
+    // root type
+    cookingInstructions: string // String!
+    id: number // Int!
+    ingredients: string // String!
+    shopifyId: number // Int!
   }
-  Query: {};
+  Query: {}
 }
 
-export interface NexusGenInterfaces {
-}
+export interface NexusGenInterfaces {}
 
-export interface NexusGenUnions {
-}
+export interface NexusGenUnions {}
 
 export type NexusGenRootTypes = NexusGenObjects
 
-export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars & NexusGenEnums
+export type NexusGenAllTypes = NexusGenRootTypes &
+  NexusGenScalars &
+  NexusGenEnums
 
 export interface NexusGenFieldTypes {
-  CompoundNutritionFact: { // field return type
-    id: number; // Int!
-    ingredient: string; // String!
-    ingredients: NexusGenRootTypes['NutritionFact'][]; // [NutritionFact!]!
-    measurements: NexusGenRootTypes['Measurement']; // Measurement!
-    product: NexusGenRootTypes['Product']; // Product!
+  CompoundNutritionFact: {
+    // field return type
+    id: number // Int!
+    ingredient: string // String!
+    ingredients: NexusGenRootTypes['NutritionFact'][] // [NutritionFact!]!
+    measurements: NexusGenRootTypes['Measurement'] // Measurement!
+    product: NexusGenRootTypes['Product'] // Product!
   }
-  Faq: { // field return type
-    answer: string; // String!
-    id: number; // Int!
-    question: string; // String!
+  Faq: {
+    // field return type
+    answer: string // String!
+    id: number // Int!
+    question: string // String!
   }
-  Image: { // field return type
-    alt: string | null; // String
-    created_at: string | null; // String
-    height: number | null; // Float
-    id: number | null; // Int
-    position: number | null; // Float
-    product_id: number | null; // Int
-    src: string | null; // String
-    updated_at: string | null; // String
-    variant_ids: Array<number | null> | null; // [Int]
-    width: number | null; // Float
+  Image: {
+    // field return type
+    alt: string | null // String
+    created_at: string | null // String
+    height: number | null // Float
+    id: number | null // Int
+    position: number | null // Float
+    product_id: number | null // Int
+    src: string | null // String
+    updated_at: string | null // String
+    variant_ids: Array<number | null> | null // [Int]
+    width: number | null // Float
   }
-  Measurement: { // field return type
-    id: number; // Int!
-    type: NexusGenEnums['MeasurementType']; // MeasurementType!
-    value: number; // Float!
+  Measurement: {
+    // field return type
+    id: number // Int!
+    type: NexusGenEnums['MeasurementType'] // MeasurementType!
+    value: number // Float!
   }
-  Mutation: { // field return type
-    create_product: NexusGenRootTypes['Product'] | null; // Product
-    createFaq: NexusGenRootTypes['Faq'] | null; // Faq
-    deleteFaq: NexusGenRootTypes['Faq'] | null; // Faq
-    updateFaq: NexusGenRootTypes['Faq'] | null; // Faq
-    updateMeasurement: NexusGenRootTypes['Measurement'] | null; // Measurement
+  Mutation: {
+    // field return type
+    create_product: NexusGenRootTypes['Product'] | null // Product
+    createFaq: NexusGenRootTypes['Faq'] | null // Faq
+    deleteFaq: NexusGenRootTypes['Faq'] | null // Faq
+    updateFaq: NexusGenRootTypes['Faq'] | null // Faq
+    updateMeasurement: NexusGenRootTypes['Measurement'] | null // Measurement
   }
-  NutritionFact: { // field return type
-    id: number; // Int!
-    ingredient: string; // String!
-    measurements: NexusGenRootTypes['Measurement']; // Measurement!
-    product: NexusGenRootTypes['Product']; // Product!
+  NutritionFact: {
+    // field return type
+    id: number // Int!
+    ingredient: string // String!
+    measurements: NexusGenRootTypes['Measurement'] // Measurement!
+    product: NexusGenRootTypes['Product'] // Product!
   }
-  Product: { // field return type
-    compoundNutritionFacts: NexusGenRootTypes['CompoundNutritionFact'][]; // [CompoundNutritionFact!]!
-    cookingInstructions: string; // String!
-    id: number; // Int!
-    ingredients: string; // String!
-    nutritionFacts: NexusGenRootTypes['NutritionFact'][]; // [NutritionFact!]!
-    servingSize: NexusGenRootTypes['Measurement']; // Measurement!
-    shopifyId: number; // Int!
+  Product: {
+    // field return type
+    compoundNutritionFacts: NexusGenRootTypes['CompoundNutritionFact'][] // [CompoundNutritionFact!]!
+    cookingInstructions: string // String!
+    id: number // Int!
+    ingredients: string // String!
+    nutritionFacts: NexusGenRootTypes['NutritionFact'][] // [NutritionFact!]!
+    servingSize: NexusGenRootTypes['Measurement'] // Measurement!
+    shopifyId: number // Int!
   }
-  Query: { // field return type
-    faqs: Array<NexusGenRootTypes['Faq'] | null> | null; // [Faq]
-    productByShopifyId: NexusGenRootTypes['Product'] | null; // Product
-    products: Array<NexusGenRootTypes['Product'] | null> | null; // [Product]
+  Query: {
+    // field return type
+    faqs: Array<NexusGenRootTypes['Faq'] | null> | null // [Faq]
+    productByShopifyId: NexusGenRootTypes['Product'] | null // Product
+    products: Array<NexusGenRootTypes['Product'] | null> | null // [Product]
   }
 }
 
 export interface NexusGenFieldTypeNames {
-  CompoundNutritionFact: { // field return type name
+  CompoundNutritionFact: {
+    // field return type name
     id: 'Int'
     ingredient: 'String'
     ingredients: 'NutritionFact'
     measurements: 'Measurement'
     product: 'Product'
   }
-  Faq: { // field return type name
+  Faq: {
+    // field return type name
     answer: 'String'
     id: 'Int'
     question: 'String'
   }
-  Image: { // field return type name
+  Image: {
+    // field return type name
     alt: 'String'
     created_at: 'String'
     height: 'Float'
@@ -198,25 +221,29 @@ export interface NexusGenFieldTypeNames {
     variant_ids: 'Int'
     width: 'Float'
   }
-  Measurement: { // field return type name
+  Measurement: {
+    // field return type name
     id: 'Int'
     type: 'MeasurementType'
     value: 'Float'
   }
-  Mutation: { // field return type name
+  Mutation: {
+    // field return type name
     create_product: 'Product'
     createFaq: 'Faq'
     deleteFaq: 'Faq'
     updateFaq: 'Faq'
     updateMeasurement: 'Measurement'
   }
-  NutritionFact: { // field return type name
+  NutritionFact: {
+    // field return type name
     id: 'Int'
     ingredient: 'String'
     measurements: 'Measurement'
     product: 'Product'
   }
-  Product: { // field return type name
+  Product: {
+    // field return type name
     compoundNutritionFacts: 'CompoundNutritionFact'
     cookingInstructions: 'String'
     id: 'Int'
@@ -225,7 +252,8 @@ export interface NexusGenFieldTypeNames {
     servingSize: 'Measurement'
     shopifyId: 'Int'
   }
-  Query: { // field return type name
+  Query: {
+    // field return type name
     faqs: 'Faq'
     productByShopifyId: 'Product'
     products: 'Product'
@@ -234,52 +262,56 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
-    create_product: { // args
-      input?: NexusGenInputs['CreateProductInput'] | null; // CreateProductInput
+    create_product: {
+      // args
+      input?: NexusGenInputs['CreateProductInput'] | null // CreateProductInput
     }
-    createFaq: { // args
-      data?: NexusGenInputs['CreateFaqInput'] | null; // CreateFaqInput
+    createFaq: {
+      // args
+      data?: NexusGenInputs['CreateFaqInput'] | null // CreateFaqInput
     }
-    deleteFaq: { // args
-      id?: number | null; // Int
+    deleteFaq: {
+      // args
+      id?: number | null // Int
     }
-    updateFaq: { // args
-      data?: NexusGenInputs['UpdateFaqInput'] | null; // UpdateFaqInput
-      id?: number | null; // Int
+    updateFaq: {
+      // args
+      data?: NexusGenInputs['UpdateFaqInput'] | null // UpdateFaqInput
+      id?: number | null // Int
     }
-    updateMeasurement: { // args
-      id?: number | null; // Int
-      set?: NexusGenInputs['UpdateMeasurementInput'] | null; // UpdateMeasurementInput
+    updateMeasurement: {
+      // args
+      id?: number | null // Int
+      set?: NexusGenInputs['UpdateMeasurementInput'] | null // UpdateMeasurementInput
     }
   }
   Query: {
-    productByShopifyId: { // args
-      shopifyId?: number | null; // Int
+    productByShopifyId: {
+      // args
+      shopifyId?: number | null // Int
     }
   }
 }
 
-export interface NexusGenAbstractTypeMembers {
-}
+export interface NexusGenAbstractTypeMembers {}
 
-export interface NexusGenTypeInterfaces {
-}
+export interface NexusGenTypeInterfaces {}
 
-export type NexusGenObjectNames = keyof NexusGenObjects;
+export type NexusGenObjectNames = keyof NexusGenObjects
 
-export type NexusGenInputNames = keyof NexusGenInputs;
+export type NexusGenInputNames = keyof NexusGenInputs
 
-export type NexusGenEnumNames = keyof NexusGenEnums;
+export type NexusGenEnumNames = keyof NexusGenEnums
 
-export type NexusGenInterfaceNames = never;
+export type NexusGenInterfaceNames = never
 
-export type NexusGenScalarNames = keyof NexusGenScalars;
+export type NexusGenScalarNames = keyof NexusGenScalars
 
-export type NexusGenUnionNames = never;
+export type NexusGenUnionNames = never
 
-export type NexusGenObjectsUsingAbstractStrategyIsTypeOf = never;
+export type NexusGenObjectsUsingAbstractStrategyIsTypeOf = never
 
-export type NexusGenAbstractsUsingStrategyResolveType = never;
+export type NexusGenAbstractsUsingStrategyResolveType = never
 
 export type NexusGenFeaturesConfig = {
   abstractTypeStrategies: {
@@ -290,38 +322,48 @@ export type NexusGenFeaturesConfig = {
 }
 
 export interface NexusGenTypes {
-  context: ContextModule;
-  inputTypes: NexusGenInputs;
-  rootTypes: NexusGenRootTypes;
-  inputTypeShapes: NexusGenInputs & NexusGenEnums & NexusGenScalars;
-  argTypes: NexusGenArgTypes;
-  fieldTypes: NexusGenFieldTypes;
-  fieldTypeNames: NexusGenFieldTypeNames;
-  allTypes: NexusGenAllTypes;
-  typeInterfaces: NexusGenTypeInterfaces;
-  objectNames: NexusGenObjectNames;
-  inputNames: NexusGenInputNames;
-  enumNames: NexusGenEnumNames;
-  interfaceNames: NexusGenInterfaceNames;
-  scalarNames: NexusGenScalarNames;
-  unionNames: NexusGenUnionNames;
-  allInputTypes: NexusGenTypes['inputNames'] | NexusGenTypes['enumNames'] | NexusGenTypes['scalarNames'];
-  allOutputTypes: NexusGenTypes['objectNames'] | NexusGenTypes['enumNames'] | NexusGenTypes['unionNames'] | NexusGenTypes['interfaceNames'] | NexusGenTypes['scalarNames'];
-  allNamedTypes: NexusGenTypes['allInputTypes'] | NexusGenTypes['allOutputTypes']
-  abstractTypes: NexusGenTypes['interfaceNames'] | NexusGenTypes['unionNames'];
-  abstractTypeMembers: NexusGenAbstractTypeMembers;
-  objectsUsingAbstractStrategyIsTypeOf: NexusGenObjectsUsingAbstractStrategyIsTypeOf;
-  abstractsUsingStrategyResolveType: NexusGenAbstractsUsingStrategyResolveType;
-  features: NexusGenFeaturesConfig;
+  context: ContextModule
+  inputTypes: NexusGenInputs
+  rootTypes: NexusGenRootTypes
+  inputTypeShapes: NexusGenInputs & NexusGenEnums & NexusGenScalars
+  argTypes: NexusGenArgTypes
+  fieldTypes: NexusGenFieldTypes
+  fieldTypeNames: NexusGenFieldTypeNames
+  allTypes: NexusGenAllTypes
+  typeInterfaces: NexusGenTypeInterfaces
+  objectNames: NexusGenObjectNames
+  inputNames: NexusGenInputNames
+  enumNames: NexusGenEnumNames
+  interfaceNames: NexusGenInterfaceNames
+  scalarNames: NexusGenScalarNames
+  unionNames: NexusGenUnionNames
+  allInputTypes:
+    | NexusGenTypes['inputNames']
+    | NexusGenTypes['enumNames']
+    | NexusGenTypes['scalarNames']
+  allOutputTypes:
+    | NexusGenTypes['objectNames']
+    | NexusGenTypes['enumNames']
+    | NexusGenTypes['unionNames']
+    | NexusGenTypes['interfaceNames']
+    | NexusGenTypes['scalarNames']
+  allNamedTypes:
+    | NexusGenTypes['allInputTypes']
+    | NexusGenTypes['allOutputTypes']
+  abstractTypes: NexusGenTypes['interfaceNames'] | NexusGenTypes['unionNames']
+  abstractTypeMembers: NexusGenAbstractTypeMembers
+  objectsUsingAbstractStrategyIsTypeOf: NexusGenObjectsUsingAbstractStrategyIsTypeOf
+  abstractsUsingStrategyResolveType: NexusGenAbstractsUsingStrategyResolveType
+  features: NexusGenFeaturesConfig
 }
 
-
 declare global {
-  interface NexusGenPluginTypeConfig<TypeName extends string> {
-  }
-  interface NexusGenPluginInputTypeConfig<TypeName extends string> {
-  }
-  interface NexusGenPluginFieldConfig<TypeName extends string, FieldName extends string> {
+  interface NexusGenPluginTypeConfig<TypeName extends string> {}
+  interface NexusGenPluginInputTypeConfig<TypeName extends string> {}
+  interface NexusGenPluginFieldConfig<
+    TypeName extends string,
+    FieldName extends string
+  > {
     /**
      * Authorization for an individual field. Returning "true"
      * or "Promise<true>" means the field can be accessed.
@@ -332,10 +374,10 @@ declare global {
      */
     authorize?: FieldAuthorizeResolver<TypeName, FieldName>
   }
-  interface NexusGenPluginInputFieldConfig<TypeName extends string, FieldName extends string> {
-  }
-  interface NexusGenPluginSchemaConfig {
-  }
-  interface NexusGenPluginArgConfig {
-  }
+  interface NexusGenPluginInputFieldConfig<
+    TypeName extends string,
+    FieldName extends string
+  > {}
+  interface NexusGenPluginSchemaConfig {}
+  interface NexusGenPluginArgConfig {}
 }

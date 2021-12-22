@@ -1,5 +1,6 @@
-import clsx from 'clsx'
 import {FC, SVGProps} from 'react'
+
+import clsx from 'clsx'
 
 type SpinnerProps = Omit<SVGProps<SVGSVGElement>, 'path' | 'fill'>
 export const Spinner: FC<SpinnerProps> = props => (
@@ -20,7 +21,7 @@ export const Spinner: FC<SpinnerProps> = props => (
       r="10"
       stroke="currentColor"
       fill="none"
-      stroke-width="4"
+      strokeWidth="4"
     />
     <path
       className="opacity-75"

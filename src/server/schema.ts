@@ -1,5 +1,7 @@
-import {makeSchema, fieldAuthorizePlugin} from 'nexus'
 import path from 'path'
+
+import {makeSchema, fieldAuthorizePlugin} from 'nexus'
+
 import {
   CompoundNutritionFactModel,
   MeasurementModel,

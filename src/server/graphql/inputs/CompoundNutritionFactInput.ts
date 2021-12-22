@@ -1,5 +1,6 @@
 import {inputObjectType} from 'nexus'
 import {CompoundNutritionFact} from 'nexus-prisma'
+
 import {MeasurementInput, NutritionFactInput} from '.'
 
 export const CompoundNutritionFactInput = inputObjectType({

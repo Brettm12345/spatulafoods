@@ -1,12 +1,14 @@
 import React from 'react'
-import Link from 'next/link'
-import logo from '../../../../public/logo.png'
-import Image from 'next/image'
-import {ThemeToggle} from './ThemeToggle'
-import {signOut, useSession} from 'next-auth/react'
-import {Button} from '../../Button'
+
 import {LogoutIcon} from '@heroicons/react/outline'
 import clsx from 'clsx'
+import {signOut, useSession} from 'next-auth/react'
+import Image from 'next/image'
+import Link from 'next/link'
+
+import logo from '../../../../public/logo.png'
+import {Button} from '../../Button'
+import {ThemeToggle} from './ThemeToggle'
 
 export const Header = () => {
   const session = useSession()

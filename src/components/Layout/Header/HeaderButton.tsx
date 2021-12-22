@@ -1,7 +1,8 @@
+import {FC} from 'react'
+
 import clsx from 'clsx'
 import {useRouter} from 'next/dist/client/router'
 import Link, {LinkProps} from 'next/link'
-import {FC} from 'react'
 
 export const HeaderButton: FC<LinkProps> = props => {
   const router = useRouter()

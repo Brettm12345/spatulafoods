@@ -1,6 +1,8 @@
+import {useState} from 'react'
+
 import {PlusIcon} from '@heroicons/react/outline'
 import {NextPage} from 'next'
-import {useState} from 'react'
+
 import {Button} from '../components/Button'
 import {Faq} from '../components/Faq'
 import {FaqModal} from '../components/FaqModal'

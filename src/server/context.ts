@@ -1,5 +1,5 @@
 import {PrismaClient} from '@prisma/client'
-import {NextApiRequest, NextApiResponse} from 'next'
+import {NextApiRequest} from 'next'
 import {JWT} from 'next-auth/jwt'
 import {getSession} from 'next-auth/react'
 
@@ -9,8 +9,6 @@ export interface Context {
   prisma: PrismaClient
   user: JWT
 }
-
-const secret = process.env.NEXTAUTH_SECRET
 
 export const createContext = async ({
   req,

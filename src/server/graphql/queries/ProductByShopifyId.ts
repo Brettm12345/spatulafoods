@@ -1,4 +1,4 @@
-import {intArg, queryField, queryType} from 'nexus'
+import {intArg, queryField} from 'nexus'
 
 export const ProductByShopifyId = queryField('productByShopifyId', {
   type: 'Product',

@@ -1,3 +1,5 @@
+import {FC, Fragment, useState} from 'react'
+
 import {Dialog, Transition} from '@headlessui/react'
 import Blockquote from '@tiptap/extension-blockquote'
 import TextAlign from '@tiptap/extension-text-align'
@@ -5,7 +7,7 @@ import Underline from '@tiptap/extension-underline'
 import {useEditor} from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import clsx from 'clsx'
-import {FC, Fragment, useState} from 'react'
+
 import {useCreateFaqMutation, useUpdateFaqMutation} from '../generated/graphql'
 import {Button} from './Button'
 import {RichTextEditor} from './RichTextEditor'

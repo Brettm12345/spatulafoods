@@ -1,5 +1,4 @@
 import {list, queryField} from 'nexus'
-import {Context} from '../../context'
 
 export const Products = queryField('products', {
   type: list('Product'),

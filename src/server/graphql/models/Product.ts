@@ -1,6 +1,5 @@
 import {objectType} from 'nexus'
 import {Product} from 'nexus-prisma'
-import Shopify from 'shopify-api-node'
 
 export const ProductModel = objectType({
   name: Product.$name,

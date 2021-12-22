@@ -1,6 +1,8 @@
+import {FC} from 'react'
+
 import {Editor, EditorContent} from '@tiptap/react'
 import clsx from 'clsx'
-import {FC} from 'react'
+
 import {MenuBar} from './Menubar'
 
 interface RichTextEditorProps {

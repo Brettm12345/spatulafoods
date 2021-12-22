@@ -1,7 +1,9 @@
+import React, {FC, useState} from 'react'
+
 import {Disclosure} from '@headlessui/react'
 import {PencilIcon, PlusIcon, TrashIcon} from '@heroicons/react/outline'
 import clsx from 'clsx'
-import React, {FC, useState} from 'react'
+
 import {useDeleteFaqMutation} from '../generated/graphql'
 import {Button} from './Button'
 import {FaqModal} from './FaqModal'

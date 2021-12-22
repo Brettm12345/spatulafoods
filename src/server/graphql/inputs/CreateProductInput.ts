@@ -1,5 +1,6 @@
 import {inputObjectType} from 'nexus'
 import {Product} from 'nexus-prisma'
+
 import {
   CompoundNutritionFactInput,
   MeasurementInput,

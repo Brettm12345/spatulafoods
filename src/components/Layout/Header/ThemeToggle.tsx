@@ -1,8 +1,10 @@
-import {useTheme} from 'next-themes'
 import {ComponentProps, DetailedHTMLProps, FC, HTMLAttributes} from 'react'
+
 import {SunIcon, MoonIcon} from '@heroicons/react/outline'
-import {Tooltip} from '../../Tooltip'
 import clsx from 'clsx'
+import {useTheme} from 'next-themes'
+
+import {Tooltip} from '../../Tooltip'
 
 interface ThemeToggleProps
   extends Omit<

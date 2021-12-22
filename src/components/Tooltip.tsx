@@ -1,6 +1,7 @@
 import {FC, ReactElement} from 'react'
-import clsx from 'clsx'
+
 import Tippy from '@tippyjs/react'
+import clsx from 'clsx'
 
 type Placement = 'top' | 'right' | 'bottom' | 'left'
 type Trigger = 'hover' | 'click'
@@ -28,6 +29,7 @@ export const Tooltip: FC<TooltipProps> = ({
 }) => (
   <Tippy
     content={content}
+    trigger={trigger}
     popperOptions={{
       placement,
     }}

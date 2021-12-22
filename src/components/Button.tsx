@@ -1,12 +1,12 @@
+import {FC, ReactNode} from 'react'
+
 import clsx from 'clsx'
-import {ButtonHTMLAttributes, DetailedHTMLProps, FC, ReactNode} from 'react'
+
+import {ElementProps} from '../types/react'
 import {Spinner} from './Spinner'
 
-interface ButtonProps
-  extends DetailedHTMLProps<
-    ButtonHTMLAttributes<HTMLButtonElement>,
-    HTMLButtonElement
-  > {
+interface ButtonProps extends ElementProps<HTMLButtonElement> {
+  disabled?: boolean
   loading?: boolean
   /** @default "loading" */
   loadingText?: string
@@ -16,7 +16,7 @@ interface ButtonProps
 export const Button: FC<ButtonProps> = ({
   children,
   className,
-  disabled,
+  disabled = false,
   leftIcon,
   rightIcon,
   loading,
