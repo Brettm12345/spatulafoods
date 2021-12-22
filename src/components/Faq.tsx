@@ -1,10 +1,12 @@
-import {type FC, useState} from 'react'
+import type {FC} from 'react'
+import {useState} from 'react'
 
 import {Disclosure} from '@headlessui/react'
 import {PencilIcon, PlusIcon, TrashIcon} from '@heroicons/react/outline'
 import clsx from 'clsx'
 
-import {type FaqFragment, useDeleteFaqMutation} from '../generated/graphql'
+import type {FaqFragment} from '../generated/graphql'
+import {useDeleteFaqMutation} from '../generated/graphql'
 import {Button} from './Button'
 import {FaqModal} from './FaqModal'
 

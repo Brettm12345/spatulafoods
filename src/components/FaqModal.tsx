@@ -1,4 +1,5 @@
-import {type FC, Fragment, useState} from 'react'
+import type {FC} from 'react'
+import {Fragment, useState} from 'react'
 
 import {Dialog, Transition} from '@headlessui/react'
 import Blockquote from '@tiptap/extension-blockquote'
@@ -8,11 +9,8 @@ import {useEditor} from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import clsx from 'clsx'
 
-import {
-  type FaqFragment,
-  useCreateFaqMutation,
-  useUpdateFaqMutation,
-} from '../generated/graphql'
+import type {FaqFragment} from '../generated/graphql'
+import {useCreateFaqMutation, useUpdateFaqMutation} from '../generated/graphql'
 import {Button} from './Button'
 import {RichTextEditor} from './RichTextEditor'
 
