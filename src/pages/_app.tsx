@@ -3,6 +3,7 @@ import type {GetSessionParams} from 'next-auth/react'
 import {getSession, SessionProvider} from 'next-auth/react'
 import {ThemeProvider} from 'next-themes'
 import type {AppType} from 'next/dist/next-server/lib/utils'
+import {Toaster} from 'react-hot-toast'
 
 import Layout from '../components/Layout'
 import {UrqlProvider} from '../providers/UrqlProvider'
@@ -13,6 +14,7 @@ const App: AppType = ({Component, pageProps: {session, ...pageProps}}) => (
       <UrqlProvider>
         <Layout>
           <Component {...pageProps} />
+          <Toaster />
         </Layout>
       </UrqlProvider>
     </SessionProvider>

@@ -3,9 +3,12 @@ import {useState} from 'react'
 
 import {Disclosure} from '@headlessui/react'
 import {PencilIcon, PlusIcon, TrashIcon} from '@heroicons/react/outline'
+import {XIcon} from '@heroicons/react/solid'
 import clsx from 'clsx'
+import toast from 'react-hot-toast'
 
 import type {FaqFragment} from '../generated/graphql'
+import {useCreateFaqMutation} from '../generated/graphql'
 import {useDeleteFaqMutation} from '../generated/graphql'
 import type {ElementProps} from '../types/react'
 import {Button} from './Button'
@@ -19,7 +22,7 @@ export const FaqSkeleton: FC<ElementProps<HTMLDivElement>> = ({
     className={clsx(
       className,
       'w-full h-[58px] rounded-md animate-pulse',
-      ' bg-gray-100 dark:bg-gray-600'
+      ' bg-gray-200 dark:bg-gray-600'
     )}
     {...props}
   />
@@ -27,7 +30,69 @@ export const FaqSkeleton: FC<ElementProps<HTMLDivElement>> = ({
 
 export const Faq: FC<FaqFragment> = ({id, question, answer}) => {
   const [{fetching}, deleteFaq] = useDeleteFaqMutation()
+  // eslint-disable-next-line unused-imports/no-unused-vars
+  const [_, createFaq] = useCreateFaqMutation()
   const [isOpen, setIsOpen] = useState(false)
+  const handleDelete = async () => {
+    const {
+      data: {
+        deleteFaq: {question: deletedQuestion, answer: deletedAnswer},
+      },
+    } = await deleteFaq({id})
+    toast.custom(
+      t => (
+        <div
+          className={clsx(
+            t.visible ? 'animate-enter' : 'animate-leave',
+            'max-w-md w-full bg-white shadow-lg',
+            'dark:bg-gray-900',
+            'rounded-lg pointer-events-auto flex',
+            'ring-1 ring-black ring-opacity-5'
+          )}
+        >
+          <p
+            className={clsx(
+              'flex-1 w-0 p-4 text-sm font-medium',
+              ' text-gray-900  dark:text-gray-200'
+            )}
+          >
+            Faq archived
+          </p>
+          <button
+            onClick={async () => {
+              await createFaq({
+                data: {
+                  question: deletedQuestion,
+                  answer: deletedAnswer,
+                },
+              })
+              toast.dismiss(t.id)
+            }}
+            className={clsx(
+              'p-4 text-indigo-600 dark:text-indigo-400 ',
+              'hover:text-indigo-800 hover:dark:text-indigo-300',
+              'transition-colors ease-mantine duration-300',
+              'focus:outline-none focus:text-indigo-800 focus:dark:text-indigo-300'
+            )}
+          >
+            Undo
+          </button>
+          <button
+            onClick={() => toast.dismiss(t.id)}
+            className={clsx(
+              'p-4 text-gray-600 dark:text-gray-300',
+              'hover:text-gray-900 hover:dark:text-white',
+              'transition-colors ease-mantine duration-300',
+              'focus:outline-none hover:text-gray-900 hover:dark:text-white'
+            )}
+          >
+            <XIcon className="m-0 fill-current size-4" />
+          </button>
+        </div>
+      ),
+      {duration: 3000}
+    )
+  }
   return (
     <Disclosure>
       {({open}) => (
@@ -69,9 +134,7 @@ export const Faq: FC<FaqFragment> = ({id, question, answer}) => {
             />
             <div className="flex mt-4 space-x-2">
               <Button
-                onClick={() => {
-                  deleteFaq({id})
-                }}
+                onClick={handleDelete}
                 loading={fetching}
                 leftIcon={<TrashIcon />}
                 loadingText="Deleting..."
