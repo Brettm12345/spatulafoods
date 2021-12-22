@@ -31,7 +31,7 @@ export interface NexusGenInputs {
     ingredients: string; // String!
     nutritionFacts?: Array<NexusGenInputs['NutritionFactInput'] | null> | null; // [NutritionFactInput]
     servingSize?: NexusGenInputs['MeasurementInput'] | null; // MeasurementInput
-    shopifyId: number; // Int!
+    shopifyId: number; // Float!
   }
   MeasurementInput: { // input type
     type: NexusGenEnums['MeasurementType']; // MeasurementType!
@@ -96,10 +96,11 @@ export interface NexusGenObjects {
     ingredient: string; // String!
   }
   Product: { // root type
+    contains: string; // String!
     cookingInstructions: string; // String!
     id: number; // Int!
     ingredients: string; // String!
-    shopifyId: number; // Int!
+    shopifyId: number; // Float!
   }
   Query: {};
 }
@@ -159,12 +160,15 @@ export interface NexusGenFieldTypes {
   }
   Product: { // field return type
     compoundNutritionFacts: NexusGenRootTypes['CompoundNutritionFact'][]; // [CompoundNutritionFact!]!
+    contains: string; // String!
     cookingInstructions: string; // String!
     id: number; // Int!
+    image: NexusGenRootTypes['Image'] | null; // Image
     ingredients: string; // String!
+    name: string | null; // String
     nutritionFacts: NexusGenRootTypes['NutritionFact'][]; // [NutritionFact!]!
     servingSize: NexusGenRootTypes['Measurement']; // Measurement!
-    shopifyId: number; // Int!
+    shopifyId: number; // Float!
   }
   Query: { // field return type
     faqs: Array<NexusGenRootTypes['Faq'] | null> | null; // [Faq]
@@ -218,12 +222,15 @@ export interface NexusGenFieldTypeNames {
   }
   Product: { // field return type name
     compoundNutritionFacts: 'CompoundNutritionFact'
+    contains: 'String'
     cookingInstructions: 'String'
     id: 'Int'
+    image: 'Image'
     ingredients: 'String'
+    name: 'String'
     nutritionFacts: 'NutritionFact'
     servingSize: 'Measurement'
-    shopifyId: 'Int'
+    shopifyId: 'Float'
   }
   Query: { // field return type name
     faqs: 'Faq'

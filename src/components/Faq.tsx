@@ -3,17 +3,13 @@ import type {FC} from 'react'
 import {Disclosure} from '@headlessui/react'
 import {PencilIcon, PlusIcon, TrashIcon} from '@heroicons/react/outline'
 import clsx from 'clsx'
-import toast from 'react-hot-toast'
-import type {Toast as ReactHotToast} from 'react-hot-toast'
 
 import type {FaqFragment} from '../generated/graphql'
-import {useCreateFaqMutation} from '../generated/graphql'
-import {useDeleteFaqMutation} from '../generated/graphql'
+import {useDeleteFaq} from '../hooks/useDeleteFaq'
 import {useDisclosure} from '../hooks/useDisclosure'
 import type {ElementProps} from '../types/react'
 import {Button} from './Button'
 import {FaqModal} from './FaqModal'
-import {Toast} from './Toast'
 
 export const FaqSkeleton: FC<ElementProps<HTMLDivElement>> = ({
   className,
@@ -31,40 +27,8 @@ export const FaqSkeleton: FC<ElementProps<HTMLDivElement>> = ({
 )
 
 export const Faq: FC<FaqFragment> = ({id, question, answer}) => {
-  const [{fetching}, deleteFaq] = useDeleteFaqMutation()
-  const [_, createFaq] = useCreateFaqMutation()
   const {isOpen, onClose, onOpen} = useDisclosure()
-  const handleUndo = (data: FaqFragment, t: ReactHotToast) => async () => {
-    await createFaq({
-      data: {
-        answer: data.answer,
-        question: data.question,
-      },
-    })
-    toast.dismiss(t.id)
-  }
-  const handleDelete = async () => {
-    const {data: deletedData} = await deleteFaq({id})
-    const faq = deletedData?.deleteFaq
-    toast.custom(
-      t => (
-        <Toast t={t} title="Faq archived">
-          <button
-            onClick={handleUndo(faq, t)}
-            className={clsx(
-              'btn-text',
-              'text-indigo-600 dark:text-indigo-400',
-              'hover:text-indigo-800 hover:dark:text-indigo-300',
-              'focus:text-indigo-800 focus:dark:text-indigo-300'
-            )}
-          >
-            Undo
-          </button>
-        </Toast>
-      ),
-      {duration: 3000}
-    )
-  }
+  const {deleting, deleteFaq} = useDeleteFaq({id})
   return (
     <Disclosure>
       {({open}) => (
@@ -106,8 +70,8 @@ export const Faq: FC<FaqFragment> = ({id, question, answer}) => {
             />
             <div className="flex mt-4 space-x-2">
               <Button
-                onClick={handleDelete}
-                loading={fetching}
+                onClick={deleteFaq}
+                loading={deleting}
                 leftIcon={<TrashIcon />}
                 loadingText="Deleting..."
                 className="btn-sm btn-rose"

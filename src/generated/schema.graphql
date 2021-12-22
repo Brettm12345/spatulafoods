@@ -28,7 +28,7 @@ input CreateProductInput {
   ingredients: String!
   nutritionFacts: [NutritionFactInput]
   servingSize: MeasurementInput
-  shopifyId: Int!
+  shopifyId: Float!
 }
 
 type Faq {
@@ -89,12 +89,15 @@ input NutritionFactInput {
 
 type Product {
   compoundNutritionFacts: [CompoundNutritionFact!]!
+  contains: String!
   cookingInstructions: String!
   id: Int!
+  image: Image
   ingredients: String!
+  name: String
   nutritionFacts: [NutritionFact!]!
   servingSize: Measurement!
-  shopifyId: Int!
+  shopifyId: Float!
 }
 
 type Query {

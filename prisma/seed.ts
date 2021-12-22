@@ -703,6 +703,10 @@ export const products: Products = {
 }
 
 const generateProducts = async () => {
+  await prisma.nutritionFact.deleteMany({where: {id: {not: undefined}}})
+  await prisma.compoundNutritionFact.deleteMany({where: {id: {not: undefined}}})
+  await prisma.product.deleteMany({where: {id: {not: undefined}}})
+  await prisma.measurement.deleteMany({where: {id: {not: undefined}}})
   await Promise.all(
     Object.entries(products).map(async ([shopifyId, value]) => {
       const product = await prisma.product.create({

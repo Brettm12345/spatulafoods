@@ -116,7 +116,7 @@ model CompoundNutritionFact {
 
 model Product {
   id                     Int                     @id @default(autoincrement())
-  shopifyId              Int                     @unique @map("shopify_id")
+  shopifyId              Float                   @unique @map("shopify_id")
   ingredients            String
   servingSizeId          Int                     @map("serving_size_id")
   servingSize            Measurement             @relation(fields: [servingSizeId], references: [id])
