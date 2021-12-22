@@ -18,7 +18,7 @@ export const Header = () => {
       className={clsx(
         'relative',
         'max-h-18',
-        'px-2 sm:px-4 py-2.5',
+        'px-8 py-2.5',
         'transition-colors ease-mantine duration-200'
       )}
     >
