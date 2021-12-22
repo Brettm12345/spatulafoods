@@ -23,6 +23,7 @@ export const CREATE_FAQ = gql`
   mutation CreateFaq($data: CreateFaqInput) {
     createFaq(data: $data) {
       id
+
       question
       answer
     }
