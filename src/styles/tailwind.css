@@ -3,12 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    @apply bg-white;
-  }
-  html.dark {
-    @apply bg-gray-800;
-  }
 }
 @layer components {
   .form-label {

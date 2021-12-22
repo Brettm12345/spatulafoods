@@ -1,11 +1,9 @@
-import {LogoutIcon} from '@heroicons/react/outline'
 import clsx from 'clsx'
 import {signOut, useSession} from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import logo from '../../../../public/logo.png'
-import {Button} from '../../Button'
 import {ThemeSwitcher} from './ThemeSwitcher'
 
 export const Header = () => {
@@ -39,16 +37,23 @@ export const Header = () => {
           />
         </Link>
         <div className="flex space-x-4">
-          {session.status === 'authenticated' && (
-            <Button
-              className="text-base btn-light-gray"
-              leftIcon={<LogoutIcon />}
-              onClick={handleSignOut}
-            >
-              Logout
-            </Button>
-          )}
-          <ThemeSwitcher />
+          <button
+            className={clsx(
+              'hover:text-sky-500 dark:hover:text-sky-400',
+              'transition-colors ease-mantine duration-200'
+            )}
+            onClick={handleSignOut}
+          >
+            Logout
+          </button>
+          <div
+            className={clsx(
+              'flex space-x-4',
+              'border-l border-gray-200 dark:border-gray-800'
+            )}
+          >
+            <ThemeSwitcher />
+          </div>
         </div>
       </div>
     </header>
