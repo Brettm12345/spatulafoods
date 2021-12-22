@@ -1,5 +1,4 @@
 import type {FC} from 'react'
-import {useState} from 'react'
 
 import {Disclosure} from '@headlessui/react'
 import {PencilIcon, PlusIcon, TrashIcon} from '@heroicons/react/outline'
@@ -10,6 +9,7 @@ import toast from 'react-hot-toast'
 import type {FaqFragment} from '../generated/graphql'
 import {useCreateFaqMutation} from '../generated/graphql'
 import {useDeleteFaqMutation} from '../generated/graphql'
+import {useDisclosure} from '../hooks/useDisclosure'
 import type {ElementProps} from '../types/react'
 import {Button} from './Button'
 import {FaqModal} from './FaqModal'
@@ -30,9 +30,8 @@ export const FaqSkeleton: FC<ElementProps<HTMLDivElement>> = ({
 
 export const Faq: FC<FaqFragment> = ({id, question, answer}) => {
   const [{fetching}, deleteFaq] = useDeleteFaqMutation()
-  // eslint-disable-next-line unused-imports/no-unused-vars
   const [_, createFaq] = useCreateFaqMutation()
-  const [isOpen, setIsOpen] = useState(false)
+  const {isOpen, onClose, onOpen} = useDisclosure()
   const handleDelete = async () => {
     const {
       data: {
@@ -143,9 +142,7 @@ export const Faq: FC<FaqFragment> = ({id, question, answer}) => {
                 Delete
               </Button>
               <Button
-                onClick={() => {
-                  setIsOpen(true)
-                }}
+                onClick={onOpen}
                 className="btn-sm btn-sky"
                 leftIcon={<PencilIcon />}
               >
@@ -156,9 +153,7 @@ export const Faq: FC<FaqFragment> = ({id, question, answer}) => {
                 question={question}
                 answer={answer}
                 isOpen={isOpen && open}
-                onClose={() => {
-                  setIsOpen(false)
-                }}
+                onClose={onClose}
               />
             </div>
           </Disclosure.Panel>
