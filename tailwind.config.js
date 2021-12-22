@@ -16,19 +16,19 @@ module.exports = {
         mantine: 'cubic-bezier(0.64, 0.46, 0, 0.84)',
       },
       colors: colors,
-    },
-    keyframes: {
-      enter: {
-        '0%': {transform: 'scale(0.9)', opacity: 0},
-        '100%': {transform: 'scale(1)', opacity: 1},
-      },
-      leave: {
-        '0%': {transform: 'scale(1)', opacity: 1},
-        '100%': {transform: 'scale(0.9)', opacity: 0},
-      },
-      'slide-in': {
-        '0%': {transform: 'translateY(-100%)'},
-        '100%': {transform: 'translateY(0)'},
+      keyframes: {
+        enter: {
+          '0%': {transform: 'scale(0.9)', opacity: 0},
+          '100%': {transform: 'scale(1)', opacity: 1},
+        },
+        leave: {
+          '0%': {transform: 'scale(1)', opacity: 1},
+          '100%': {transform: 'scale(0.9)', opacity: 0},
+        },
+        'slide-in': {
+          '0%': {transform: 'translateY(-100%)'},
+          '100%': {transform: 'translateY(0)'},
+        },
       },
     },
   },

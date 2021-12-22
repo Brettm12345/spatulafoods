@@ -21,8 +21,9 @@ export const FaqSkeleton: FC<ElementProps<HTMLDivElement>> = ({
   <div
     className={clsx(
       className,
-      'w-full h-[58px] rounded-md animate-pulse',
-      ' bg-gray-200 dark:bg-gray-600'
+      'animate-pulse',
+      'w-full h-[58px] rounded-md',
+      'bg-gray-200 dark:bg-gray-700'
     )}
     {...props}
   />
@@ -33,21 +34,14 @@ export const Faq: FC<FaqFragment> = ({id, question, answer}) => {
   const [_, createFaq] = useCreateFaqMutation()
   const {isOpen, onClose, onOpen} = useDisclosure()
   const handleDelete = async () => {
-    const {
-      data: {
-        deleteFaq: {question: deletedQuestion, answer: deletedAnswer},
-      },
-    } = await deleteFaq({id})
+    const {data: deletedData} = await deleteFaq({id})
     toast.custom(
       t => (
         <Toast t={t} title="Faq archived">
           <button
             onClick={async () => {
               await createFaq({
-                data: {
-                  question: deletedQuestion,
-                  answer: deletedAnswer,
-                },
+                data: deletedData.deleteFaq,
               })
               toast.dismiss(t.id)
             }}
