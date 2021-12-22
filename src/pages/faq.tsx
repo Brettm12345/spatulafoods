@@ -7,6 +7,7 @@ import {Faq, FaqSkeleton} from '../components/Faq'
 import {FaqModal} from '../components/FaqModal'
 import {useFaqsQuery} from '../generated/graphql'
 import {useDisclosure} from '../hooks/useDisclosure'
+import {range} from '../util/range'
 
 const FaqPage: NextPage = () => {
   const [{data, fetching}] = useFaqsQuery()
@@ -19,7 +20,7 @@ const FaqPage: NextPage = () => {
       )}
     >
       {fetching ? (
-        [...Array(25)].map((_, index) => <FaqSkeleton key={index} />)
+        range(25).map(x => <FaqSkeleton key={x.toString()} />)
       ) : (
         <>
           {data?.faqs?.map(faq => (
