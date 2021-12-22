@@ -1,5 +1,5 @@
 import type {FC} from 'react'
-import {Fragment, useState} from 'react'
+import {Fragment} from 'react'
 
 import {Dialog, Transition} from '@headlessui/react'
 import Blockquote from '@tiptap/extension-blockquote'
@@ -11,6 +11,7 @@ import clsx from 'clsx'
 
 import type {FaqFragment} from '../generated/graphql'
 import {useCreateFaqMutation, useUpdateFaqMutation} from '../generated/graphql'
+import {useTextInput} from '../hooks/useTextInput'
 import {Button} from './Button'
 import {RichTextEditor} from './RichTextEditor'
 
@@ -36,7 +37,7 @@ export const FaqModal: FC<FaqModalProps> = ({
   isOpen,
   onClose,
 }) => {
-  const [currentQuestion, setQuestion] = useState(question ?? '')
+  const [currentQuestion, setQuestion] = useTextInput(question)
   const [{fetching: creating}, createFaq] = useCreateFaqMutation()
   const [{fetching: updating}, updateFaq] = useUpdateFaqMutation()
 
@@ -129,9 +130,7 @@ export const FaqModal: FC<FaqModalProps> = ({
                   id="question"
                   className="input"
                   value={currentQuestion}
-                  onChange={event => {
-                    setQuestion(event.target.value)
-                  }}
+                  onChange={setQuestion}
                   placeholder=""
                   required
                 />
