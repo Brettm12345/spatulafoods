@@ -5,16 +5,16 @@ import Auth0Provider from 'next-auth/providers/auth0'
 
 const prisma = new PrismaClient()
 
+const {NEXTAUTH_SECRET, AUTH0_ID, AUTH0_SECRET} = process.env
+
 export default NextAuth({
   adapter: PrismaAdapter(prisma),
-  secret: process.env?.NEXTAUTH_SECRET,
-  jwt: {
-    secret: process.env?.NEXTAUTH_SECRET,
-  },
+  secret: NEXTAUTH_SECRET,
+
   providers: [
     Auth0Provider({
-      clientId: process.env.AUTH0_ID,
-      clientSecret: process.env.AUTH0_SECRET,
+      clientId: AUTH0_ID,
+      clientSecret: AUTH0_SECRET,
       issuer: 'https://spatulafoods.us.auth0.com',
     }),
     // ...add more providers here
