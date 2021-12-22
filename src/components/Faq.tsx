@@ -2,7 +2,6 @@ import type {FC} from 'react'
 
 import {Disclosure} from '@headlessui/react'
 import {PencilIcon, PlusIcon, TrashIcon} from '@heroicons/react/outline'
-import {XIcon} from '@heroicons/react/solid'
 import clsx from 'clsx'
 import toast from 'react-hot-toast'
 
@@ -13,6 +12,7 @@ import {useDisclosure} from '../hooks/useDisclosure'
 import type {ElementProps} from '../types/react'
 import {Button} from './Button'
 import {FaqModal} from './FaqModal'
+import {Toast} from './Toast'
 
 export const FaqSkeleton: FC<ElementProps<HTMLDivElement>> = ({
   className,
@@ -40,23 +40,7 @@ export const Faq: FC<FaqFragment> = ({id, question, answer}) => {
     } = await deleteFaq({id})
     toast.custom(
       t => (
-        <div
-          className={clsx(
-            t.visible ? 'animate-enter' : 'animate-leave',
-            'max-w-md w-full bg-white shadow-lg',
-            'dark:bg-gray-900',
-            'rounded-lg pointer-events-auto flex',
-            'ring-1 ring-black ring-opacity-5'
-          )}
-        >
-          <p
-            className={clsx(
-              'flex-1 w-0 p-4 text-sm font-medium',
-              ' text-gray-900 dark:text-gray-200'
-            )}
-          >
-            Faq archived
-          </p>
+        <Toast t={t} title="Faq archived">
           <button
             onClick={async () => {
               await createFaq({
@@ -76,18 +60,7 @@ export const Faq: FC<FaqFragment> = ({id, question, answer}) => {
           >
             Undo
           </button>
-          <button
-            onClick={() => toast.dismiss(t.id)}
-            className={clsx(
-              'p-4 text-gray-600 dark:text-gray-300',
-              'hover:text-gray-900 hover:dark:text-white',
-              'transition-colors ease-mantine duration-300',
-              'focus:outline-none hover:text-gray-900 hover:dark:text-white'
-            )}
-          >
-            <XIcon className="m-0 fill-current size-4" />
-          </button>
-        </div>
+        </Toast>
       ),
       {duration: 3000}
     )

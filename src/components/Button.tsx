@@ -9,9 +9,10 @@ interface ButtonProps extends ElementProps<HTMLButtonElement> {
   disabled?: boolean
   loading?: boolean
   /** @default "loading" */
-  loadingText?: string
+  loadingText?: ReactNode
   leftIcon?: ReactNode
   rightIcon?: ReactNode
+  spinner?: ReactNode
 }
 export const Button: FC<ButtonProps> = ({
   children,
@@ -20,9 +21,14 @@ export const Button: FC<ButtonProps> = ({
   leftIcon,
   rightIcon,
   loading,
+  spinner = <Spinner />,
   loadingText = 'loading...',
   ...props
 }) => {
+  const hasLeftContent = leftIcon || loading
+  const leftContent = loading ? spinner : leftIcon
+  const hasRightContent = rightIcon && !loading
+  const mainContent = loading ? loadingText : children
   return (
     <button
       disabled={loading || disabled}
@@ -31,9 +37,9 @@ export const Button: FC<ButtonProps> = ({
       className={clsx('btn', className)}
       {...props}
     >
-      {(leftIcon || loading) && (loading ? <Spinner /> : leftIcon)}
-      {loading ? loadingText : children}
-      {rightIcon && !loading && rightIcon}
+      {hasLeftContent && leftContent}
+      {mainContent}
+      {hasRightContent && rightIcon}
     </button>
   )
 }
