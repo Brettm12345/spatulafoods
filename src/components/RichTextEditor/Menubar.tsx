@@ -55,10 +55,15 @@ export const MenuBar: FC<MenuBarProps> = ({editor, className, ...props}) => {
                       ? clsx(
                           'hover:bg-gray-200 dark:bg-gray-600 hover:text-black',
                           'dark:hover:bg-gray-800 dark:hover:text-white',
-                          'focus-visible:bg-gray-200 focus-visible:text-black',
-                          'dark:focus-visible:bg-gray-600 dark:focus-visible:text-white'
+                          'focus:bg-gray-200 focus:text-black',
+                          'dark:focus:bg-gray-800 dark:focus:text-white'
                         )
-                      : 'bg-blue-200 text-blue-500 dark:bg-blue-500/30 dark:text-blue-400'
+                      : clsx(
+                          'bg-blue-200 dark:bg-blue-500/30',
+                          'text-blue-500 dark:text-blue-400',
+                          'focus-visible:ring focus-visible:z-50',
+                          'focus-visible:ring-blue-500'
+                        )
                   )}
                   {...props}
                 >
