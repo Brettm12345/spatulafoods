@@ -1,4 +1,13 @@
 {
   "scss.lint.unknownAtRules": "ignore",
-  "cSpell.words": ["mantine", "NEXTAUTH"]
+  "cSpell.words": [
+    "fluentui",
+    "headlessui",
+    "heroicons",
+    "mantine",
+    "NEXTAUTH",
+    "passhref",
+    "Strikethrough",
+    "tiptap"
+  ]
 }
