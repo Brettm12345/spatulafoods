@@ -1,5 +1,6 @@
+import type {IncomingMessage} from 'http'
+
 import {PrismaClient} from '@prisma/client'
-import type {NextApiRequest} from 'next'
 import type {JWT} from 'next-auth/jwt'
 import {getSession} from 'next-auth/react'
 
@@ -10,20 +11,14 @@ export interface Context {
   user: JWT
 }
 
-export const createContext = async ({
-  req,
-}: {
-  req: NextApiRequest
-}): Promise<Context> => {
+interface CreateContextParams {
+  req: IncomingMessage
+}
+
+type CreateContext = (params: CreateContextParams) => Promise<Context>
+export const createContext: CreateContext = async ({req}) => {
   const user = await getSession({
-    // @ts-ignore
-    req: {
-      headers: {
-        ...req.headers,
-        cookie: req.headers.cookie,
-      },
-      ...req,
-    },
+    req,
   })
   return {prisma, user}
 }
