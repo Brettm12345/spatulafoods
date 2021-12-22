@@ -1,3 +1,3 @@
-# Awesome Links - part-1
+# Spatulafoods Api and Admin
 
-This branch has the same starting point as [this article](https://prisma.io/blog/fullstack-nextjs-graphql-prisma-oklidw1rhw)
+This project is an admin portal and graphql api for spatulafoods.
