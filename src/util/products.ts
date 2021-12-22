@@ -1,6 +1,6 @@
 import {MeasurementType} from '@prisma/client'
 
-import {
+import type {
   NutritionCategory,
   NutritionItem,
   NutritionValue,

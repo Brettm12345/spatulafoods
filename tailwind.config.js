@@ -29,25 +29,19 @@ module.exports = {
             width: value,
             height: value,
           }),
-        },
-        {
-          values: theme('width'),
-        }
-      )
-      matchUtilities(
-        {
           'min-size': value => ({
             minWidth: value,
             minHeight: value,
           }),
-        },
-        {
-          values: theme('width'),
-        }
-      )
-      matchUtilities(
-        {
           'max-size': value => ({
+            maxHeight: value,
+            maxWidth: value,
+          }),
+          'force-size': value => ({
+            minWidth: value,
+            minHeight: value,
+            width: value,
+            height: value,
             maxHeight: value,
             maxWidth: value,
           }),

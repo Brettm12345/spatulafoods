@@ -36,7 +36,7 @@ export const Faq: FC<FaqProps> = ({id, question, answer}) => {
           >
             <PlusIcon
               className={clsx(
-                'min-size-4 max-size-4 mr-3 mt-[0.4ch]',
+                'force-size-4 mr-3 mt-[0.4ch]',
                 'transition-all ease-mantine duration-300 scale-y',
                 open && 'transform rotate-45'
               )}

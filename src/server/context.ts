@@ -1,6 +1,6 @@
 import {PrismaClient} from '@prisma/client'
-import {NextApiRequest} from 'next'
-import {JWT} from 'next-auth/jwt'
+import type {NextApiRequest} from 'next'
+import type {JWT} from 'next-auth/jwt'
 import {getSession} from 'next-auth/react'
 
 const prisma = new PrismaClient()

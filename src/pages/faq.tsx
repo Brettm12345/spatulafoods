@@ -1,7 +1,7 @@
 import {useState} from 'react'
 
 import {PlusIcon} from '@heroicons/react/outline'
-import {NextPage} from 'next'
+import type {NextPage} from 'next'
 
 import {Button} from '../components/Button'
 import {Faq} from '../components/Faq'

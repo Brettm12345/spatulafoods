@@ -1,7 +1,8 @@
 import '../styles/tailwind.css'
-import {getSession, GetSessionParams, SessionProvider} from 'next-auth/react'
+import type {GetSessionParams} from 'next-auth/react'
+import {getSession, SessionProvider} from 'next-auth/react'
 import {ThemeProvider} from 'next-themes'
-import {AppType} from 'next/dist/next-server/lib/utils'
+import type {AppType} from 'next/dist/next-server/lib/utils'
 
 import Layout from '../components/Layout'
 import {UrqlProvider} from '../providers/UrqlProvider'

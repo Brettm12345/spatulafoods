@@ -1,6 +1,6 @@
 import {PrismaClient} from '@prisma/client'
 
-import {Products, NutritionItem} from '../src/types/products'
+import type {Products, NutritionItem} from '../src/types/products'
 import {
   createMeasurement,
   createNutritionItem,

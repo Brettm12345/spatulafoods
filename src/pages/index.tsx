@@ -1,7 +1,8 @@
 import {Auth0} from '@styled-icons/simple-icons/Auth0'
-import {NextPage} from 'next'
+import type {NextPage} from 'next'
+import type {GetSessionParams} from 'next-auth/react'
 import {signIn} from 'next-auth/react'
-import {getSession, GetSessionParams} from 'next-auth/react'
+import {getSession} from 'next-auth/react'
 import Head from 'next/head'
 
 import {Button} from '../components/Button'
