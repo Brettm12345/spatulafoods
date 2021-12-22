@@ -1,5 +1,3 @@
-import type {DetailedHTMLProps, HTMLAttributes} from 'react'
-
 import type {PropsOf} from '@headlessui/react/dist/types'
 import {H1, H2, H3, H4, H5, H6} from '@styled-icons/remix-editor'
 import type {Editor} from '@tiptap/react'
@@ -23,6 +21,8 @@ import {BlockquoteLeft} from 'styled-icons/bootstrap'
 import {ClearFormatting} from 'styled-icons/fluentui-system-regular'
 import type {StyledIcon} from 'styled-icons/types'
 
+import type {ElementProps} from '../../types/react'
+
 const headingIcons: Record<number, StyledIcon> = {
   [1]: H1,
   [2]: H2,
@@ -42,11 +42,7 @@ const alignIcons: Record<string, IconType> = {
 }
 
 type Icon = IconType | StyledIcon
-interface EditorButtonProps
-  extends DetailedHTMLProps<
-    HTMLAttributes<HTMLButtonElement>,
-    HTMLButtonElement
-  > {
+interface EditorButtonProps extends ElementProps<HTMLButtonElement> {
   isEnabled?: boolean
   iconProps?: PropsOf<Icon>
   tooltip: string

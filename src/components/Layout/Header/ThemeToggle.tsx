@@ -1,14 +1,15 @@
-import type {ComponentProps, DetailedHTMLProps, FC, HTMLAttributes} from 'react'
+import type {ComponentProps, FC} from 'react'
 
 import {SunIcon, MoonIcon} from '@heroicons/react/outline'
 import clsx from 'clsx'
 import {useTheme} from 'next-themes'
 
+import type {ElementProps} from '../../../types/react'
 import {Tooltip} from '../../Tooltip'
 
 interface ThemeToggleProps
   extends Omit<
-    DetailedHTMLProps<HTMLAttributes<HTMLButtonElement>, HTMLButtonElement>,
+    ElementProps<HTMLButtonElement>,
     'onClick' | 'aria-label' | 'children'
   > {
   iconProps?: ComponentProps<'svg'>
