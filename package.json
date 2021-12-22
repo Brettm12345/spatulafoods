@@ -9,7 +9,7 @@
     "db:seed": "yarn prisma db seed",
     "dev": "next dev",
     "postinstall": "yarn prisma:generate",
-    "lint": "eslint src/**/*.{ts,tsx} ./*.js",
+    "lint": "eslint src/**/*.{ts,tsx} prisma/*.ts ./*.js",
     "lint:fix": "yarn lint --fix",
     "prisma:generate": " prisma generate",
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",

@@ -1,5 +1,6 @@
-import {Prisma, PrismaClient} from '@prisma/client'
-import {Products, NutritionItem, NutritionCategory} from '../src/types/products'
+import {PrismaClient} from '@prisma/client'
+
+import {Products, NutritionItem} from '../src/types/products'
 import {
   createMeasurement,
   createNutritionItem,
@@ -702,7 +703,7 @@ export const products: Products = {
 }
 
 const generateProducts = async () => {
-  const result = await await Promise.all(
+  await Promise.all(
     Object.entries(products).map(async ([shopifyId, value]) => {
       const product = await prisma.product.create({
         data: {
