@@ -15,7 +15,8 @@
     "lint:md:fix": "markdownlint --fix -i node_modules .",
     "prisma:generate": " prisma generate",
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",
-    "start": "next start"
+    "start": "next start",
+    "postuninstall": "yarn prisma:generate"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
