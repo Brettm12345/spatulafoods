@@ -1,8 +1,8 @@
-import {FC, ReactNode} from 'react'
+import type {FC, ReactNode} from 'react'
 
 import clsx from 'clsx'
 
-import {ElementProps} from '../types/react'
+import type {ElementProps} from '../types/react'
 import {Spinner} from './Spinner'
 
 interface ButtonProps extends ElementProps<HTMLButtonElement> {

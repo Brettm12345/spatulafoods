@@ -1,9 +1,9 @@
-import {FC} from 'react'
+import type {FC} from 'react'
 
-import {Editor} from '@tiptap/react'
+import type {Editor} from '@tiptap/react'
 import clsx from 'clsx'
 
-import {ElementProps} from '../../types/react'
+import type {ElementProps} from '../../types/react'
 import {Tooltip} from '../Tooltip'
 import {useButtons} from './useButtons'
 

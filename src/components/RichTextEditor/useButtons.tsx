@@ -1,9 +1,9 @@
-import {DetailedHTMLProps, HTMLAttributes} from 'react'
+import type {DetailedHTMLProps, HTMLAttributes} from 'react'
 
-import {PropsOf} from '@headlessui/react/dist/types'
+import type {PropsOf} from '@headlessui/react/dist/types'
 import {H1, H2, H3, H4, H5, H6} from '@styled-icons/remix-editor'
-import {Editor} from '@tiptap/react'
-import {IconType} from 'react-icons'
+import type {Editor} from '@tiptap/react'
+import type {IconType} from 'react-icons'
 import {
   BiBold,
   BiItalic,
@@ -21,7 +21,7 @@ import {
 } from 'react-icons/bi'
 import {BlockquoteLeft} from 'styled-icons/bootstrap'
 import {ClearFormatting} from 'styled-icons/fluentui-system-regular'
-import {StyledIcon} from 'styled-icons/types'
+import type {StyledIcon} from 'styled-icons/types'
 
 const headingIcons: Record<number, StyledIcon> = {
   [1]: H1,

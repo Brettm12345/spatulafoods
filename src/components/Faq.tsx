@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react'
+import {type FC, useState} from 'react'
 
 import {Disclosure} from '@headlessui/react'
 import {PencilIcon, PlusIcon, TrashIcon} from '@heroicons/react/outline'

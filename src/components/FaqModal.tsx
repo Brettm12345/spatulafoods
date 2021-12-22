@@ -1,4 +1,4 @@
-import {FC, Fragment, useState} from 'react'
+import {type FC, Fragment, useState} from 'react'
 
 import {Dialog, Transition} from '@headlessui/react'
 import Blockquote from '@tiptap/extension-blockquote'

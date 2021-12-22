@@ -1,5 +1,3 @@
-import React from 'react'
-
 import {LogoutIcon} from '@heroicons/react/outline'
 import clsx from 'clsx'
 import {signOut, useSession} from 'next-auth/react'

@@ -5,6 +5,8 @@
     "es6": true
   },
   "rules": {
+    "import/no-extraneous-dependencies": "error",
+    "@typescript-eslint/consistent-type-imports": "error",
     "prettier/prettier": [
       "error",
       {

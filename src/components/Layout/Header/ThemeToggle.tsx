@@ -1,4 +1,4 @@
-import {ComponentProps, DetailedHTMLProps, FC, HTMLAttributes} from 'react'
+import type {ComponentProps, DetailedHTMLProps, FC, HTMLAttributes} from 'react'
 
 import {SunIcon, MoonIcon} from '@heroicons/react/outline'
 import clsx from 'clsx'

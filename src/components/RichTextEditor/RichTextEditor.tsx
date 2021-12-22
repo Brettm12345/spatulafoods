@@ -1,6 +1,6 @@
-import {FC} from 'react'
+import type {FC} from 'react'
 
-import {Editor, EditorContent} from '@tiptap/react'
+import {EditorContent, type Editor} from '@tiptap/react'
 import clsx from 'clsx'
 
 import {MenuBar} from './Menubar'

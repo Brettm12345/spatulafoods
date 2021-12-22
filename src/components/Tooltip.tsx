@@ -1,4 +1,4 @@
-import {FC, ReactElement} from 'react'
+import type {FC, ReactElement} from 'react'
 
 import Tippy from '@tippyjs/react'
 import clsx from 'clsx'
