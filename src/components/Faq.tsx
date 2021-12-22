@@ -4,17 +4,11 @@ import {Disclosure} from '@headlessui/react'
 import {PencilIcon, PlusIcon, TrashIcon} from '@heroicons/react/outline'
 import clsx from 'clsx'
 
-import {useDeleteFaqMutation} from '../generated/graphql'
+import {type FaqFragment, useDeleteFaqMutation} from '../generated/graphql'
 import {Button} from './Button'
 import {FaqModal} from './FaqModal'
 
-export interface FaqProps {
-  id: number
-  question: string
-  answer: string
-}
-
-export const Faq: FC<FaqProps> = ({id, question, answer}) => {
+export const Faq: FC<FaqFragment> = ({id, question, answer}) => {
   const [{fetching}, deleteFaq] = useDeleteFaqMutation()
   const [isOpen, setIsOpen] = useState(false)
   return (

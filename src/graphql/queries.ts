@@ -1,19 +1,12 @@
 import {gql} from 'urql'
 
-const PRODUCTS = gql`
-  query Products {
-    products {
-      shopifyId
-    }
-  }
-`
+import {FAQ} from './fragments'
 
 const FAQS = gql`
   query Faqs {
     faqs {
-      id
-      question
-      answer
+      ...Faq
     }
   }
+  ${FAQ}
 `

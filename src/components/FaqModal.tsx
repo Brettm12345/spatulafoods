@@ -8,7 +8,11 @@ import {useEditor} from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import clsx from 'clsx'
 
-import {useCreateFaqMutation, useUpdateFaqMutation} from '../generated/graphql'
+import {
+  type FaqFragment,
+  useCreateFaqMutation,
+  useUpdateFaqMutation,
+} from '../generated/graphql'
 import {Button} from './Button'
 import {RichTextEditor} from './RichTextEditor'
 
@@ -22,10 +26,7 @@ interface Info {
 type Actions = 'update' | 'create'
 type ActionInfo = Record<Actions, Info>
 
-interface FaqModalProps {
-  question?: string
-  answer?: string
-  id?: number
+interface FaqModalProps extends Partial<FaqFragment> {
   isOpen: boolean
   onClose: () => void
 }
