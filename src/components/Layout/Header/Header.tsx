@@ -1,4 +1,4 @@
-import {LogoutIcon} from '@heroicons/react/solid'
+import {LogoutIcon} from '@heroicons/react/outline'
 import clsx from 'clsx'
 import {signOut, useSession} from 'next-auth/react'
 import Image from 'next/image'
