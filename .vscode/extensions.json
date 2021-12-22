@@ -9,6 +9,7 @@
     "davidanson.vscode-markdownlint",
     "streetsidesoftware.code-spell-checker",
     "eamodio.gitlens",
-    "capaj.graphql-codegen-vscode"
+    "capaj.graphql-codegen-vscode",
+    "redhat.vscode-yaml"
   ]
 }
