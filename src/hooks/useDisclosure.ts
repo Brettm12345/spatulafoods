@@ -13,7 +13,7 @@ interface UseDisclosureReturn {
 }
 
 type UseDisclosure = (props?: UseDisclosureProps) => UseDisclosureReturn
-export const useDisclosure: UseDisclosure = ({defaultIsOpen = false}) => {
+export const useDisclosure: UseDisclosure = ({defaultIsOpen = false} = {}) => {
   const [isOpen, setIsOpen] = useState(defaultIsOpen)
   const onClose = () => {
     setIsOpen(false)
