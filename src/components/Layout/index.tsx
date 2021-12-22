@@ -16,7 +16,7 @@ const Layout: FC<LayoutProps> = ({children}) => (
     </Head>
     <div
       className={clsx(
-        'min-h-screen bg-gray-50 dark:bg-gray-800',
+        'min-h-screen bg-gray-50 dark:bg-[#0B1120]',
         'transition-colors ease-mantine duration-200'
       )}
     >
