@@ -10,6 +10,9 @@ import {ThemeToggle} from './ThemeToggle'
 
 export const Header = () => {
   const session = useSession()
+  const handleSignOut = () => {
+    signOut()
+  }
   return (
     <header
       className={clsx(
@@ -39,7 +42,7 @@ export const Header = () => {
             <Button
               className="text-base btn-light-gray"
               leftIcon={<LogoutIcon />}
-              onClick={() => signOut()}
+              onClick={handleSignOut}
             >
               Logout
             </Button>

@@ -25,21 +25,24 @@ export const ThemeToggle: FC<ThemeToggleProps> = ({
     className: clsx(iconClassName, 'size-6'),
     ...iconProps,
   }
+  const handleClick = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark')
+  }
+  const icon =
+    theme === 'dark' ? (
+      <MoonIcon {...localIconProps} />
+    ) : (
+      <SunIcon {...localIconProps} />
+    )
   return (
     <Tooltip content={label}>
       <button
         aria-label={label}
         className={clsx(className, 'btn btn-icon btn-light-gray')}
-        onClick={() => {
-          setTheme(theme === 'dark' ? 'light' : 'dark')
-        }}
+        onClick={handleClick}
         {...props}
       >
-        {theme === 'dark' ? (
-          <MoonIcon {...localIconProps} />
-        ) : (
-          <SunIcon {...localIconProps} />
-        )}
+        {icon}
       </button>
     </Tooltip>
   )
