@@ -27,7 +27,7 @@ yarn install
 yarn db:push
 ```
 
-## Seed the data *optional*
+## Seed the data _optional_
 
 ```zsh
 yarn db:seed
@@ -51,4 +51,10 @@ Keep in mind you must build the app first
 
 ```zsh
 yarn start
+```
+
+## Generating types with [`Graphql Code Generator`](https://www.graphql-code-generator.com/)
+
+```zsh
+yarn codegen
 ```
