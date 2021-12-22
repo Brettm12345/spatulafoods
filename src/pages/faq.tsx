@@ -1,4 +1,5 @@
 import {PlusIcon} from '@heroicons/react/outline'
+import clsx from 'clsx'
 import type {NextPage} from 'next'
 
 import {Button} from '../components/Button'
@@ -11,7 +12,12 @@ const FaqPage: NextPage = () => {
   const [{data, fetching}] = useFaqsQuery()
   const {onClose, onOpen, isOpen} = useDisclosure()
   return (
-    <div className="container flex flex-col max-w-lg pb-20 mx-auto mt-10 space-y-2">
+    <div
+      className={clsx(
+        'container flex flex-col max-w-lg',
+        'pb-20 mx-auto mt-10 space-y-2'
+      )}
+    >
       {fetching ? (
         [...Array(25)].map((_, index) => <FaqSkeleton key={index} />)
       ) : (
