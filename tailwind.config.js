@@ -16,6 +16,11 @@ module.exports = {
         mantine: 'cubic-bezier(0.64, 0.46, 0, 0.84)',
       },
       colors: colors,
+      animation: {
+        enter: 'enter 200ms ease-out',
+        'slide-in': 'slide-in 1.2s cubic-bezier(.41,.73,.51,1.02)',
+        leave: 'leave 150ms ease-in forwards',
+      },
       keyframes: {
         enter: {
           '0%': {transform: 'scale(0.9)', opacity: 0},

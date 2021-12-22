@@ -41,7 +41,10 @@ export const Faq: FC<FaqFragment> = ({id, question, answer}) => {
           <button
             onClick={async () => {
               await createFaq({
-                data: deletedData.deleteFaq,
+                data: {
+                  answer: deletedData.deleteFaq.answer,
+                  question: deletedData.deleteFaq.question,
+                },
               })
               toast.dismiss(t.id)
             }}

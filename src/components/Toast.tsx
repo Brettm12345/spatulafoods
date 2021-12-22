@@ -7,9 +7,11 @@ import {toast} from 'react-hot-toast'
 
 import type {ElementProps} from '../types/react'
 
-interface ToastProps extends Omit<ElementProps<HTMLDivElement>, 'title'> {
+interface ToastProps
+  extends Omit<ElementProps<HTMLDivElement>, 'children' | 'title'> {
   t: ReactHotToast
   title: ReactNode
+  children?: ReactNode
 }
 
 export const Toast: FC<ToastProps> = ({
@@ -23,8 +25,8 @@ export const Toast: FC<ToastProps> = ({
     className={clsx(
       className,
       t.visible ? 'animate-enter' : 'animate-leave',
-      'max-w-md w-full bg-white shadow-lg',
-      'dark:bg-gray-900',
+      'max-w-md w-full bg-white shadow-lg dark:shadow-2xl',
+      'dark:bg-gray-800',
       'rounded-lg pointer-events-auto flex',
       'ring-1 ring-black ring-opacity-5'
     )}
