@@ -7,8 +7,23 @@ import clsx from 'clsx'
 
 import type {FaqFragment} from '../generated/graphql'
 import {useDeleteFaqMutation} from '../generated/graphql'
+import type {ElementProps} from '../types/react'
 import {Button} from './Button'
 import {FaqModal} from './FaqModal'
+
+export const FaqSkeleton: FC<ElementProps<HTMLDivElement>> = ({
+  className,
+  ...props
+}) => (
+  <div
+    className={clsx(
+      className,
+      'w-full h-[58px] rounded-md animate-pulse',
+      ' bg-gray-100 dark:bg-gray-600'
+    )}
+    {...props}
+  />
+)
 
 export const Faq: FC<FaqFragment> = ({id, question, answer}) => {
   const [{fetching}, deleteFaq] = useDeleteFaqMutation()
