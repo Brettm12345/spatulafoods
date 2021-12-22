@@ -1,3 +1,4 @@
+import 'tippy.js/animations/shift-away-subtle.css'
 import type {FC, ReactElement} from 'react'
 
 import Tippy from '@tippyjs/react'
@@ -22,21 +23,24 @@ interface TooltipProps {
 }
 export const Tooltip: FC<TooltipProps> = ({
   content,
+  arrow = false,
   children,
-  trigger = 'hover',
+  trigger,
   placement = 'top',
   variant = 'dark',
 }) => (
   <Tippy
-    content={content}
     trigger={trigger}
+    arrow={arrow}
+    content={content}
     popperOptions={{
       placement,
     }}
+    animation="shift-away-subtle"
     className={clsx(
-      'inline-block py-2 px-3 text-sm font-medium  rounded-lg shadow-sm tooltip',
+      'inline-block py-2 px-3 text-sm font-medium rounded-lg shadow-sm',
       variant === 'dark'
-        ? 'text-white bg-gray-900 dark:bg-gray-800'
+        ? 'text-white bg-gray-900 dark:bg-gray-900'
         : 'text-gray-900 bg-white border border-gray-200'
     )}
   >

@@ -41,12 +41,7 @@ export const MenuBar: FC<MenuBarProps> = ({editor, className, ...props}) => {
               },
               ...props
             }) => (
-              <Tooltip
-                key={tooltip}
-                content={tooltip}
-                placement="bottom"
-                trigger="hover"
-              >
+              <Tooltip key={tooltip} content={tooltip} placement="bottom">
                 <button
                   aria-label={tooltip}
                   className={clsx(

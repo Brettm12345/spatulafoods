@@ -1,4 +1,5 @@
 import type {ComponentProps, FC} from 'react'
+import {useMemo} from 'react'
 
 import {SunIcon, MoonIcon} from '@heroicons/react/outline'
 import clsx from 'clsx'
@@ -22,19 +23,25 @@ export const ThemeToggle: FC<ThemeToggleProps> = ({
 }) => {
   const {theme, setTheme} = useTheme()
   const label = 'Switch between dark and light theme'
-  const localIconProps: ComponentProps<'svg'> = {
-    className: clsx(iconClassName, 'size-6'),
-    ...iconProps,
-  }
+  const localIconProps: ComponentProps<'svg'> = useMemo(
+    () => ({
+      className: clsx(iconClassName, 'size-6'),
+      ...iconProps,
+    }),
+    [iconClassName, iconProps]
+  )
+  const icon = useMemo(
+    () =>
+      theme === 'dark' ? (
+        <MoonIcon {...localIconProps} />
+      ) : (
+        <SunIcon {...localIconProps} />
+      ),
+    [theme, localIconProps]
+  )
   const handleClick = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark')
   }
-  const icon =
-    theme === 'dark' ? (
-      <MoonIcon {...localIconProps} />
-    ) : (
-      <SunIcon {...localIconProps} />
-    )
   return (
     <Tooltip content={label}>
       <button

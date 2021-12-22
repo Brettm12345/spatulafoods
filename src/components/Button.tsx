@@ -1,4 +1,5 @@
 import type {FC, ReactNode} from 'react'
+import {forwardRef} from 'react'
 
 import clsx from 'clsx'
 
@@ -14,32 +15,43 @@ interface ButtonProps extends ElementProps<HTMLButtonElement> {
   rightIcon?: ReactNode
   spinner?: ReactNode
 }
-export const Button: FC<ButtonProps> = ({
-  children,
-  className,
-  disabled = false,
-  leftIcon,
-  rightIcon,
-  loading,
-  spinner = <Spinner />,
-  loadingText = 'loading...',
-  ...props
-}) => {
-  const hasLeftContent = leftIcon || loading
-  const leftContent = loading ? spinner : leftIcon
-  const hasRightContent = rightIcon && !loading
-  const mainContent = loading ? loadingText : children
-  return (
-    <button
-      disabled={loading || disabled}
-      aria-busy={loading}
-      aria-disabled={disabled}
-      className={clsx('btn', className)}
-      {...props}
-    >
-      {hasLeftContent && leftContent}
-      {mainContent}
-      {hasRightContent && rightIcon}
-    </button>
-  )
-}
+export const Button: FC<ButtonProps> = forwardRef<
+  HTMLButtonElement,
+  ButtonProps
+>(
+  (
+    {
+      children,
+      className,
+      disabled = false,
+      leftIcon,
+      rightIcon,
+      loading,
+      spinner = <Spinner />,
+      loadingText = 'loading...',
+      ...props
+    },
+    ref
+  ) => {
+    const hasLeftContent = leftIcon || loading
+    const leftContent = loading ? spinner : leftIcon
+    const hasRightContent = rightIcon && !loading
+    const mainContent = loading ? loadingText : children
+    return (
+      <button
+        disabled={loading || disabled}
+        aria-busy={loading}
+        aria-disabled={disabled}
+        ref={ref}
+        className={clsx('btn', className)}
+        {...props}
+      >
+        {hasLeftContent && leftContent}
+        {mainContent}
+        {hasRightContent && rightIcon}
+      </button>
+    )
+  }
+)
+
+Button.displayName = 'Button'
