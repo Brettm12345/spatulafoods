@@ -49,7 +49,9 @@ interface EditorButtonProps extends ElementProps<HTMLButtonElement> {
   Icon: Icon
 }
 
-type UseButtons = (editor: Editor) => Array<EditorButtonProps[]>
+type ButtonGroup = EditorButtonProps[]
+
+type UseButtons = (editor: Editor) => ButtonGroup[]
 
 export const useButtons: UseButtons = editor => [
   [
