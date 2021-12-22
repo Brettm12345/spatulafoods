@@ -42,7 +42,9 @@ export const Faq: FC<FaqFragment> = ({id, question, answer}) => {
           <Disclosure.Button
             className={clsx(
               'flex w-full px-4 py-4 space-x-2 rounded-t-md',
-              'text-base font-medium text-left'
+              'text-base font-medium text-left',
+              'focus:outline-none',
+              'focus-visible:ring-gray-300 dark:focus-visible:ring-gray-700'
             )}
           >
             <PlusIcon
