@@ -8,6 +8,7 @@ import {MenuBar} from './Menubar'
 interface RichTextEditorProps {
   editor: Editor
 }
+
 export const RichTextEditor: FC<RichTextEditorProps> = ({editor}) => (
   <div
     className={clsx(
