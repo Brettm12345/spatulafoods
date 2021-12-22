@@ -53,7 +53,7 @@ export const Faq: FC<FaqFragment> = ({id, question, answer}) => {
           <p
             className={clsx(
               'flex-1 w-0 p-4 text-sm font-medium',
-              ' text-gray-900  dark:text-gray-200'
+              ' text-gray-900 dark:text-gray-200'
             )}
           >
             Faq archived
@@ -69,7 +69,7 @@ export const Faq: FC<FaqFragment> = ({id, question, answer}) => {
               toast.dismiss(t.id)
             }}
             className={clsx(
-              'p-4 text-indigo-600 dark:text-indigo-400 ',
+              'p-4 text-indigo-600 dark:text-indigo-400',
               'hover:text-indigo-800 hover:dark:text-indigo-300',
               'transition-colors ease-mantine duration-300',
               'focus:outline-none focus:text-indigo-800 focus:dark:text-indigo-300'
@@ -128,7 +128,7 @@ export const Faq: FC<FaqFragment> = ({id, question, answer}) => {
             <div
               className={clsx(
                 'prose-sm prose prose-slate max-w-unset',
-                'dark:prose-invert '
+                'dark:prose-invert'
               )}
               dangerouslySetInnerHTML={{__html: answer}}
             />
