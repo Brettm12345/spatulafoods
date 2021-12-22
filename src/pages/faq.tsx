@@ -19,8 +19,12 @@ const FaqPage: NextPage = () => {
           {data?.faqs?.map(faq => (
             <Faq key={faq.id} {...faq} />
           ))}
-          <Button className="mt-5 btn-blue max-w-fit" onClick={onOpen}>
-            <PlusIcon /> Create FAQ
+          <Button
+            className="mt-5 btn-blue max-w-fit"
+            leftIcon={<PlusIcon />}
+            onClick={onOpen}
+          >
+            Create FAQ
           </Button>
           <FaqModal isOpen={isOpen} onClose={onClose} />
         </>
