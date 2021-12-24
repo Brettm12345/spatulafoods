@@ -85,6 +85,7 @@ type NutritionFact {
   id: Int!
   ingredient: String!
   measurements: Measurement!
+  order: Int!
   product: Product!
 }
 
