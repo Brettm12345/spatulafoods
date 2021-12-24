@@ -112,7 +112,7 @@ type Product {
 
 type Query {
   faqs: [Faq!]!
-  productByShopifyId(shopifyId: Int!): Product!
+  productByShopifyId(shopifyId: Float!): Product!
   products: [Product!]!
   shopifyProducts: [ShopifyProduct!]!
 }

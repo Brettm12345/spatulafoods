@@ -309,7 +309,7 @@ export interface NexusGenArgTypes {
   }
   Query: {
     productByShopifyId: { // args
-      shopifyId: number; // Int!
+      shopifyId: number; // Float!
     }
   }
 }
