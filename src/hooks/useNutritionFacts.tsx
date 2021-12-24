@@ -16,6 +16,7 @@ export interface NutritionItem {
   id: string
   ingredient: string
   content: Content
+  order: number
   dailyValue?: number
   parentId?: string
   ingredients?: NutritionItem[]
@@ -43,10 +44,11 @@ export const createFromProduct = (
   product: FullProductFragment
 ): NutritionItem[] => [
   ...product.nutritionFacts.map(
-    ({id, dailyValue, ingredient, measurements}) => ({
+    ({id, dailyValue, ingredient, measurements, order}) => ({
       id: id.toString(),
       content: createMeasurements(measurements),
       dailyValue,
+      order,
       ingredient,
     })
   ),
@@ -55,21 +57,22 @@ export const createFromProduct = (
       ({id: parentId, dailyValue, ingredient, ingredients, measurements}) => ({
         id: parentId.toString(),
         dailyValue,
+        order,
         ingredient,
         content: createMeasurements(measurements),
         ingredients: ingredients
-          .map(({id, dailyValue, ingredient, measurements}) => ({
+          .map(({id, dailyValue, ingredient, measurements, order}) => ({
             id: id.toString(),
             dailyValue,
+            order,
             ingredient,
+            content: createMeasurements(measurements),
             measurements,
             parentId: parentId.toString(),
           }))
-          // @ts-ignore
           .sort((a, b) => b.order - a.order),
       })
     )
-    // @ts-ignore
     .sort((a, b) => b.order - a.order),
 ]
 export const useNutritionFactsState = ({items}: UseNutritionFactsProps) => {
