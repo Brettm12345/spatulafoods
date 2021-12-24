@@ -8,6 +8,7 @@ export const NutritionFactModel = objectType({
     t.field(NutritionFact.id)
     t.field(NutritionFact.ingredient)
     t.field(NutritionFact.dailyValue)
+    t.field(NutritionFact.order)
     t.field(NutritionFact.measurements)
     t.field(NutritionFact.product)
   },
