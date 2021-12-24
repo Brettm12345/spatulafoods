@@ -41,18 +41,18 @@ export const createMeasurements = (
 
 export const createFromProduct = (
   product: FullProductFragment
-): NutritionItem[] => [
-  ...product.nutritionFacts.map(
-    ({id, dailyValue, ingredient, measurements, order}) => ({
-      id: id.toString(),
-      content: createMeasurements(measurements),
-      dailyValue,
-      order,
-      ingredient,
-    })
-  ),
-  ...product.compoundNutritionFacts
-    .map(
+): NutritionItem[] =>
+  [
+    ...product.nutritionFacts.map(
+      ({id, dailyValue, ingredient, measurements, order}) => ({
+        id: id.toString(),
+        content: createMeasurements(measurements),
+        dailyValue,
+        order,
+        ingredient,
+      })
+    ),
+    ...product.compoundNutritionFacts.map(
       ({
         id: parentId,
         dailyValue,
@@ -76,13 +76,11 @@ export const createFromProduct = (
             measurements,
             parentId: parentId.toString(),
           }))
-          .sort((a, b) => b.order - a.order)
+          .sort((a, b) => a.order - b.order)
           .map(({order: _order, ...item}) => item),
       })
-    )
-    .sort((a, b) => b.order - a.order)
-    .map(({order: _order, ...item}) => item),
-]
+    ),
+  ].sort((a, b) => a.order - b.order)
 export const useNutritionFactsState = ({items}: UseNutritionFactsProps) => {
   const [nutritionFacts, setNutritionFacts] = useState<NutritionFacts>(items)
   console.log(nutritionFacts)

@@ -34,6 +34,7 @@ export const NutritionFactTable: FC = () => {
     moveSubNutritionFactUp,
     setNutritionFacts,
   } = useNutritionFacts()
+  console.log(nutritionFacts)
   const columns = useMemo<NutritionColumn[]>(
     () => [
       {
