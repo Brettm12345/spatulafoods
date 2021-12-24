@@ -62,7 +62,7 @@ export const createFromProduct = (
           dailyValue,
           ingredient,
           measurements,
-          parentId: parentId,
+          parentId: parentId.toString(),
         })
       ),
     })
