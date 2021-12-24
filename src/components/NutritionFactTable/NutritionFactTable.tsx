@@ -81,7 +81,8 @@ export const NutritionFactTable: FC = () => {
         id: 'Actions',
         Header: 'Actions',
         Cell: ({row}: {row: Row<NutritionItem>}) => {
-          const {isOpen, onOpen, onClose} = useDisclosure()
+          const editModal = useDisclosure()
+          const addModal = useDisclosure()
           const depth = (row as unknown as {depth: number}).depth
           return (
             <div className="space-x-2">
@@ -120,12 +121,12 @@ export const NutritionFactTable: FC = () => {
               {depth === 0 && (
                 <>
                   <Tooltip content="Add">
-                    <button className="btn-table" onClick={onOpen}>
+                    <button className="btn-table" onClick={addModal.onOpen}>
                       <PlusIcon />
                     </button>
                   </Tooltip>
                   <NutritionFactModal
-                    onClose={onClose}
+                    onClose={addModal.onClose}
                     key={`${row.original.id}-add`}
                     handleSave={({dailyValue, content, ingredient}) => {
                       const parentIndex = nutritionFacts.findIndex(
@@ -153,19 +154,19 @@ export const NutritionFactTable: FC = () => {
                           ])
                       )
                     }}
-                    isOpen={isOpen}
+                    isOpen={addModal.isOpen}
                   />
                 </>
               )}
               <Tooltip content="Edit">
-                <button className="btn-table" onClick={onOpen}>
+                <button className="btn-table" onClick={editModal.onOpen}>
                   <PencilIcon />
                 </button>
               </Tooltip>
               <NutritionFactModal
                 ingredient={row.original.ingredient}
                 id={row.original.id}
-                onClose={onClose}
+                onClose={editModal.onClose}
                 handleSave={
                   depth === 0
                     ? ({id, dailyValue, content, ingredient}) => {
@@ -206,7 +207,7 @@ export const NutritionFactTable: FC = () => {
                 }
                 dailyValue={row.original.dailyValue}
                 content={row.original.content}
-                isOpen={isOpen}
+                isOpen={editModal.isOpen}
               />
             </div>
           )

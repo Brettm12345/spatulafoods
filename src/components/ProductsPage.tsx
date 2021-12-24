@@ -42,6 +42,7 @@ export const ProductPage: NextPage = () => {
   const [{fetching: updating}, updateProduct] = useUpdateProductMutation()
   const [{fetching: creating}, createProduct] = useCreateProductMutation()
 
+  // TODO: Remove duplication
   const handleSave = async () => {
     if (product) {
       await updateProduct({
