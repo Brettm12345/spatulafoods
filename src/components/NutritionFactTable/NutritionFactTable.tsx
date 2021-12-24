@@ -272,7 +272,7 @@ export const NutritionFactTable: FC = () => {
       },
     ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [moveUp, moveDown]
+    [moveUp, moveDown, moveSubNutritionFactDown, moveSubNutritionFactUp]
   )
   const {getTableProps, getTableBodyProps, headerGroups, rows, prepareRow} =
     useTable<NutritionItem>(
