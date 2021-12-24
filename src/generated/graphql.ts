@@ -246,10 +246,10 @@ export type FullProductFragment = {
     measurements: {id: number; type: MeasurementType; value: number}
   }>
   compoundNutritionFacts: Array<{
+    order: number
     id: number
     ingredient: string
     dailyValue?: number | null | undefined
-    order: number
     measurements: {id: number; type: MeasurementType; value: number}
     ingredients: Array<{
       id: number
@@ -348,10 +348,10 @@ export type AllProductsQuery = {
       measurements: {id: number; type: MeasurementType; value: number}
     }>
     compoundNutritionFacts: Array<{
+      order: number
       id: number
       ingredient: string
       dailyValue?: number | null | undefined
-      order: number
       measurements: {id: number; type: MeasurementType; value: number}
       ingredients: Array<{
         id: number
@@ -462,6 +462,7 @@ export const FullProductFragmentDoc = gql`
     }
     compoundNutritionFacts {
       ...CompoundNutritionFact
+      order
     }
     servingSize {
       ...Measurements

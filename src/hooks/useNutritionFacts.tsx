@@ -53,11 +53,16 @@ export const createFromProduct = (
   ),
   ...product.compoundNutritionFacts
     .map(
-      ({id: parentId, dailyValue, ingredient, ingredients, measurements}) => ({
+      ({
+        id: parentId,
+        dailyValue,
+        ingredient,
+        ingredients,
+        measurements,
+        order,
+      }) => ({
         id: parentId.toString(),
         dailyValue,
-        // Save to ignore *removed later*
-        // @ts-ignore
         order,
         ingredient,
         content: createMeasurements(measurements),

@@ -70,6 +70,7 @@ export const FULL_PRODUCT = gql`
     }
     compoundNutritionFacts {
       ...CompoundNutritionFact
+      order
     }
     servingSize {
       ...Measurements

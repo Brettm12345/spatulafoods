@@ -20,12 +20,15 @@ export const ProductModel = objectType({
       ...Product.compoundNutritionFacts,
     })
     t.field({
-      resolve: (source, _, ctx) =>
-        ctx.prisma.nutritionFact.findMany({
-          orderBy: {order: 'asc'},
-          where: {compoundNutritionFactId: null, productId: source.id},
-        }),
       ...Product.nutritionFacts,
+      resolve: async (source, _, ctx) => {
+        const result = await ctx.prisma.nutritionFact.findMany({
+          orderBy: {order: 'asc'},
+          where: {AND: [{productId: source.id, compoundNutritionFactId: null}]},
+        })
+        console.log(result)
+        return result
+      },
     })
     t.field('image', {
       type: 'Image',
