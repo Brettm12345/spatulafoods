@@ -6,6 +6,7 @@ import {CheckIcon, SelectorIcon} from '@heroicons/react/solid'
 import clsx from 'clsx'
 
 import {useShopifyProductsQuery} from '../generated/graphql'
+import {Spinner} from './Spinner'
 
 interface ProductSelectorProps {
   value: number
@@ -30,15 +31,19 @@ export const ProductSelect: FC<ProductSelectorProps> = ({value, onChange}) => {
           >
             <span className="block truncate">
               {fetching
-                ? 'Loading'
+                ? 'Loading...'
                 : data?.shopifyProducts?.find(product => product.id === value)
                     ?.name ?? 'Select a product'}
             </span>
             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-              <SelectorIcon
-                className="w-5 h-5 text-gray-400"
-                aria-hidden="true"
-              />
+              {fetching ? (
+                <Spinner className="size-5" />
+              ) : (
+                <SelectorIcon
+                  className="text-gray-400 size-5"
+                  aria-hidden="true"
+                />
+              )}
             </span>
           </Listbox.Button>
           <Transition

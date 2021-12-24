@@ -201,6 +201,7 @@ export const ProductPage: NextPage = () => {
                       'w-full py-2.5 text-sm leading-5 font-medium rounded-lg text-gray-900',
                       'focus:outline-none focus:ring-2 ring-offset-2 ring-offset-gray-400 ring-white ring-opacity-60',
                       'transition-colors ease-mantine duration-200',
+                      'select-none',
                       selected
                         ? 'bg-white shadow'
                         : 'text-gray-600 dark:text-gray-100 hover:bg-black/5 hover:text-gray-700 dark:hover:bg-white/[0.12] dark:hover:text-white'
