@@ -59,17 +59,17 @@ export const Header = () => {
                   Faq
                 </button>
               </Link>
+              <button
+                className={clsx(
+                  'hover:text-sky-500 dark:hover:text-sky-400',
+                  'transition-colors ease-mantine duration-200'
+                )}
+                onClick={handleSignOut}
+              >
+                Logout
+              </button>
             </>
           )}
-          <button
-            className={clsx(
-              'hover:text-sky-500 dark:hover:text-sky-400',
-              'transition-colors ease-mantine duration-200'
-            )}
-            onClick={handleSignOut}
-          >
-            Logout
-          </button>
           <div
             className={clsx(
               'flex space-x-4',
