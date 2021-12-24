@@ -7,6 +7,8 @@ export const NutritionFactInput = inputObjectType({
   name: 'NutritionFactInput',
   definition(t) {
     t.field('measurements', {type: MeasurementInput})
+    t.field(NutritionFact.order)
+    t.field(NutritionFact.dailyValue)
     t.field(NutritionFact.ingredient)
   },
 })

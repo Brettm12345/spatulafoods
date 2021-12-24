@@ -20,6 +20,7 @@ export type Scalars = {
 }
 
 export type CompoundNutritionFact = {
+  dailyValue?: Maybe<Scalars['Float']>
   id: Scalars['Int']
   ingredient: Scalars['String']
   ingredients: Array<NutritionFact>
@@ -28,9 +29,11 @@ export type CompoundNutritionFact = {
 }
 
 export type CompoundNutritionFactInput = {
+  dailyValue?: InputMaybe<Scalars['Float']>
   ingredient: Scalars['String']
   ingredients: Array<NutritionFactInput>
   measurements: MeasurementInput
+  order: Scalars['Int']
 }
 
 export type CreateFaqInput = {
@@ -86,19 +89,20 @@ export enum MeasurementType {
 }
 
 export type Mutation = {
-  create_product: Product
   createFaq: Faq
+  createProduct: Product
   deleteFaq: Faq
   updateFaq: Faq
   updateMeasurement: Measurement
-}
-
-export type MutationCreate_ProductArgs = {
-  input: CreateProductInput
+  updateProduct: Product
 }
 
 export type MutationCreateFaqArgs = {
   data: CreateFaqInput
+}
+
+export type MutationCreateProductArgs = {
+  data: CreateProductInput
 }
 
 export type MutationDeleteFaqArgs = {
@@ -115,7 +119,13 @@ export type MutationUpdateMeasurementArgs = {
   set: UpdateMeasurementInput
 }
 
+export type MutationUpdateProductArgs = {
+  data: UpdateProductInput
+  id: Scalars['Int']
+}
+
 export type NutritionFact = {
+  dailyValue?: Maybe<Scalars['Float']>
   id: Scalars['Int']
   ingredient: Scalars['String']
   measurements: Measurement
@@ -123,8 +133,10 @@ export type NutritionFact = {
 }
 
 export type NutritionFactInput = {
+  dailyValue?: InputMaybe<Scalars['Float']>
   ingredient: Scalars['String']
   measurements: MeasurementInput
+  order: Scalars['Int']
 }
 
 export type Product = {
@@ -144,10 +156,17 @@ export type Query = {
   faqs: Array<Faq>
   productByShopifyId: Product
   products: Array<Product>
+  shopifyProducts: Array<ShopifyProduct>
 }
 
 export type QueryProductByShopifyIdArgs = {
   shopifyId: Scalars['Int']
+}
+
+export type ShopifyProduct = {
+  id: Scalars['Float']
+  image: Image
+  name: Scalars['String']
 }
 
 export type UpdateFaqInput = {
@@ -160,7 +179,93 @@ export type UpdateMeasurementInput = {
   value: Scalars['Float']
 }
 
+export type UpdateProductInput = {
+  compoundNutritionFacts: Array<CompoundNutritionFactInput>
+  contains: Scalars['String']
+  cookingInstructions: Scalars['String']
+  ingredients: Scalars['String']
+  nutritionFacts: Array<NutritionFactInput>
+  servingSize: MeasurementInput
+}
+
+export type ProductFragment = {
+  id: number
+  name: string
+  image: {
+    alt?: string | null | undefined
+    src: string
+    width: number
+    height: number
+  }
+}
+
+export type MeasurementsFragment = {
+  id: number
+  type: MeasurementType
+  value: number
+}
+
+export type NutritionFactFragment = {
+  id: number
+  ingredient: string
+  dailyValue?: number | null | undefined
+  measurements: {id: number; type: MeasurementType; value: number}
+}
+
+export type CompoundNutritionFactFragment = {
+  id: number
+  ingredient: string
+  dailyValue?: number | null | undefined
+  measurements: {id: number; type: MeasurementType; value: number}
+  ingredients: Array<{
+    id: number
+    ingredient: string
+    dailyValue?: number | null | undefined
+    measurements: {id: number; type: MeasurementType; value: number}
+  }>
+}
+
 export type FaqFragment = {id: number; question: string; answer: string}
+
+export type FullProductFragment = {
+  id: number
+  cookingInstructions: string
+  ingredients: string
+  contains: string
+  shopifyId: number
+  nutritionFacts: Array<{
+    id: number
+    ingredient: string
+    dailyValue?: number | null | undefined
+    measurements: {id: number; type: MeasurementType; value: number}
+  }>
+  compoundNutritionFacts: Array<{
+    id: number
+    ingredient: string
+    dailyValue?: number | null | undefined
+    measurements: {id: number; type: MeasurementType; value: number}
+    ingredients: Array<{
+      id: number
+      ingredient: string
+      dailyValue?: number | null | undefined
+      measurements: {id: number; type: MeasurementType; value: number}
+    }>
+  }>
+  servingSize: {id: number; type: MeasurementType; value: number}
+}
+
+export type CreateProductMutationVariables = Exact<{
+  data: CreateProductInput
+}>
+
+export type CreateProductMutation = {createProduct: {id: number}}
+
+export type UpdateProductMutationVariables = Exact<{
+  id: Scalars['Int']
+  data: UpdateProductInput
+}>
+
+export type UpdateProductMutation = {updateProduct: {id: number}}
 
 export type DeleteFaqMutationVariables = Exact<{
   id: Scalars['Int']
@@ -193,6 +298,102 @@ export type FaqsQuery = {
   faqs: Array<{id: number; question: string; answer: string}>
 }
 
+export type ShopifyProductsQueryVariables = Exact<{[key: string]: never}>
+
+export type ShopifyProductsQuery = {
+  shopifyProducts: Array<{
+    id: number
+    name: string
+    image: {alt?: string | null | undefined; src: string}
+  }>
+}
+
+export type ProductsQueryVariables = Exact<{[key: string]: never}>
+
+export type ProductsQuery = {
+  products: Array<{
+    id: number
+    name: string
+    image: {
+      alt?: string | null | undefined
+      src: string
+      width: number
+      height: number
+    }
+  }>
+}
+
+export type AllProductsQueryVariables = Exact<{[key: string]: never}>
+
+export type AllProductsQuery = {
+  products: Array<{
+    id: number
+    cookingInstructions: string
+    ingredients: string
+    contains: string
+    shopifyId: number
+    nutritionFacts: Array<{
+      id: number
+      ingredient: string
+      dailyValue?: number | null | undefined
+      measurements: {id: number; type: MeasurementType; value: number}
+    }>
+    compoundNutritionFacts: Array<{
+      id: number
+      ingredient: string
+      dailyValue?: number | null | undefined
+      measurements: {id: number; type: MeasurementType; value: number}
+      ingredients: Array<{
+        id: number
+        ingredient: string
+        dailyValue?: number | null | undefined
+        measurements: {id: number; type: MeasurementType; value: number}
+      }>
+    }>
+    servingSize: {id: number; type: MeasurementType; value: number}
+  }>
+}
+
+export type ProductQueryVariables = Exact<{
+  id: Scalars['Int']
+}>
+
+export type ProductQuery = {
+  product: {
+    name: string
+    nutritionFacts: Array<{
+      id: number
+      ingredient: string
+      dailyValue?: number | null | undefined
+      measurements: {id: number; type: MeasurementType; value: number}
+    }>
+    compoundNutritionFacts: Array<{
+      id: number
+      ingredient: string
+      dailyValue?: number | null | undefined
+      measurements: {id: number; type: MeasurementType; value: number}
+      ingredients: Array<{
+        id: number
+        ingredient: string
+        dailyValue?: number | null | undefined
+        measurements: {id: number; type: MeasurementType; value: number}
+      }>
+    }>
+  }
+}
+
+export const ProductFragmentDoc = gql`
+  fragment Product on Product {
+    id
+    name
+    image {
+      alt
+      src
+      width
+      height
+    }
+  }
+`
 export const FaqFragmentDoc = gql`
   fragment Faq on Faq {
     id
@@ -200,6 +401,88 @@ export const FaqFragmentDoc = gql`
     answer
   }
 `
+export const MeasurementsFragmentDoc = gql`
+  fragment Measurements on Measurement {
+    id
+    type
+    value
+  }
+`
+export const NutritionFactFragmentDoc = gql`
+  fragment NutritionFact on NutritionFact {
+    id
+    ingredient
+    dailyValue
+    measurements {
+      ...Measurements
+    }
+  }
+  ${MeasurementsFragmentDoc}
+`
+export const CompoundNutritionFactFragmentDoc = gql`
+  fragment CompoundNutritionFact on CompoundNutritionFact {
+    id
+    ingredient
+    dailyValue
+    measurements {
+      ...Measurements
+    }
+    ingredients {
+      ...NutritionFact
+    }
+  }
+  ${MeasurementsFragmentDoc}
+  ${NutritionFactFragmentDoc}
+`
+export const FullProductFragmentDoc = gql`
+  fragment FullProduct on Product {
+    id
+    cookingInstructions
+    ingredients
+    contains
+    shopifyId
+    nutritionFacts {
+      ...NutritionFact
+    }
+    compoundNutritionFacts {
+      ...CompoundNutritionFact
+    }
+    servingSize {
+      ...Measurements
+    }
+  }
+  ${NutritionFactFragmentDoc}
+  ${CompoundNutritionFactFragmentDoc}
+  ${MeasurementsFragmentDoc}
+`
+export const CreateProductDocument = gql`
+  mutation CreateProduct($data: CreateProductInput!) {
+    createProduct(data: $data) {
+      id
+    }
+  }
+`
+
+export function useCreateProductMutation() {
+  return Urql.useMutation<
+    CreateProductMutation,
+    CreateProductMutationVariables
+  >(CreateProductDocument)
+}
+export const UpdateProductDocument = gql`
+  mutation UpdateProduct($id: Int!, $data: UpdateProductInput!) {
+    updateProduct(id: $id, data: $data) {
+      id
+    }
+  }
+`
+
+export function useUpdateProductMutation() {
+  return Urql.useMutation<
+    UpdateProductMutation,
+    UpdateProductMutationVariables
+  >(UpdateProductDocument)
+}
 export const DeleteFaqDocument = gql`
   mutation DeleteFaq($id: Int!) {
     deleteFaq(id: $id) {
@@ -255,4 +538,77 @@ export function useFaqsQuery(
   options: Omit<Urql.UseQueryArgs<FaqsQueryVariables>, 'query'> = {}
 ) {
   return Urql.useQuery<FaqsQuery>({query: FaqsDocument, ...options})
+}
+export const ShopifyProductsDocument = gql`
+  query ShopifyProducts {
+    shopifyProducts {
+      id
+      name
+      image {
+        alt
+        src
+      }
+    }
+  }
+`
+
+export function useShopifyProductsQuery(
+  options: Omit<Urql.UseQueryArgs<ShopifyProductsQueryVariables>, 'query'> = {}
+) {
+  return Urql.useQuery<ShopifyProductsQuery>({
+    query: ShopifyProductsDocument,
+    ...options,
+  })
+}
+export const ProductsDocument = gql`
+  query Products {
+    products {
+      ...Product
+    }
+  }
+  ${ProductFragmentDoc}
+`
+
+export function useProductsQuery(
+  options: Omit<Urql.UseQueryArgs<ProductsQueryVariables>, 'query'> = {}
+) {
+  return Urql.useQuery<ProductsQuery>({query: ProductsDocument, ...options})
+}
+export const AllProductsDocument = gql`
+  query AllProducts {
+    products {
+      ...FullProduct
+    }
+  }
+  ${FullProductFragmentDoc}
+`
+
+export function useAllProductsQuery(
+  options: Omit<Urql.UseQueryArgs<AllProductsQueryVariables>, 'query'> = {}
+) {
+  return Urql.useQuery<AllProductsQuery>({
+    query: AllProductsDocument,
+    ...options,
+  })
+}
+export const ProductDocument = gql`
+  query Product($id: Int!) {
+    product: productByShopifyId(shopifyId: $id) {
+      name
+      nutritionFacts {
+        ...NutritionFact
+      }
+      compoundNutritionFacts {
+        ...CompoundNutritionFact
+      }
+    }
+  }
+  ${NutritionFactFragmentDoc}
+  ${CompoundNutritionFactFragmentDoc}
+`
+
+export function useProductQuery(
+  options: Omit<Urql.UseQueryArgs<ProductQueryVariables>, 'query'> = {}
+) {
+  return Urql.useQuery<ProductQuery>({query: ProductDocument, ...options})
 }

@@ -3,6 +3,7 @@
 
 
 type CompoundNutritionFact {
+  dailyValue: Float
   id: Int!
   ingredient: String!
   ingredients: [NutritionFact!]!
@@ -11,9 +12,11 @@ type CompoundNutritionFact {
 }
 
 input CompoundNutritionFactInput {
+  dailyValue: Float
   ingredient: String!
   ingredients: [NutritionFactInput!]!
   measurements: MeasurementInput!
+  order: Int!
 }
 
 input CreateFaqInput {
@@ -69,14 +72,16 @@ enum MeasurementType {
 }
 
 type Mutation {
-  create_product(input: CreateProductInput!): Product!
   createFaq(data: CreateFaqInput!): Faq!
+  createProduct(data: CreateProductInput!): Product!
   deleteFaq(id: Int!): Faq!
   updateFaq(data: UpdateFaqInput!, id: Int!): Faq!
   updateMeasurement(id: Int!, set: UpdateMeasurementInput!): Measurement!
+  updateProduct(data: UpdateProductInput!, id: Int!): Product!
 }
 
 type NutritionFact {
+  dailyValue: Float
   id: Int!
   ingredient: String!
   measurements: Measurement!
@@ -84,8 +89,10 @@ type NutritionFact {
 }
 
 input NutritionFactInput {
+  dailyValue: Float
   ingredient: String!
   measurements: MeasurementInput!
+  order: Int!
 }
 
 type Product {
@@ -105,6 +112,13 @@ type Query {
   faqs: [Faq!]!
   productByShopifyId(shopifyId: Int!): Product!
   products: [Product!]!
+  shopifyProducts: [ShopifyProduct!]!
+}
+
+type ShopifyProduct {
+  id: Float!
+  image: Image!
+  name: String!
 }
 
 input UpdateFaqInput {
@@ -115,4 +129,13 @@ input UpdateFaqInput {
 input UpdateMeasurementInput {
   type: MeasurementType!
   value: Float!
+}
+
+input UpdateProductInput {
+  compoundNutritionFacts: [CompoundNutritionFactInput!]!
+  contains: String!
+  cookingInstructions: String!
+  ingredients: String!
+  nutritionFacts: [NutritionFactInput!]!
+  servingSize: MeasurementInput!
 }

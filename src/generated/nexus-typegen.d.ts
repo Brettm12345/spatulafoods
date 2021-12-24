@@ -16,9 +16,11 @@ declare global {
 
 export interface NexusGenInputs {
   CompoundNutritionFactInput: { // input type
+    dailyValue?: number | null; // Float
     ingredient: string; // String!
     ingredients: NexusGenInputs['NutritionFactInput'][]; // [NutritionFactInput!]!
     measurements: NexusGenInputs['MeasurementInput']; // MeasurementInput!
+    order: number; // Int!
   }
   CreateFaqInput: { // input type
     answer: string; // String!
@@ -39,8 +41,10 @@ export interface NexusGenInputs {
     value: number; // Float!
   }
   NutritionFactInput: { // input type
+    dailyValue?: number | null; // Float
     ingredient: string; // String!
     measurements: NexusGenInputs['MeasurementInput']; // MeasurementInput!
+    order: number; // Int!
   }
   UpdateFaqInput: { // input type
     answer: string; // String!
@@ -49,6 +53,14 @@ export interface NexusGenInputs {
   UpdateMeasurementInput: { // input type
     type: NexusGenEnums['MeasurementType']; // MeasurementType!
     value: number; // Float!
+  }
+  UpdateProductInput: { // input type
+    compoundNutritionFacts: NexusGenInputs['CompoundNutritionFactInput'][]; // [CompoundNutritionFactInput!]!
+    contains: string; // String!
+    cookingInstructions: string; // String!
+    ingredients: string; // String!
+    nutritionFacts: NexusGenInputs['NutritionFactInput'][]; // [NutritionFactInput!]!
+    servingSize: NexusGenInputs['MeasurementInput']; // MeasurementInput!
   }
 }
 
@@ -66,6 +78,7 @@ export interface NexusGenScalars {
 
 export interface NexusGenObjects {
   CompoundNutritionFact: { // root type
+    dailyValue?: number | null; // Float
     id: number; // Int!
     ingredient: string; // String!
   }
@@ -93,6 +106,7 @@ export interface NexusGenObjects {
   }
   Mutation: {};
   NutritionFact: { // root type
+    dailyValue?: number | null; // Float
     id: number; // Int!
     ingredient: string; // String!
   }
@@ -104,6 +118,11 @@ export interface NexusGenObjects {
     shopifyId: number; // Float!
   }
   Query: {};
+  ShopifyProduct: { // root type
+    id: number; // Float!
+    image: NexusGenRootTypes['Image']; // Image!
+    name: string; // String!
+  }
 }
 
 export interface NexusGenInterfaces {
@@ -118,6 +137,7 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars & NexusGenEnu
 
 export interface NexusGenFieldTypes {
   CompoundNutritionFact: { // field return type
+    dailyValue: number | null; // Float
     id: number; // Int!
     ingredient: string; // String!
     ingredients: NexusGenRootTypes['NutritionFact'][]; // [NutritionFact!]!
@@ -147,13 +167,15 @@ export interface NexusGenFieldTypes {
     value: number; // Float!
   }
   Mutation: { // field return type
-    create_product: NexusGenRootTypes['Product']; // Product!
     createFaq: NexusGenRootTypes['Faq']; // Faq!
+    createProduct: NexusGenRootTypes['Product']; // Product!
     deleteFaq: NexusGenRootTypes['Faq']; // Faq!
     updateFaq: NexusGenRootTypes['Faq']; // Faq!
     updateMeasurement: NexusGenRootTypes['Measurement']; // Measurement!
+    updateProduct: NexusGenRootTypes['Product']; // Product!
   }
   NutritionFact: { // field return type
+    dailyValue: number | null; // Float
     id: number; // Int!
     ingredient: string; // String!
     measurements: NexusGenRootTypes['Measurement']; // Measurement!
@@ -175,11 +197,18 @@ export interface NexusGenFieldTypes {
     faqs: NexusGenRootTypes['Faq'][]; // [Faq!]!
     productByShopifyId: NexusGenRootTypes['Product']; // Product!
     products: NexusGenRootTypes['Product'][]; // [Product!]!
+    shopifyProducts: NexusGenRootTypes['ShopifyProduct'][]; // [ShopifyProduct!]!
+  }
+  ShopifyProduct: { // field return type
+    id: number; // Float!
+    image: NexusGenRootTypes['Image']; // Image!
+    name: string; // String!
   }
 }
 
 export interface NexusGenFieldTypeNames {
   CompoundNutritionFact: { // field return type name
+    dailyValue: 'Float'
     id: 'Int'
     ingredient: 'String'
     ingredients: 'NutritionFact'
@@ -209,13 +238,15 @@ export interface NexusGenFieldTypeNames {
     value: 'Float'
   }
   Mutation: { // field return type name
-    create_product: 'Product'
     createFaq: 'Faq'
+    createProduct: 'Product'
     deleteFaq: 'Faq'
     updateFaq: 'Faq'
     updateMeasurement: 'Measurement'
+    updateProduct: 'Product'
   }
   NutritionFact: { // field return type name
+    dailyValue: 'Float'
     id: 'Int'
     ingredient: 'String'
     measurements: 'Measurement'
@@ -237,16 +268,22 @@ export interface NexusGenFieldTypeNames {
     faqs: 'Faq'
     productByShopifyId: 'Product'
     products: 'Product'
+    shopifyProducts: 'ShopifyProduct'
+  }
+  ShopifyProduct: { // field return type name
+    id: 'Float'
+    image: 'Image'
+    name: 'String'
   }
 }
 
 export interface NexusGenArgTypes {
   Mutation: {
-    create_product: { // args
-      input: NexusGenInputs['CreateProductInput']; // CreateProductInput!
-    }
     createFaq: { // args
       data: NexusGenInputs['CreateFaqInput']; // CreateFaqInput!
+    }
+    createProduct: { // args
+      data: NexusGenInputs['CreateProductInput']; // CreateProductInput!
     }
     deleteFaq: { // args
       id: number; // Int!
@@ -258,6 +295,10 @@ export interface NexusGenArgTypes {
     updateMeasurement: { // args
       id: number; // Int!
       set: NexusGenInputs['UpdateMeasurementInput']; // UpdateMeasurementInput!
+    }
+    updateProduct: { // args
+      data: NexusGenInputs['UpdateProductInput']; // UpdateProductInput!
+      id: number; // Int!
     }
   }
   Query: {

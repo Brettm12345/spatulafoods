@@ -1,6 +1,7 @@
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 generator client {
@@ -93,7 +94,9 @@ model NutritionFact {
   id                      Int                    @id @default(autoincrement())
   ingredient              String
   compoundNutritionFactId Int?                   @map("comound_nutrition_fact_id")
+  dailyValue              Float?                 @map("daily_value")
   productId               Int                    @map("product_id")
+  order                   Int
   measurementId           Int                    @map("measurement_id")
   product                 Product                @relation(fields: [productId], references: [id])
   compoundNutritionFact   CompoundNutritionFact? @relation(fields: [compoundNutritionFactId], references: [id])
@@ -105,7 +108,9 @@ model NutritionFact {
 model CompoundNutritionFact {
   id            Int             @id @default(autoincrement())
   ingredient    String
+  order         Int
   measurementId Int             @map("measurement_id")
+  dailyValue    Float?          @map("daily_value")
   productId     Int             @map("product_id")
   product       Product         @relation(fields: [productId], references: [id])
   measurements  Measurement     @relation(fields: [measurementId], references: [id])

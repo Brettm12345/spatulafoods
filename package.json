@@ -41,6 +41,8 @@
     ]
   },
   "dependencies": {
+    "@dnd-kit/core": "^4.0.3",
+    "@dnd-kit/sortable": "^5.1.0",
     "@headlessui/react": "^1.4.2",
     "@heroicons/react": "^1.0.5",
     "@next-auth/prisma-adapter": "^1.0.1",
@@ -57,8 +59,11 @@
     "@tiptap/starter-kit": "^2.0.0-beta.163",
     "apollo-server-micro": "^2.19.0",
     "clsx": "^1.1.1",
+    "constate": "^3.3.0",
     "dotenv": "^10.0.0",
+    "fp-ts": "^2.11.5",
     "graphql": "15.0.0",
+    "lens.ts": "^0.5.1",
     "lodash": "^4.17.21",
     "micro-cors": "^0.1.1",
     "next": "11.0.1",
@@ -90,6 +95,7 @@
     "@types/micro-cors": "^0.1.2",
     "@types/node": "^17.0.0",
     "@types/react": "^17.0.14",
+    "@types/react-table": "^7.7.9",
     "@types/styled-components": "^5.1.18",
     "@types/tailwindcss": "^2.2.4",
     "@typescript-eslint/eslint-plugin": "^5.8.0",

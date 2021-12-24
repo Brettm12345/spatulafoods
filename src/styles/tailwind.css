@@ -3,6 +3,16 @@
 @tailwind utilities;
 
 @layer base {
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
 }
 @layer components {
   .form-label {
@@ -11,6 +21,9 @@
   .input {
     @apply bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-400 dark:focus-visible:ring-blue-500 outline-none transition-colors ease-in duration-150;
   }
+  .row-expanded + tr:not(.row-expanded) {
+    @apply border-t border-gray-100 dark:border-gray-700;
+  }
   .logo {
     object-fit: contain;
     height: fit-content !important;
@@ -18,12 +31,25 @@
     width: theme('width.20') !important;
     min-width: unset !important;
   }
+  .table-cell {
+    @apply p-4 pl-8;
+    @apply text-gray-500 dark:text-gray-400;
+  }
   .btn {
     @apply inline-flex font-medium rounded-md text-sm px-5 py-2 text-center items-center focus:ring-4 focus:outline-none;
     @apply transition-colors ease-mantine duration-300;
   }
   .btn-text {
     @apply p-4 transition-colors ease-mantine duration-300 focus:outline-none;
+  }
+  .btn-table {
+    @apply inline-flex text-center items-center justify-center rounded-full bg-transparent;
+    @apply hover:bg-gray-100 dark:hover:bg-white/20;
+    @apply force-size-8;
+    @apply transition-colors ease-mantine duration-200;
+  }
+  .btn-table svg {
+    @apply force-size-4 mx-auto;
   }
   .btn svg {
     @apply -ml-1 size-5 fill-current mr-2;

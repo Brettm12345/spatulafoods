@@ -37,6 +37,30 @@ export const Header = () => {
           />
         </Link>
         <div className="flex space-x-4">
+          {session.status === 'authenticated' && (
+            <>
+              <Link href="/products" passHref>
+                <button
+                  className={clsx(
+                    'hover:text-sky-500 dark:hover:text-sky-400',
+                    'transition-colors ease-mantine duration-200'
+                  )}
+                >
+                  Products
+                </button>
+              </Link>
+              <Link href="/faqs" passHref>
+                <button
+                  className={clsx(
+                    'hover:text-sky-500 dark:hover:text-sky-400',
+                    'transition-colors ease-mantine duration-200'
+                  )}
+                >
+                  Faq
+                </button>
+              </Link>
+            </>
+          )}
           <button
             className={clsx(
               'hover:text-sky-500 dark:hover:text-sky-400',

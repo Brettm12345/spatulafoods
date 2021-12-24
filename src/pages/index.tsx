@@ -5,10 +5,14 @@ import {signIn} from 'next-auth/react'
 import {getSession} from 'next-auth/react'
 
 import {Button} from '../components/Button'
+import {NutritionFactTable} from '../components/NutritionFactTable/NutritionFactTable'
+import {ProductTable} from '../components/ProductTable'
 
 const Home: NextPage = () => (
   <div>
-    <div className="container flex items-center justify-center max-w-full">
+    <div className="container flex flex-col items-center justify-center max-w-full">
+      <ProductTable />
+      <NutritionFactTable />
       <Button
         className="mx-auto mt-[30vh] btn-sky"
         leftIcon={<Auth0 />}

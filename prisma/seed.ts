@@ -14,12 +14,14 @@ interface CreateNutritionFactArgs {
   item: NutritionItem
   name: string
   productId: number
+  index: number
 }
 type CreateNutritionFact = (args: CreateNutritionFactArgs) => Promise<number>
 const createNutritionFact: CreateNutritionFact = async ({
   item,
   name,
   productId,
+  index,
 }) => {
   const {id} = await prisma.nutritionFact.create({
     data: {
@@ -28,7 +30,7 @@ const createNutritionFact: CreateNutritionFact = async ({
           id: productId,
         },
       },
-      ...createNutritionItem(name, item),
+      ...createNutritionItem(name, item, index),
     },
   })
   return id
@@ -721,45 +723,50 @@ const generateProducts = async () => {
         },
       })
       await Promise.all(
-        Object.entries(value.nutrition).map(async ([ingredient, value]) => {
-          const connectProduct = {
-            product: {
-              connect: {
-                id: product.id,
+        Object.entries(value.nutrition).map(
+          async ([ingredient, value], index) => {
+            const connectProduct = {
+              product: {
+                connect: {
+                  id: product.id,
+                },
               },
-            },
-          } as const
-          if (isCategory(value)) {
-            const {total, breakdown} = value
-            const data = await prisma.compoundNutritionFact.create({
-              data: {
-                ...connectProduct,
-                ...createNutritionItem(ingredient, total),
-              },
-            })
-            await Promise.all(
-              Object.entries(breakdown).map(async ([ingredient, value]) => {
-                await prisma.nutritionFact.create({
-                  data: {
-                    ...connectProduct,
-                    compoundNutritionFact: {
-                      connect: {
-                        id: data.id,
-                      },
-                    },
-                    ...createNutritionItem(ingredient, value),
-                  },
-                })
+            } as const
+            if (isCategory(value)) {
+              const {total, breakdown} = value
+              const data = await prisma.compoundNutritionFact.create({
+                data: {
+                  ...connectProduct,
+                  ...createNutritionItem(ingredient, total, index),
+                },
               })
-            )
-          } else {
-            await createNutritionFact({
-              productId: product.id,
-              item: value,
-              name: ingredient,
-            })
+              await Promise.all(
+                Object.entries(breakdown).map(
+                  async ([ingredient, value], i) => {
+                    await prisma.nutritionFact.create({
+                      data: {
+                        ...connectProduct,
+                        compoundNutritionFact: {
+                          connect: {
+                            id: data.id,
+                          },
+                        },
+                        ...createNutritionItem(ingredient, value, i),
+                      },
+                    })
+                  }
+                )
+              )
+            } else {
+              await createNutritionFact({
+                productId: product.id,
+                item: value,
+                index,
+                name: ingredient,
+              })
+            }
           }
-        })
+        )
       )
     })
   )

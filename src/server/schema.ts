@@ -23,9 +23,13 @@ import {
   UpdateFaqInput,
   CreateFaqInput,
 } from './graphql'
+import {UpdateProductInput} from './graphql/inputs/UpdateProductInput'
+import {ShopifyProductModel} from './graphql/models/ShopifyProduct'
 import {CreateProduct} from './graphql/mutations'
 import {CreateFaq} from './graphql/mutations/CreateFaq'
 import {UpdateFaq} from './graphql/mutations/UpdateFaq'
+import {UpdateProduct} from './graphql/mutations/UpdateProduct'
+import {ShopifyProducts} from './graphql/queries/ShopifyProducts'
 
 export const schema = makeSchema({
   contextType: {
@@ -54,6 +58,7 @@ export const schema = makeSchema({
     UpdateMeasurementInput,
     CompoundNutritionFactInput,
     MeasurementInput,
+    NutritionFactInput,
     UpdateMeasurement,
     CreateProductInput,
     FaqModel,
@@ -66,6 +71,10 @@ export const schema = makeSchema({
     MeasurementModel,
     MeasurementTypeModel,
     NutritionFactModel,
+    ShopifyProductModel,
+    ShopifyProducts,
     ProductModel,
+    UpdateProductInput,
+    UpdateProduct,
   ],
 })

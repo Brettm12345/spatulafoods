@@ -1,26 +1,17 @@
-import {arg, mutationField} from 'nexus'
+import {arg, intArg, mutationField} from 'nexus'
 
-export const CreateProduct = mutationField('createProduct', {
+export const UpdateProduct = mutationField('updateProduct', {
   type: 'Product',
   args: {
-    data: arg({
-      type: 'CreateProductInput',
-    }),
-  },
-  authorize: async (_root, {data}, ctx) => {
-    try {
-      await ctx.shopify.product.get(data.shopifyId)
-    } catch {
-      return new Error('Product not found')
-    }
-    return !!ctx.user
+    id: intArg(),
+    data: arg({type: 'UpdateProductInput'}),
   },
   resolve: async (
     _,
     {
+      id,
       data: {
         cookingInstructions,
-        shopifyId,
         servingSize,
         compoundNutritionFacts,
         nutritionFacts,
@@ -30,24 +21,23 @@ export const CreateProduct = mutationField('createProduct', {
     },
     ctx
   ) => {
-    const product = await ctx.prisma.product.create({
+    const product = await ctx.prisma.product.update({
+      where: {id},
       data: {
-        cookingInstructions,
-        shopifyId,
-        ingredients,
         contains,
+        ingredients,
+        cookingInstructions,
         servingSize: {
-          create: servingSize,
+          update: servingSize,
         },
       },
-      select: {
-        id: true,
-      },
     })
+    await ctx.prisma.nutritionFact.deleteMany({where: {productId: id}})
+    await ctx.prisma.compoundNutritionFact.deleteMany({where: {productId: id}})
     const connectProduct = {
       product: {
         connect: {
-          id: product.id,
+          id,
         },
       },
     } as const
@@ -103,6 +93,6 @@ export const CreateProduct = mutationField('createProduct', {
         }
       )
     )
-    return ctx.prisma.product.findFirst({where: {id: product.id}})
+    return product
   },
 })
