@@ -16,7 +16,6 @@ export interface NutritionItem {
   id: string
   ingredient: string
   content: Content
-  order: number
   dailyValue?: number
   parentId?: string
   ingredients?: NutritionItem[]
@@ -73,7 +72,8 @@ export const createFromProduct = (
           .sort((a, b) => b.order - a.order),
       })
     )
-    .sort((a, b) => b.order - a.order),
+    .sort((a, b) => b.order - a.order)
+    .map(({order: _order, ...item}) => item),
 ]
 export const useNutritionFactsState = ({items}: UseNutritionFactsProps) => {
   const [nutritionFacts, setNutritionFacts] = useState<NutritionFacts>(items)
