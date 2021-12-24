@@ -136,10 +136,10 @@ export const NutritionFactTable: FC = () => {
                         nutritionFactLens
                           .k(parentIndex)
                           .ingredients.set(ingredients => [
-                            ...ingredients,
+                            ...(ingredients ?? []),
                             {
                               id:
-                                ingredients.length === 0
+                                !ingredients || ingredients?.length === 0
                                   ? '0'
                                   : (
                                       parseInt(
