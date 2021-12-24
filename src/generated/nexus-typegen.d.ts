@@ -81,6 +81,7 @@ export interface NexusGenObjects {
     dailyValue?: number | null; // Float
     id: number; // Int!
     ingredient: string; // String!
+    order: number; // Int!
   }
   Faq: { // root type
     answer: string; // String!
@@ -143,6 +144,7 @@ export interface NexusGenFieldTypes {
     ingredient: string; // String!
     ingredients: NexusGenRootTypes['NutritionFact'][]; // [NutritionFact!]!
     measurements: NexusGenRootTypes['Measurement']; // Measurement!
+    order: number; // Int!
     product: NexusGenRootTypes['Product']; // Product!
   }
   Faq: { // field return type
@@ -215,6 +217,7 @@ export interface NexusGenFieldTypeNames {
     ingredient: 'String'
     ingredients: 'NutritionFact'
     measurements: 'Measurement'
+    order: 'Int'
     product: 'Product'
   }
   Faq: { // field return type name

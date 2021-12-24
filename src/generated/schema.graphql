@@ -8,6 +8,7 @@ type CompoundNutritionFact {
   ingredient: String!
   ingredients: [NutritionFact!]!
   measurements: Measurement!
+  order: Int!
   product: Product!
 }
 

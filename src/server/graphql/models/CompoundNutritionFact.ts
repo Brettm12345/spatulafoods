@@ -10,6 +10,7 @@ export const CompoundNutritionFactModel = objectType({
     t.field(CompoundNutritionFact.dailyValue)
     t.field(CompoundNutritionFact.measurements)
     t.field(CompoundNutritionFact.product)
+    t.field(CompoundNutritionFact.order)
     t.field(CompoundNutritionFact.ingredients)
   },
 })
