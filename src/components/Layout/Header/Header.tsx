@@ -49,7 +49,7 @@ export const Header = () => {
                   Products
                 </button>
               </Link>
-              <Link href="/faqs" passHref>
+              <Link href="/faq" passHref>
                 <button
                   className={clsx(
                     'hover:text-sky-500 dark:hover:text-sky-400',
