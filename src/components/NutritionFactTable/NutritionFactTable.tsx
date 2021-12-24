@@ -165,6 +165,7 @@ export const NutritionFactTable: FC = () => {
               </Tooltip>
               <NutritionFactModal
                 ingredient={row.original.ingredient}
+                key={row.original.id}
                 id={row.original.id}
                 onClose={editModal.onClose}
                 handleSave={
