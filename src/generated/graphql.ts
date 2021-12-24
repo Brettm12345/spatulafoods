@@ -25,6 +25,7 @@ export type CompoundNutritionFact = {
   ingredient: Scalars['String']
   ingredients: Array<NutritionFact>
   measurements: Measurement
+  order: Scalars['Int']
   product: Product
 }
 
@@ -129,6 +130,7 @@ export type NutritionFact = {
   id: Scalars['Int']
   ingredient: Scalars['String']
   measurements: Measurement
+  order: Scalars['Int']
   product: Product
 }
 
@@ -160,7 +162,7 @@ export type Query = {
 }
 
 export type QueryProductByShopifyIdArgs = {
-  shopifyId: Scalars['Int']
+  shopifyId: Scalars['Float']
 }
 
 export type ShopifyProduct = {
@@ -209,6 +211,7 @@ export type NutritionFactFragment = {
   id: number
   ingredient: string
   dailyValue?: number | null | undefined
+  order: number
   measurements: {id: number; type: MeasurementType; value: number}
 }
 
@@ -216,11 +219,13 @@ export type CompoundNutritionFactFragment = {
   id: number
   ingredient: string
   dailyValue?: number | null | undefined
+  order: number
   measurements: {id: number; type: MeasurementType; value: number}
   ingredients: Array<{
     id: number
     ingredient: string
     dailyValue?: number | null | undefined
+    order: number
     measurements: {id: number; type: MeasurementType; value: number}
   }>
 }
@@ -237,17 +242,20 @@ export type FullProductFragment = {
     id: number
     ingredient: string
     dailyValue?: number | null | undefined
+    order: number
     measurements: {id: number; type: MeasurementType; value: number}
   }>
   compoundNutritionFacts: Array<{
     id: number
     ingredient: string
     dailyValue?: number | null | undefined
+    order: number
     measurements: {id: number; type: MeasurementType; value: number}
     ingredients: Array<{
       id: number
       ingredient: string
       dailyValue?: number | null | undefined
+      order: number
       measurements: {id: number; type: MeasurementType; value: number}
     }>
   }>
@@ -336,17 +344,20 @@ export type AllProductsQuery = {
       id: number
       ingredient: string
       dailyValue?: number | null | undefined
+      order: number
       measurements: {id: number; type: MeasurementType; value: number}
     }>
     compoundNutritionFacts: Array<{
       id: number
       ingredient: string
       dailyValue?: number | null | undefined
+      order: number
       measurements: {id: number; type: MeasurementType; value: number}
       ingredients: Array<{
         id: number
         ingredient: string
         dailyValue?: number | null | undefined
+        order: number
         measurements: {id: number; type: MeasurementType; value: number}
       }>
     }>
@@ -355,7 +366,7 @@ export type AllProductsQuery = {
 }
 
 export type ProductQueryVariables = Exact<{
-  id: Scalars['Int']
+  id: Scalars['Float']
 }>
 
 export type ProductQuery = {
@@ -365,17 +376,20 @@ export type ProductQuery = {
       id: number
       ingredient: string
       dailyValue?: number | null | undefined
+      order: number
       measurements: {id: number; type: MeasurementType; value: number}
     }>
     compoundNutritionFacts: Array<{
       id: number
       ingredient: string
       dailyValue?: number | null | undefined
+      order: number
       measurements: {id: number; type: MeasurementType; value: number}
       ingredients: Array<{
         id: number
         ingredient: string
         dailyValue?: number | null | undefined
+        order: number
         measurements: {id: number; type: MeasurementType; value: number}
       }>
     }>
@@ -413,6 +427,7 @@ export const NutritionFactFragmentDoc = gql`
     id
     ingredient
     dailyValue
+    order
     measurements {
       ...Measurements
     }
@@ -424,6 +439,7 @@ export const CompoundNutritionFactFragmentDoc = gql`
     id
     ingredient
     dailyValue
+    order
     measurements {
       ...Measurements
     }
@@ -592,7 +608,7 @@ export function useAllProductsQuery(
   })
 }
 export const ProductDocument = gql`
-  query Product($id: Int!) {
+  query Product($id: Float!) {
     product: productByShopifyId(shopifyId: $id) {
       name
       nutritionFacts {

@@ -25,6 +25,7 @@ export const NUTRITION_FACT = gql`
     id
     ingredient
     dailyValue
+    order
     measurements {
       ...Measurements
     }
@@ -37,6 +38,7 @@ export const COMPOUND_NUTRITION_FACT = gql`
     id
     ingredient
     dailyValue
+    order
     measurements {
       ...Measurements
     }

@@ -50,23 +50,25 @@ export const createFromProduct = (
       ingredient,
     })
   ),
-  ...product.compoundNutritionFacts.map(
-    ({id: parentId, dailyValue, ingredient, ingredients, measurements}) => ({
-      id: parentId.toString(),
-      dailyValue,
-      ingredient,
-      content: createMeasurements(measurements),
-      ingredients: ingredients.map(
-        ({id, dailyValue, ingredient, measurements}) => ({
-          id: id.toString(),
-          dailyValue,
-          ingredient,
-          measurements,
-          parentId: parentId.toString(),
-        })
-      ),
-    })
-  ),
+  ...product.compoundNutritionFacts
+    .map(
+      ({id: parentId, dailyValue, ingredient, ingredients, measurements}) => ({
+        id: parentId.toString(),
+        dailyValue,
+        ingredient,
+        content: createMeasurements(measurements),
+        ingredients: ingredients
+          .map(({id, dailyValue, ingredient, measurements}) => ({
+            id: id.toString(),
+            dailyValue,
+            ingredient,
+            measurements,
+            parentId: parentId.toString(),
+          }))
+          .sort((a, b) => b.order - a.order),
+      })
+    )
+    .sort((a, b) => b.order - a.order),
 ]
 export const useNutritionFactsState = ({items}: UseNutritionFactsProps) => {
   const [nutritionFacts, setNutritionFacts] = useState<NutritionFacts>(items)

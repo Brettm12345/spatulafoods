@@ -47,7 +47,7 @@ export const ALL_PRODUCTS = gql`
   ${FULL_PRODUCT}
 `
 export const PRODUCT_BY_ID = gql`
-  query Product($id: Int!) {
+  query Product($id: Float!) {
     product: productByShopifyId(shopifyId: $id) {
       name
       nutritionFacts {
