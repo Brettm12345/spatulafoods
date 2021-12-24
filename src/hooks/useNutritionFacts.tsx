@@ -56,6 +56,8 @@ export const createFromProduct = (
       ({id: parentId, dailyValue, ingredient, ingredients, measurements}) => ({
         id: parentId.toString(),
         dailyValue,
+        // Save to ignore *removed later*
+        // @ts-ignore
         order,
         ingredient,
         content: createMeasurements(measurements),
@@ -69,7 +71,8 @@ export const createFromProduct = (
             measurements,
             parentId: parentId.toString(),
           }))
-          .sort((a, b) => b.order - a.order),
+          .sort((a, b) => b.order - a.order)
+          .map(({order: _order, ...item}) => item),
       })
     )
     .sort((a, b) => b.order - a.order)
