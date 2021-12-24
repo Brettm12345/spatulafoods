@@ -65,9 +65,11 @@ export const createFromProduct = (
             measurements,
             parentId: parentId.toString(),
           }))
+          // @ts-ignore
           .sort((a, b) => b.order - a.order),
       })
     )
+    // @ts-ignore
     .sort((a, b) => b.order - a.order),
 ]
 export const useNutritionFactsState = ({items}: UseNutritionFactsProps) => {
