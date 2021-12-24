@@ -8,6 +8,7 @@ const cors = Cors()
 const apolloServer = new ApolloServer({
   context: createContext,
   schema,
+  introspection: true,
 })
 
 export const config = {

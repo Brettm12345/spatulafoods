@@ -11,5 +11,6 @@
     "Spatulafoods",
     "Strikethrough",
     "tiptap"
-  ]
+  ],
+  "jest.jestCommandLine": "yarn test"
 }
