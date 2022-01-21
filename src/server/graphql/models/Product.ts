@@ -26,18 +26,17 @@ export const ProductModel = objectType({
           orderBy: {order: 'asc'},
           where: {AND: [{productId: source.id, compoundNutritionFactId: null}]},
         })
-        console.log(result)
         return result
       },
     })
-    t.field('image', {
+    t.nullable.field('image', {
       type: 'Image',
       resolve: async (source, _, ctx) => {
         const {image} = await ctx.shopify.product.get(source.shopifyId)
         return image
       },
     })
-    t.field('name', {
+    t.nullable.field('name', {
       type: 'String',
       resolve: async (source, _, ctx) => {
         try {
