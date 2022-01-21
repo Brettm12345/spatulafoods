@@ -5,7 +5,7 @@ export const ShopifyProductModel = objectType({
   definition(t) {
     // Shopify uses big ids and theres no bigint in nexus
     t.float('id')
-    t.field('image', {type: 'Image'})
-    t.string('name')
+    t.nullable.field('image', {type: 'Image'})
+    t.nullable.string('name')
   },
 })
