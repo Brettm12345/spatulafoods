@@ -42,26 +42,30 @@ export const UpdateProduct = mutationField('updateProduct', {
       },
     } as const
     await Promise.all(
-      nutritionFacts.map(async ({ingredient, measurements, order}) => {
-        await ctx.prisma.nutritionFact.create({
-          data: {
-            ...connectProduct,
-            ingredient,
-            order,
-            measurements: {
-              create: measurements,
+      nutritionFacts.map(
+        async ({ingredient, measurements, order, dailyValue}) => {
+          await ctx.prisma.nutritionFact.create({
+            data: {
+              ...connectProduct,
+              ingredient,
+              dailyValue,
+              order,
+              measurements: {
+                create: measurements,
+              },
             },
-          },
-        })
-      })
+          })
+        }
+      )
     )
     await Promise.all(
       compoundNutritionFacts.map(
-        async ({measurements, ingredient, ingredients, order}) => {
+        async ({measurements, ingredient, ingredients, order, dailyValue}) => {
           const nutritionFact = await ctx.prisma.compoundNutritionFact.create({
             data: {
               ...connectProduct,
               ingredient,
+              dailyValue,
               order,
               measurements: {
                 create: measurements,
@@ -72,23 +76,26 @@ export const UpdateProduct = mutationField('updateProduct', {
             },
           })
           await Promise.all(
-            ingredients.map(async ({ingredient, measurements, order}) => {
-              await ctx.prisma.nutritionFact.create({
-                data: {
-                  ...connectProduct,
-                  ingredient,
-                  order,
-                  compoundNutritionFact: {
-                    connect: {
-                      id: nutritionFact.id,
+            ingredients.map(
+              async ({ingredient, measurements, order, dailyValue}) => {
+                await ctx.prisma.nutritionFact.create({
+                  data: {
+                    ...connectProduct,
+                    ingredient,
+                    order,
+                    dailyValue,
+                    compoundNutritionFact: {
+                      connect: {
+                        id: nutritionFact.id,
+                      },
+                    },
+                    measurements: {
+                      create: measurements,
                     },
                   },
-                  measurements: {
-                    create: measurements,
-                  },
-                },
-              })
-            })
+                })
+              }
+            )
           )
         }
       )
